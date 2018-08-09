@@ -14,7 +14,7 @@ set realname = "Jereme Corrado"
 set hostname = zoion.net
 set pgp_sign_as = 0x2A946D7DC9CB2D74  # jereme@zoion.net, etc.
 set signature = ~/.mutt/profiles/zoion/signature
-set alias_file = ~/.mutt/profiles/zoion/auto_aliases
+set alias_file = ~/.mutt/aliases/auto_zoion
 set header_cache = ~/.mutt/profiles/zoion/cache/headers
 
 set folder = ~/Maildir/zoion
