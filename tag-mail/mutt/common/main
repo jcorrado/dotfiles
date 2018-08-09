@@ -1,0 +1,71 @@
+# -*- mode: conf -*-
+
+source ~/.mutt/common/appearance
+source ~/.mutt/common/pgp
+source ~/.mutt/common/scoring
+
+set use_from = yes
+set envelope_from = yes
+set sendmail = /usr/bin/msmtp
+set mbox_type = Maildir
+set move = no
+set record = no
+set delete = yes
+set editor = "emacsclient -c -F '(quote (height . 50) (width . 80) (top . 75) (left . 75))'"
+set fast_reply = yes
+set mime_forward = yes
+set mime_forward_rest = yes
+set include = yes
+set edit_headers = yes
+set pager_stop = yes
+set strict_threads = yes
+set sort = threads
+set sort_aux = reverse-last-date-received
+set quit = ask-no
+set wait_key = yes
+set uncollapse_jump = yes
+set query_command = "mu cfind --format=mutt-ab '%s'"
+
+# helpful for lists, where I keep all mails (which I should enforce
+# with keybinding conf)
+folder-hook . "set mark_old = no"
+folder-hook lists/.* "set mark_old = yes"
+
+
+#
+# keybindings
+#
+
+# ASCII Del 127 in octal
+bind pager \177 previous-line
+
+bind index,pager f flag-message
+macro index,pager s "<purge-message>" "archive message (All Mail)"
+
+# different forwarding styles
+macro index,pager Fa "<enter-command>set mime_forward=yes<enter><forward-message>" "Forward as attachment"
+macro index,pager Fi "<enter-command>set mime_forward=no<enter><forward-message>" "Forward inline"
+
+bind index,pager S save-message
+
+macro index,pager Gi "<change-folder>=inbox<enter>" "go to Inbox"
+macro index,pager Gd "<change-folder>=drafts<enter>" "go to Drafts"
+macro index,pager Gf "<change-folder>=starred<enter>" "go to Flagged (Starred)"
+macro index,pager Ga "<change-folder-readonly>=all_mail<enter>" "go to All Mail"
+macro index,pager Gs "<change-folder-readonly>=sent<enter>" "go to Sent Mail"
+macro index,pager Gt "<change-folder>=trash<enter>" "go to Trash"
+macro index,pager GS "<change-folder>=spam<enter>" "go to Spam"
+macro index,pager Gr "<change-folder-readonly>=recent_mail<enter>" "go to recent mail view"
+
+# mu indexed search
+macro index,pager GR "<change-folder-readonly>=search_results<enter>" "go to last mu find results"
+# See per-profile \Cf binding to search execution
+
+
+# toggle mini-index feature
+macro pager J "<enter-command>set pager_index_lines=6<enter>" "enable mini-index in pager"
+macro pager K "<enter-command>set pager_index_lines=0<enter>" "disable mini-index in pager"
+
+# How to make oldstyle / classic / traditional / inline PGP work?
+# http://dev.mutt.org/trac/wiki/MuttFaq/Encryption
+message-hook '!(~g|~G) ~b"^-----BEGIN\ PGP\ (SIGNED\ )?MESSAGE"' "exec check-traditional-pgp"

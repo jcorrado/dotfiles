@@ -1,0 +1,19 @@
+# -*- mode: conf -*-
+
+# call out older messages
+folder-hook . 'uncolor index "~d >7d ! (~F | ~D)"'
+folder-hook inbox 'color index brightred default "~d >7d ! (~F | ~D)"'
+
+# nagios alerts
+color index default red '~f nagios ~s "(PROBLEM|CRITICAL): db.+?\..+mysql"'
+color index default green "~f nagios ~s RECOVERY.+db.+?\..+mysql"
+
+color index default red '~f nagios ~s "(PROBLEM|CRITICAL): db.+?\..+DOWN"'
+color index default green "~f nagios ~s RECOVERY.+db.+?\..+UP"
+
+color body yellow default "(BBOX|TECHOPS|TOPS)-[0-9]+"
+
+folder-hook . 'color status black green'
+folder-hook sent 'color status black brightred'
+folder-hook recent_mail 'color status black brightred'
+folder-hook all_mail 'color status black brightred'

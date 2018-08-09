@@ -1,0 +1,6 @@
+# -*- mode: conf -*-
+
+folder-hook . 'color status black blue'
+folder-hook sent 'color status black brightred'
+folder-hook recent_mail 'color status black brightred'
+folder-hook all_mail 'color status black brightred'

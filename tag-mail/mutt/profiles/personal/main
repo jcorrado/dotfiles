@@ -1,0 +1,45 @@
+# -*- mode: conf -*-
+# personal profile
+
+source ~/.mutt/common/main
+
+source ~/.mutt/profiles/personal/appearance
+source ~/.mutt/profiles/personal/scoring
+source ~/.mutt/profiles/personal/lists
+
+source ~/.mutt/aliases/personal
+source ~/.mutt/aliases/auto_personal
+
+set from = jereme@zoion.net
+set realname = "Jereme Corrado"
+set hostname = zoion.net
+set pgp_sign_as = 0x2A946D7DC9CB2D74  # jereme@zoion.net, etc.
+set signature = ~/.mutt/profiles/personal/signature
+set alias_file = ~/.mutt/profiles/personal/auto_aliases
+set header_cache = ~/.mutt/profiles/personal/cache/headers
+
+set folder = ~/Maildir/zoion
+set spoolfile = +inbox
+set mbox = +all_mail
+set postponed = +drafts
+set trash = +trash
+
+mailboxes = /var/spool/mail/jereme
+mailboxes = +inbox
+mailboxes = +lists/clojure
+mailboxes = +lists/debian-announce
+mailboxes = +lists/debian-cloud
+mailboxes = +lists/debian-devel
+mailboxes = +lists/debian-news
+mailboxes = +lists/debian-security-announce
+mailboxes = +lists/debian-user
+mailboxes = +lists/ietf-grow
+mailboxes = +lists/ietf-rtgwg
+
+
+#
+# keybindings
+#
+macro index,pager \Cf "<enter-command>source '~/.mutt/bin/mu_mutt_search.pl -d ~/Maildir/zoion/search_results |' <enter>" "mu find"
+macro index,pager Ri "<enter-command>set wait_key=no<enter><shell-escape>mbsync zoion-inbox<enter><enter-command>set wait_key=yes<enter>" "sync zoion inbox"
+macro index,pager Ra "<shell-escape>clear && ~/.mutt/bin/get_mail.sh zoion <enter>" "sync all zoion and rebuild indexes"

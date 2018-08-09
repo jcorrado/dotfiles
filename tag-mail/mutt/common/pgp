@@ -1,0 +1,12 @@
+# -*- mode: conf -*-
+
+set pgp_replyencrypt = yes
+set pgp_replysign = yes
+set pgp_replysignencrypted = yes
+set pgp_verify_sig = yes
+set pgp_use_gpg_agent = yes
+set pgp_long_ids = yes
+
+# overriding these from /etc/Muttrc.d/gpg.rc
+set pgp_encrypt_only_command="/usr/lib/mutt/pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0x2A946D7DC9CB2D74 -- -r %r -- %f"
+set pgp_encrypt_sign_command="/usr/lib/mutt/pgpewrap gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0x2A946D7DC9CB2D74 -- -r %r -- %f"

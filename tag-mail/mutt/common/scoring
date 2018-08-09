@@ -1,0 +1,31 @@
+# -*- mode: conf -*-
+
+# addressed to me directly
+score ~p +2
+
+# from me
+score ~P +10
+
+# gpg signed
+score ~g +10
+
+# gpg encrypted
+score ~G +10
+
+# known mailing lists
+score ~l +5
+
+# new or old (unread) messages
+score "~N|~O" +5
+
+# already replied to (with mutt)
+score ~Q +7
+
+# tiny messages
+score "~z 0-1024" +2
+
+# older messages should be attended to already
+score "~d >3d" +2
+
+# No subject
+score '! ~s .+' -50

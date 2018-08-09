@@ -1,0 +1,44 @@
+# -*- mode: conf -*-
+# birchbox profile
+
+source ~/.mutt/common/main
+
+source ~/.mutt/profiles/birchbox/appearance
+source ~/.mutt/profiles/birchbox/scoring
+source ~/.mutt/profiles/birchbox/lists
+
+source ~/.mutt/aliases/birchbox
+source ~/.mutt/aliases/auto_birchbox
+source ~/.mutt/aliases/mu_birchbox
+
+set from = jereme@birchbox.com
+set realname = "Jereme Corrado"
+set hostname = birchbox.com
+set pgp_sign_as = 0x2A946D7DC9CB2D74  # jereme@zoion.net, etc.
+set signature = ~/.mutt/profiles/birchbox/signature
+set alias_file = ~/.mutt/profiles/birchbox/auto_aliases
+set header_cache = ~/.mutt/profiles/birchbox/cache/headers
+
+set folder = ~/Maildir/birchbox
+set spoolfile = +inbox
+set mbox = +all_mail
+set postponed = +drafts
+set trash = +trash
+
+mailboxes = +inbox
+mailboxes = +sa/cron
+mailboxes = +sa/monit
+mailboxes = +sa/mysql/slow_query_logs
+mailboxes = +sa/backups/bacula
+mailboxes = +sa/backups/xtrabackup
+mailboxes = +lists/birchbox/releases
+mailboxes = +lists/birchbox/techops-billing
+mailboxes = +lists/nanog
+
+
+#
+# keybindings
+#
+macro index,pager \Cf "<enter-command>source '~/.mutt/bin/mu_mutt_search.pl -d ~/Maildir/birchbox/search_results |' <enter>" "mu find"
+macro index,pager Ri "<enter-command>set wait_key=no<enter><shell-escape>mbsync birchbox-inbox<enter><enter-command>set wait_key=yes<enter>" "sync birchbox inbox"
+macro index,pager Ra "<shell-escape>clear && ~/.mutt/bin/get_mail.sh birchbox <enter>" "sync all birchbox and rebuild indexes"

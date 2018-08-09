@@ -1,0 +1,40 @@
+# -*- mode: conf -*-
+
+
+#
+# index
+#
+set index_format = "%4C %Z %2.N  %{%H:%M %a %d %b} [%4c] %20.20L %?M?[%M]? %s"
+
+color index white default .
+color index cyan default "~N | ~O"
+color index yellow default ~F
+color index blue default ~D
+color tree white default
+
+
+#
+# pager
+#
+ignore *
+unignore subject from reply-to to cc bcc date message-id user-agent
+hdr_order subject from reply-to to cc bcc date message-id user-agent
+
+color hdrdefault blue default
+color header green default "^From:"
+color header green default "^(To|Cc|Bcc):"
+color header cyan default "^Subject:"
+color normal white default
+color tilde default default
+color attachment brightyellow default
+color signature red default
+color quoted blue default
+color quoted1 magenta default
+
+alternative_order text/plain text/html *
+auto_view text/html
+set markers = no
+
+# msg body highlighting
+color body green default "^gpg: Good signature.*"
+color body red default "^(gpg: (Can't check signature|BAD signature from.*|WARNING: This key is not certified with a trusted signature!|         There is no indication that the signature belongs to the owner.)|Verification failure).*"

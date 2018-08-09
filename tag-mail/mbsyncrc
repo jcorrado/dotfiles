@@ -1,0 +1,222 @@
+# -*- mode: conf -*-
+Expunge Both
+Create Both
+SyncState *
+
+
+#
+# jereme.corrado@gmail.com
+#
+IMAPAccount gmail
+Host imap.gmail.com
+User jereme.corrado@gmail.com
+PassCmd "get_netrc.pl -m imap.gmail.com -l jereme.corrado@gmail.com"
+SSLType IMAPS
+Timeout 120
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/Maildir/gmail/
+Inbox ~/Maildir/gmail/inbox
+SubFolders Verbatim
+
+Channel gmail-inbox
+Master :gmail-remote:INBOX
+Slave :gmail-local:inbox
+Sync All
+
+Channel gmail-drafts
+Master :gmail-remote:"[Gmail]/Drafts"
+Slave :gmail-local:drafts
+Sync All
+
+Channel gmail-starred
+Master :gmail-remote:"[Gmail]/Starred"
+Slave :gmail-local:starred
+Sync All
+
+Channel gmail-all_mail
+Master :gmail-remote:"[Gmail]/All Mail"
+Slave :gmail-local:all_mail
+Sync Pull
+
+Channel gmail-sent
+Master :gmail-remote:"[Gmail]/Sent Mail"
+Slave :gmail-local:sent
+Sync Pull
+
+Channel gmail-trash
+Master :gmail-remote:"[Gmail]/Trash"
+Slave :gmail-local:trash
+Sync All
+
+Channel gmail-spam
+Master :gmail-remote:"[Gmail]/Spam"
+Slave :gmail-local:spam
+Sync All
+
+Group gmail
+Channel gmail-inbox
+Channel gmail-drafts
+Channel gmail-starred
+Channel gmail-all_mail
+Channel gmail-sent
+Channel gmail-trash
+Channel gmail-spam
+
+
+#
+# jereme@zoion.net
+#
+IMAPAccount zoion
+Host imap.gmail.com
+User jereme@zoion.net
+PassCmd "get_netrc.pl -m imap.gmail.com -l jereme@zoion.net"
+SSLType IMAPS
+Timeout 120
+# Useful on large initial syncs, as gmail will close the cxn:
+# IMAP error: unexpected BYE response: [OVERQUOTA] Account exceeded command or bandwidth limits.
+# Author suggest a value of 50 here
+#PipelineDepth 50
+
+IMAPStore zoion-remote
+Account zoion
+
+MaildirStore zoion-local
+Path ~/Maildir/zoion/
+Inbox ~/Maildir/zoion/inbox
+SubFolders Verbatim
+
+Channel zoion-inbox
+Master :zoion-remote:INBOX
+Slave :zoion-local:inbox
+Sync All
+
+Channel zoion-drafts
+Master :zoion-remote:"[Gmail]/Drafts"
+Slave :zoion-local:drafts
+Sync All
+
+Channel zoion-starred
+Master :zoion-remote:"[Gmail]/Starred"
+Slave :zoion-local:starred
+Sync All
+
+Channel zoion-all_mail
+Master :zoion-remote:"[Gmail]/All Mail"
+Slave :zoion-local:all_mail
+Sync Pull
+
+Channel zoion-sent
+Master :zoion-remote:"[Gmail]/Sent Mail"
+Slave :zoion-local:sent
+Sync Pull
+
+Channel zoion-trash
+Master :zoion-remote:"[Gmail]/Trash"
+Slave :zoion-local:trash
+Sync All
+
+Channel zoion-spam
+Master :zoion-remote:"[Gmail]/Spam"
+Slave :zoion-local:spam
+Sync All
+
+Channel zoion-lists
+Master :zoion-remote:
+Slave :zoion-local:
+Pattern "lists/*"
+Sync Pull
+
+Group zoion
+Channel zoion-inbox
+Channel zoion-drafts
+Channel zoion-starred
+Channel zoion-all_mail
+Channel zoion-sent
+Channel zoion-trash
+Channel zoion-spam
+Channel zoion-lists
+
+
+#
+# jereme@birchbox.com
+#
+IMAPAccount birchbox
+Host imap.gmail.com
+User jereme@birchbox.com
+PassCmd "get_netrc.pl -m imap.gmail.com -l jereme@birchbox.com"
+SSLType IMAPS
+Timeout 120
+# Useful on large initial syncs, as gmail will close the cxn:
+# IMAP error: unexpected BYE response: [OVERQUOTA] Account exceeded command or bandwidth limits.
+# Author suggest a value of 50 here
+PipelineDepth 50
+
+IMAPStore birchbox-remote
+Account birchbox
+
+MaildirStore birchbox-local
+Path ~/Maildir/birchbox/
+Inbox ~/Maildir/birchbox/inbox
+SubFolders Verbatim
+
+Channel birchbox-inbox
+Master :birchbox-remote:INBOX
+Slave :birchbox-local:inbox
+Sync All
+
+Channel birchbox-drafts
+Master :birchbox-remote:"[Gmail]/Drafts"
+Slave :birchbox-local:drafts
+Sync All
+
+Channel birchbox-starred
+Master :birchbox-remote:"[Gmail]/Starred"
+Slave :birchbox-local:starred
+Sync All
+
+Channel birchbox-all_mail
+Master :birchbox-remote:"[Gmail]/All Mail"
+Slave :birchbox-local:all_mail
+Sync Pull
+
+Channel birchbox-sent
+Master :birchbox-remote:"[Gmail]/Sent Mail"
+Slave :birchbox-local:sent
+Sync Pull
+
+Channel birchbox-trash
+Master :birchbox-remote:"[Gmail]/Trash"
+Slave :birchbox-local:trash
+Sync All
+
+Channel birchbox-spam
+Master :birchbox-remote:"[Gmail]/Spam"
+Slave :birchbox-local:spam
+Sync All
+
+Channel birchbox-lists
+Master :birchbox-remote:
+Slave :birchbox-local:
+Pattern "lists/*"
+Sync Pull
+
+Channel birchbox-sa
+Master :birchbox-remote:
+Slave :birchbox-local:
+Pattern "sa/*"
+Sync All
+
+Group birchbox
+Channel birchbox-inbox
+Channel birchbox-drafts
+Channel birchbox-starred
+Channel birchbox-all_mail
+Channel birchbox-sent
+Channel birchbox-trash
+Channel birchbox-spam
+Channel birchbox-lists
+Channel birchbox-sa
