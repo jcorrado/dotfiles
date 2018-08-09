@@ -29,7 +29,7 @@ mu cfind --format=mutt-alias '@(contractors\.)?birchbox.com' > ~/.mutt/aliases/m
 # Addrs that I've directly corresponded with
 mu cfind --personal --format=mutt-alias | \
    sed -e  's/`//g' \
-   > ~/.mutt/aliases/mu_personal
+   > ~/.mutt/aliases/mu_zoion
 
 echo
 

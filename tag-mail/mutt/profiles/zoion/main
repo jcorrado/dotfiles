@@ -1,22 +1,21 @@
 # -*- mode: conf -*-
-# personal profile
+# zoion profile
 
 source ~/.mutt/common/main
 
-source ~/.mutt/profiles/personal/appearance
-source ~/.mutt/profiles/personal/scoring
-source ~/.mutt/profiles/personal/lists
+source ~/.mutt/profiles/zoion/appearance
+source ~/.mutt/profiles/zoion/scoring
 
-source ~/.mutt/aliases/personal
-source ~/.mutt/aliases/auto_personal
+source ~/.mutt/aliases/zoion
+source ~/.mutt/aliases/auto_zoion
 
 set from = jereme@zoion.net
 set realname = "Jereme Corrado"
 set hostname = zoion.net
 set pgp_sign_as = 0x2A946D7DC9CB2D74  # jereme@zoion.net, etc.
-set signature = ~/.mutt/profiles/personal/signature
-set alias_file = ~/.mutt/profiles/personal/auto_aliases
-set header_cache = ~/.mutt/profiles/personal/cache/headers
+set signature = ~/.mutt/profiles/zoion/signature
+set alias_file = ~/.mutt/profiles/zoion/auto_aliases
+set header_cache = ~/.mutt/profiles/zoion/cache/headers
 
 set folder = ~/Maildir/zoion
 set spoolfile = +inbox

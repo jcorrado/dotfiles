@@ -88,5 +88,3 @@ l list          Mailing-list message
 
 ';
 }
-
-    
