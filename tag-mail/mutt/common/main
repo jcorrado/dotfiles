@@ -61,7 +61,6 @@ macro index,pager Gr "<change-folder-readonly>=recent_mail<enter>" "go to recent
 macro index,pager GR "<change-folder-readonly>=search_results<enter>" "go to last mu find results"
 # See per-profile \Cf binding to search execution
 
-
 # toggle mini-index feature
 macro pager J "<enter-command>set pager_index_lines=6<enter>" "enable mini-index in pager"
 macro pager K "<enter-command>set pager_index_lines=0<enter>" "disable mini-index in pager"
