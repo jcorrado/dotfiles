@@ -28,4 +28,4 @@ score "~z 0-1024" +2
 score "~d >3d" +2
 
 # No subject
-score '! ~s .+' -50
+score '! ~s .+' -20
