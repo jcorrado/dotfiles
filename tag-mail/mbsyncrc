@@ -76,10 +76,10 @@ User jereme@zoion.net
 PassCmd "get_netrc.pl -m imap.gmail.com -l jereme@zoion.net"
 SSLType IMAPS
 Timeout 120
-# Useful on large initial syncs, as gmail will close the cxn:
+# Useful on large initial syncs, as gmail will close the cxn with:
 # IMAP error: unexpected BYE response: [OVERQUOTA] Account exceeded command or bandwidth limits.
-# Author suggest a value of 50 here
-#PipelineDepth 50
+# The author suggests a value of 50.
+# PipelineDepth 50
 
 IMAPStore zoion-remote
 Account zoion
@@ -150,10 +150,6 @@ User jereme@birchbox.com
 PassCmd "get_netrc.pl -m imap.gmail.com -l jereme@birchbox.com"
 SSLType IMAPS
 Timeout 120
-# Useful on large initial syncs, as gmail will close the cxn:
-# IMAP error: unexpected BYE response: [OVERQUOTA] Account exceeded command or bandwidth limits.
-# Author suggest a value of 50 here
-PipelineDepth 50
 
 IMAPStore birchbox-remote
 Account birchbox
