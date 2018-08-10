@@ -4,7 +4,7 @@
 #
 # index
 #
-set index_format = "%4C %Z %2.N  %{%H:%M %a %d %b}  %4c%?X?*& ? %20.20L %?M?[%M]? %s"
+set index_format = "%4C %Z %2.N  %{%H:%M %a %d %b}  %4c%?X?+& ? %20.20L %?M?[%M]? %s"
 
 color index white default .
 color index cyan default "~N | ~O"
