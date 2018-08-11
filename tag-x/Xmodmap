@@ -1,0 +1,21 @@
+! For my Kinesis Ergo
+clear Mod1
+clear Mod4
+keycode 64 = Alt_L Meta_L Alt_L Meta_L
+keycode 134 = Alt_R Meta_R Alt_R Meta_R
+add mod1 = Alt_L Meta_L Alt_R Meta_R
+
+! Older Kinesis Ergo at nyc2
+keycode 133 = Alt_L Meta_L Alt_L Meta_L
+
+!! ! https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=564327
+!! !
+!! ! http://unix.stackexchange.com/questions/4485/reassign-ctl-and-alt-keys-xmodmap-error
+!! 
+!! clear Mod1
+!! clear Mod4
+!! keycode 204 = NoSymbol NoSymbol NoSymbol NoSymbol
+!! keycode 206 = NoSymbol NoSymbol NoSymbol NoSymbol
+!! keycode 64 = Alt_L Alt_L Alt_L Alt_L 
+!! keycode 134 = Alt_R Alt_R Alt_R Alt_R
+!! add Mod1 = Alt_L Alt_R

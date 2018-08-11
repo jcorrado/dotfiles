@@ -1,0 +1,26 @@
+#!/bin/bash
+
+xmodmap ~/.Xmodmap
+xset mouse 7/6 0
+unclutter -idle 2 -root &
+sudo sensei-raw-ctl --intensity low
+sudo sensei-raw-ctl --pulsation steady
+
+start-pulseaudio-x11
+xscreensaver -no-splash &
+
+# The endless blackhole of time...
+conky
+
+# The X11 compositor I've been using instead of xcompmgr.  Works very
+# well but needs a good amount of setup and coordination with other
+# configuration.
+compton -b
+
+xfce4-terminal --geometry 113x32+35+43 &
+xfce4-terminal --geometry 113x32+61-29 &
+
+# Uses emacs-desktop to remember windows position and buffer state.
+emacs &
+
+exec fluxbox -log ~/.fluxbox/log

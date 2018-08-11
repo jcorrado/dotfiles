@@ -1,0 +1,118 @@
+# -*- mode: conf -*-
+background yes
+use_xft yes
+xftfont Monospace:size=14
+out_to_console no
+update_interval 0.8
+total_run_times 0
+own_window yes
+own_window_type override
+own_window_class Conky
+own_window_transparent yes
+double_buffer yes
+draw_shades no
+alignment top_right
+gap_x 30
+gap_y 0
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+net_avg_samples 2
+override_utf8_locale yes
+use_spacer none
+short_units yes
+draw_graph_borders no
+minimum_size 500 1000
+maximum_width 500
+temperature_unit celsius #fahrenheit
+default_bar_size 240 4
+
+default_color 666666
+#default_color white
+#default_color 303030  # gunmetal grey
+#default_color 204A82  # bluish
+#default_color 424242  # grey
+
+TEXT
+
+#
+# Clock and status header
+#
+# ${if_existing /home/jereme/.pomodoro_status}${font Monospace:size=18:style=bold}\
+# ${execp cat ~/.pomodoro_status} \
+# ${font Unifont Upper CSUR:style=Bold:size=20}🍅${font}\
+# ${voffset -4}\
+# ${endif}\
+# ${goto 118}${font Monospace:size=18:style=bold}${time %a, %b %d %I:%M %p %Z}${font}
+
+${if_existing /home/jereme/.pomodoro_status}${font Monospace:size=18:style=bold}\
+${execp cat ~/.pomodoro_status} \
+${font Unifont Upper CSUR:style=Bold:size=20}🍅${font}\
+${voffset -4}\
+${endif}\
+
+# System fan, temp
+# ${font Monospace:size=16:style=bold} ${alignr}${hwmon 1 fan 3},${hwmon 1 fan 5} ${hwmon 1 temp 1}°c${font}
+
+#
+# CPUs
+#
+${font Monospace:size=16:style=bold}cpu $cpu% ${alignr}${hwmon 1 fan 2} ${hwmon 2 temp 1}°c${font}
+${cpubar cpu1 4,115}${goto 130}${cpubar cpu2 4,115} ${goto 265}${freq_g 1}GHz ${alignr}${hwmon 2 temp 2}°c
+${cpubar cpu3 4,115}${goto 130}${cpubar cpu4 4,115} ${goto 265}${freq_g 2}GHz ${alignr}${hwmon 2 temp 3}°c
+${cpubar cpu5 4,115}${goto 130}${cpubar cpu6 4,115} ${goto 265}${freq_g 3}GHz ${alignr}${hwmon 2 temp 4}°c
+${cpubar cpu7 4,115}${goto 130}${cpubar cpu8 4,115} ${goto 265}${freq_g 4}GHz ${alignr}${hwmon 2 temp 5}°c
+${cpugraph 25 -l}
+#${execgraph sensors | perl -ne '/Physical id 0:\s+\+(\d+)/ && print "$1\n"'}
+
+
+#
+# GPU
+#
+${font Monospace:size=16:style=bold}gpu${font}
+${execbar nvidia-settings -q GPUCurrentClockFreqsString -t | perl -ne '($curr, $max) = /nvclock=(\d+).*nvclockmax=(\d+)/; printf("%d\n", ($curr / $max) * 100) if (defined $curr && defined $max)'} \
+${goto 265}${nvidia gpufreq}MHz ${alignr}${nvidia temp}°c${font}
+${execgraph nvidia-settings -q GPUCurrentClockFreqsString -t | perl -ne '($curr, $max) = /nvclock=(\d+).*nvclockmax=(\d+)/; printf("%d\n", ($curr / $max) * 100) if (defined $curr && defined $max)'}
+#${execgraph nvidia-settings -q gpucoretemp -t}
+
+
+#
+# Memory
+#
+${font Monospace:size=16:style=bold}mem${font}
+${membar} ${goto 265}$mem
+${swapbar} ${goto 265}$swap
+
+
+#
+# Storage
+#
+# /dev/sda
+${font Monospace:size=16:style=bold}sda${font}
+${fs_bar /home} ${goto 265}${fs_free /home} ${alignr}/home
+${fs_bar /tmp} ${goto 265}${fs_free /tmp} ${alignr}/tmp 
+${fs_bar /} ${goto 265}${fs_free /} ${alignr}/    
+↑ ${diskio_read /dev/sda} ${goto 265}↓ ${diskio_write /dev/sda}
+${diskiograph_read /dev/sda 25,240}${alignr}${diskiograph_write /dev/sda 25,240}
+
+
+# /dev/sdb
+${font Monospace:size=16:style=bold}sdb${alignr}${hddtemp /dev/sdb}°c${font}
+${fs_bar /usr/local/backup} ${goto 265}${fs_free /usr/local/backup} ${alignr}/u/l/backup
+↑ ${diskio_read /dev/sdb} ${goto 265}↓ ${diskio_write /dev/sdb}
+${diskiograph_read /dev/sdb 25,240}${alignr}${diskiograph_write /dev/sdb 25,240}
+
+
+#
+# Wireless
+#
+${font Monospace:size=16:style=bold}wlan0${font}
+${wireless_link_bar wlan0}
+↑ ${upspeed wlan0} ${goto 265}↓ ${downspeed wlan0}
+${upspeedgraph wlan0 25,240}${alignr}${downspeedgraph wlan0 25,240}
+
+
+#
+# World Clock
+#
+# ${font Monospace:style=bold:size=14}${execp ~/.bin/world_clock.sh}${font}
