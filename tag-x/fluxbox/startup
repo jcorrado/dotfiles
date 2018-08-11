@@ -10,7 +10,9 @@ start-pulseaudio-x11
 xscreensaver -no-splash &
 
 # The endless blackhole of time...
-conky
+if [ -f ~/.conkyrc]; then
+    conky
+fi
 
 # The X11 compositor I've been using instead of xcompmgr.  Works very
 # well but needs a good amount of setup and coordination with other
