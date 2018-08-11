@@ -1,0 +1,10 @@
+# -*- mode: shell-script -*-
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias ls='ls -lh --color --group-directories-first'
+alias wget_head='wget -qSO /dev/null'
+alias mutt='mutt -F ~/.mutt/profiles/zoion/main'
+alias mutt_birchbox='mutt -F ~/.mutt/profiles/birchbox/main'
+alias feh="feh --action1 'fbsetbg %f'"

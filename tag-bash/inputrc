@@ -1,0 +1,18 @@
+# -*- mode: conf -*-
+
+# Unset to disable obsessive screen clearing
+# C-l:
+
+# Thing I learned from here:
+# https://www.topbug.net/blog/2017/07/31/inputrc-for-humans/
+
+# Sets readline to display possible completions using different colors
+# to indicate their file types.  The colors are determined by the
+# environmental variable LS_COLORS
+set colored-stats On
+
+# Search backward/forward through the history for the string of
+# characters between the start of the current line and the current
+# cursor position.
+\C-p:history-search-backward
+\C-n:history-search-forward

@@ -1,0 +1,24 @@
+# -*- mode: conf -*-
+
+[user]
+    name = Jereme Corrado
+    email = jereme@zoion.net
+
+[push]
+    default = current
+
+[alias]
+    co = checkout
+    st = status
+    show-graph = log --graph --abbrev-commit --pretty=oneline
+    log-last = log --stat -1
+    log1 = log --pretty=oneline --abbrev-commit --decorate
+    diff-words = diff --color-words
+    diff-chars = diff --color-words --word-diff-regex='.'
+    diff-idx = diff --cached --color=always
+    
+[core]
+    pager = 
+
+[github]
+    user = jcorrado
