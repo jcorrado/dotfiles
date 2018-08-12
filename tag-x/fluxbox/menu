@@ -3,7 +3,6 @@
   [exec] (Emacs) {/usr/bin/emacs} <>
   [exec] (Google Chrome) {google-chrome} <>
   [exec] (Slack) {slack} <>
-  [exec] (Evince) {evince} <>
   [exec] (The Gimp) {gimp} <>
   [submenu] (Xscreensaver)
     [exec] (Lock Screen) {/usr/bin/xscreensaver-command -lock} <>
