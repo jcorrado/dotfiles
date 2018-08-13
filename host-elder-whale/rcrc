@@ -1,0 +1,2 @@
+TAGS="common aspell aws bash clojure conky elfeed emacs git gnupg mail netrc ssh x"
+DOTFILES_DIRS="/home/jereme/.dotfiles /home/jereme/.dotfiles-private /home/jereme/.dotfiles-bin"
