@@ -199,6 +199,8 @@ point reaches the beginning or end of the buffer, stop there."
 ;;
 ;; Editing
 ;;
+(setq-default indent-tabs-mode nil)
+
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode
@@ -303,7 +305,7 @@ point reaches the beginning or end of the buffer, stop there."
 ;;
 ;; ediff
 ;;
-
+(setq ediff-split-window-function 'split-window-horizontally)
 ;; Disable separate frame for control window, instead using a window
 ;; in the main frame.  I never much cared for the little floater
 ;; window, but now, with the way my window compositor is setup, it
