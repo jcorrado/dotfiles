@@ -1,0 +1,28 @@
+# -*- mode: conf -*-
+
+[Configuration]
+FontName = Monospace 13
+BackgroundMode = TERMINAL_BACKGROUND_TRANSPARENT
+ColorBackground = "#000000000000"
+BackgroundDarkness = 0.750000
+MiscDefaultGeometry = 113x32
+ScrollingBar = TERMINAL_SCROLLBAR_NONE
+MiscAlwaysShowTabs = FALSE
+MiscBell = FALSE
+MiscBordersDefault = FALSE
+MiscCursorBlinks = FALSE
+MiscCursorShape = TERMINAL_CURSOR_SHAPE_BLOCK
+MiscInheritGeometry = TRUE
+MiscMenubarDefault = FALSE
+MiscMouseAutohide = FALSE
+MiscToolbarDefault = FALSE
+MiscConfirmClose = TRUE
+MiscCycleTabs = TRUE
+MiscTabCloseButtons = TRUE
+MiscTabCloseMiddleClick = TRUE
+MiscTabPosition = GTK_POS_TOP
+MiscHighlightUrls = TRUE
+TitleMode = TERMINAL_TITLE_REPLACE
+ShortcutsNoMnemonics = TRUE
+ShortcutsNoMenukey = TRUE
+ColorPalette = "#000000000000;#bc9d152a0818;#0000aaaa0000;#f708ffff0c9a;#0b8e5f5fcf5a;#aaaa0000aaaa;#0000aaaaaaaa;#aaaaaaaaaaaa;#555555555555;#fa912eb82eb8;#18b3d89c2bce;#ffffffff2b5b;#55555555ffff;#ffff5555ffff;#5555ffffffff;#ffffffffffff"
