@@ -128,7 +128,7 @@ Channel zoion-lists
 Master :zoion-remote:
 Slave :zoion-local:
 Pattern "lists/*"
-Sync Pull
+Sync All
 
 Group zoion
 Channel zoion-inbox
@@ -198,7 +198,7 @@ Channel birchbox-lists
 Master :birchbox-remote:
 Slave :birchbox-local:
 Pattern "lists/*"
-Sync Pull
+Sync All
 
 Channel birchbox-sa
 Master :birchbox-remote:

@@ -17,7 +17,7 @@ echo
 # build recent mail caches
 for acct in zoion birchbox; do
     echo Rebuilding ${acct}/recent_mail
-    mu find --skip-dups --include-related --format=links --linksdir=~/Maildir/${acct}/recent_mail --clearlinks date:3m..now maildir:/${acct}/all_mail
+    mu find --skip-dups --include-related --format=links --linksdir=~/Maildir/${acct}/recent_mail --clearlinks date:1m..now maildir:/${acct}/all_mail
 done
 
 # collect email addresses
