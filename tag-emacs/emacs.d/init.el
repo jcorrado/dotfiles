@@ -17,6 +17,7 @@
 (add-to-list 'load-path "~/.emacs.d/config")
 
 (setq inhibit-startup-message t)
+(setq vc-follow-symlinks t)
 (setq make-backup-files nil)
 (fset 'yes-or-no-p 'y-or-n-p)
 ;;(setq default-major-mode 'text-mode)

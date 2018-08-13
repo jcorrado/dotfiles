@@ -44,14 +44,6 @@
 
 
 ;;
-;; Journal
-;;
-;; http://www.emacswiki.org/emacs/OrgJournal
-(setq org-journal-dir "~/journal/")
-(setq org-journal-enable-encryption t)
-
-
-;;
 ;; JIRA
 ;;
 (setq jiralib-url "https://birchbox.atlassian.net")
