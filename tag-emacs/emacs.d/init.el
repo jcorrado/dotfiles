@@ -217,6 +217,14 @@ point reaches the beginning or end of the buffer, stop there."
   (global-set-key (kbd "C-c m") 'magit-status)
   (setq magit-diff-refine-hunk t))
 
+(use-package git-gutter
+  :ensure t
+  :init
+  (global-git-gutter-mode +1))
+
+(use-package git-timemachine
+  :ensure t)
+
 (use-package paredit
   :ensure t
   :diminish paredit-mode
