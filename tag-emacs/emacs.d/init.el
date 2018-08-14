@@ -28,6 +28,8 @@
 (global-set-key [(control n)] `forward-paragraph)
 (global-set-key [(control p)] `backward-paragraph)
 
+(global-set-key (kbd "<f5>") 'revert-buffer)
+
 ;; Lots more to learn here
 ;; http://martinowen.net/blog/2010/02/03/tips-for-emacs-ibuffer.html
 ;; (global-set-key (kbd "C-x C-b") 'ibuffer-list-buffers)
