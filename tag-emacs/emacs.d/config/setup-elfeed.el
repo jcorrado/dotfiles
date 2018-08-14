@@ -4,17 +4,19 @@
 (use-package elfeed
   :ensure t)
 
-;; Use an org file to organise feeds
+(use-package elfeed-goodies
+  :ensure t
+  :config
+  (elfeed-goodies/setup))
+
+;; Use an org file to organize feeds
 (use-package elfeed-org
   :ensure t
   :config
-  (elfeed-org))
+  (elfeed-org)
+  (setq rmh-elfeed-org-files (list "~/.elfeed.org")))
 
 (global-set-key (kbd "C-x w") 'elfeed)
-
-;; Optionally specify a number of files containing elfeed
-;; configuration.
-(setq rmh-elfeed-org-files (list "~/.elfeed.org"))
 
 ;; Starring articles
 ;; http://pragmaticemacs.com/emacs/star-and-unstar-articles-in-elfeed/
