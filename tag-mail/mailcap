@@ -2,5 +2,6 @@ text/html; lynx -stdin
 application/ms-tnef; tnef -w %s
 application/octet-stream; most '%s'; needsterminal
 audio/x-wav; /usr/bin/play -t wav '%s'
-application/pdf; evince '%s'
+application/pdf; mupdf '%s'
 video/mp4; vlc '%s'
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice '%s'
