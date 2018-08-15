@@ -6,7 +6,6 @@ source ~/.mutt/common/scoring
 
 set use_from = yes
 set envelope_from = yes
-set sendmail = /usr/bin/msmtp
 set mbox_type = Maildir
 set move = no
 set record = no
