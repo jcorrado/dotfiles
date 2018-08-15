@@ -1,0 +1,9 @@
+# buttercup ~/.xsessionrc -*- mode: conf -*-
+
+# Pulse Audio sink to use
+#
+# alsa.card_name = "HDA Intel PCH"
+# alsa.long_card_name = "HDA Intel PCH at 0xdf440000 irq 141"
+# alsa.driver_name = "snd_hda_intel"
+# device.bus_path = "pci-0000:00:1f.3"
+export PA_DEF_SINK=1
