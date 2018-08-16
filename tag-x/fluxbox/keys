@@ -125,9 +125,9 @@ Control Mod4 F4 :TakeToWorkspace 4
 # Volume settings
 #
 # Kinesis: Print Screen
-107 :Exec pactl -- set-sink-volume 0 -.3
+107 :Exec pactl -- set-sink-volume $PA_DEF_SINK -.3
 # Kinesis: Scroll Lock
-124 :Exec pactl -- set-sink-volume 0 +.3
-78 :Exec pactl -- set-sink-volume 0 +.3
+124 :Exec pactl -- set-sink-volume $PA_DEF_SINK +.3
+78 :Exec pactl -- set-sink-volume $PA_DEF_SINK +.3
 # Kinesis: Pause
-127 :Exec pactl -- set-sink-mute 0 toggle
+127 :Exec pactl -- set-sink-mute $PA_DEF_SINK toggle

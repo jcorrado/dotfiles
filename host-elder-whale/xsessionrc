@@ -1,0 +1,9 @@
+# elder-whale ~/.xsessionrc -*- mode: conf -*-
+
+# Pulse Audio sink to use
+#
+# alsa.card_name = "HDA ATI SB"
+# alsa.long_card_name = "HDA ATI SB at 0xfe400000 irq 16"
+# alsa.driver_name = "snd_hda_intel"
+# device.bus_path = "pci-0000:00:14.2"
+export PA_DEF_SINK=2
