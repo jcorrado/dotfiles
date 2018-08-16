@@ -259,11 +259,8 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (global-company-mode))
 
-(use-package cider
-  :ensure t
-  :config
-  (setq cider-repl-display-help-banner nil))
-
+(use-package fish-mode
+  :ensure t)
 
 ;;
 ;; Clojure
@@ -271,6 +268,10 @@ point reaches the beginning or end of the buffer, stop there."
 ;; This works if your project.clj specifies Figwheel
 ;; See `lein new figwheel foo'
 ;; (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
+(use-package cider
+  :ensure t
+  :config
+  (setq cider-repl-display-help-banner nil))
 
 
 ;; JavaScript
