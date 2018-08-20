@@ -8,7 +8,10 @@ sudo sensei-raw-ctl --pulsation steady
 
 start-pulseaudio-x11
 xscreensaver -no-splash &
-nm-applet
+
+if which nm-applet; then
+    nm-applet
+fi
 
 # The endless blackhole of time...
 if [ -f ~/.conkyrc]; then
