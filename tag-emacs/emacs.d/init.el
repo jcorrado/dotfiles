@@ -259,8 +259,6 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (global-company-mode))
 
-(use-package fish-mode
-  :ensure t)
 
 ;;
 ;; Clojure
