@@ -27,7 +27,8 @@ maximum_width 500
 temperature_unit celsius #fahrenheit
 default_bar_size 240 4
 
-default_color 666666
+#default_color 999988
+default_color 707070
 #default_color white
 #default_color 303030  # gunmetal grey
 #default_color 204A82  # bluish
