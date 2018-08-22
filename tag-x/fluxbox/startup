@@ -10,7 +10,7 @@ start-pulseaudio-x11
 xscreensaver -no-splash &
 
 if which nm-applet; then
-    nm-applet
+    nm-applet &
 fi
 
 # The endless blackhole of time...
