@@ -3,7 +3,7 @@
 # Unset to disable obsessive screen clearing
 C-l:
 
-# Thing I learned from here:
+# Things I learned from here:
 # https://www.topbug.net/blog/2017/07/31/inputrc-for-humans/
 
 # Sets readline to display possible completions using different colors
