@@ -7,3 +7,5 @@
 # alsa.driver_name = "snd_hda_intel"
 # device.bus_path = "pci-0000:00:14.2"
 export PA_DEF_SINK=2
+
+export BROWSER=google-chrome
