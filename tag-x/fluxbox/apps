@@ -3,6 +3,6 @@
   [Layer]	{2}
 [end]
 
-[transient] (name=google-chrome) (class=Google-chrome) (role=GtkFileChooserDialog)
+[transient] (role=GtkFileChooserDialog)
   [Position]	(CENTER)	{0 0}
 [end]
