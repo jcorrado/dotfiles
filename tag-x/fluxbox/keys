@@ -64,7 +64,7 @@ Mod4 9 :Tab 9
 Mod1 F1 :Exec x-terminal-emulator
 
 # open a dialog to run programs
-Control Shift space :Exec fbrun -fg white -bg black -h 100 -w 750 -font verdana-40:bold
+Control Shift space :Exec fbrun -fg white -bg black -h 100 -w 750 -font verdana-40:bold -pad 25
 
 # current window commands
 Mod1 F4 :Close
