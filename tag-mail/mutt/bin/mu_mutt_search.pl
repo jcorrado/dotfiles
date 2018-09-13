@@ -6,15 +6,18 @@ use strict;
 use Getopt::Std;
 use Term::ReadLine;
 
-our $opt_d;
+our ($opt_d, $opt_f);
 
-getopts('d:');
+getopts('d:f:');
 
 my $RESULTS_DIR = $opt_d;
 my $MU_CMD="mu find --skip-dups --format=links --linksdir=$RESULTS_DIR --clearlinks ";
 my $PROMPT = 'mu> ';
+my $APP_NAME = 'mu_mutt_search';
+my $HISTORY_FILE = $opt_f || "$ENV{HOME}/.${APP_NAME}_history";
 
-my $term = Term::ReadLine->new('mu-mutt-search', *STDIN, *STDERR);
+my $term = Term::ReadLine->new($APP_NAME, *STDIN, *STDERR);
+$term->read_history($HISTORY_FILE);
 
 my $out_fh = *STDOUT;
 my $ui_fh = $term->OUT;
@@ -23,6 +26,7 @@ $term->ornaments(0);
 
 print $ui_fh help();
 my $query = $term->readline($PROMPT);
+$term->write_history($HISTORY_FILE);
 
 # TODO: Build a command input loop, so we can support a help command
 # and such, then final search execution.

@@ -39,6 +39,6 @@ mailboxes = +lists/ietf-rtgwg
 #
 # keybindings
 #
-macro index,pager \Cf "<enter-command>source '~/.mutt/bin/mu_mutt_search.pl -d ~/Maildir/zoion/search_results |' <enter>" "mu find"
+macro index,pager \Cf "<enter-command>source '~/.mutt/bin/mu_mutt_search.pl -d ~/Maildir/zoion/search_results -f ~/.mutt/profiles/zoion/mu_search_history |' <enter>" "mu find"
 macro index,pager Ri "<enter-command>set wait_key=no<enter><shell-escape>mbsync zoion-inbox<enter><enter-command>set wait_key=yes<enter>" "sync zoion inbox"
 macro index,pager Ra "<shell-escape>clear && ~/.mutt/bin/get_mail.sh zoion <enter>" "sync all zoion and rebuild indexes"
