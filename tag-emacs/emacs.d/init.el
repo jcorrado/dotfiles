@@ -142,7 +142,7 @@ point reaches the beginning or end of the buffer, stop there."
 ;(global-linum-mode)
 (global-font-lock-mode t)
 (set-frame-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1" t t)
-(setq prettify-symbols-mode nil)
+
 
 ;;
 ;; Pleasing, darker themes
@@ -167,8 +167,6 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (setq nyan-wavy-trail nil)
   (nyan-mode))
-
-(global-prettify-symbols-mode)
 
 ;; (use-package mode-icons
 ;;   :ensure t
@@ -269,8 +267,8 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package cider
   :ensure t
   :config
-  (setq cider-repl-display-help-banner nil))
-
+  (setq cider-repl-display-help-banner nil)
+  (add-hook 'clojure-mode-hook 'prettify-symbols-mode))
 
 ;; JavaScript
 (setq js-indent-level 2)
@@ -324,3 +322,4 @@ point reaches the beginning or end of the buffer, stop there."
 
 
 (desktop-read)
+(desktop-save-mode)
