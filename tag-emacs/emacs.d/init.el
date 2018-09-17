@@ -202,6 +202,14 @@ point reaches the beginning or end of the buffer, stop there."
 ;;
 (setq-default indent-tabs-mode nil)
 
+(defun my-text-mode-hook ()
+  (auto-fill-mode 1)
+  (flyspell-mode 1)
+  (abbrev-mode 1)
+  (setq fill-column 72))
+
+(add-hook 'text-mode-hook 'my-text-mode-hook)
+
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode
