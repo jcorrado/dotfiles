@@ -40,6 +40,7 @@
   :ensure t
   :bind
   ("C-x o" . switch-window))
+;;(global-set-key (kbd "C-x o") 'other-window)
 
 (use-package smartscan
   :ensure t
@@ -256,6 +257,9 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package highlight-parentheses
   :ensure t
   :diminish highlight-parentheses-mode
+  :init
+  ;; ("firebrick1" "IndianRed1" "IndianRed3" "IndianRed4")
+  (setq hl-paren-colors '("red" "orange" "yellow" "green" "blue" "dark violet"))
   :config
   (global-highlight-parentheses-mode))
 
@@ -286,8 +290,8 @@ point reaches the beginning or end of the buffer, stop there."
 (require 'setup-org-mode)
 
 
-;; elfeed - RSS Reader
-(require 'setup-elfeed)
+;; ;; elfeed - RSS Reader
+;; (require 'setup-elfeed)
 
 
 ;;

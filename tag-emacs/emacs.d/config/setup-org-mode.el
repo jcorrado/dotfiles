@@ -12,6 +12,10 @@
 (use-package org-jira
   :ensure t)
 
+;;
+;; Source code editing
+;;
+(setq org-src-window-setup 'current-window)
 
 ;;
 ;; Appearance
