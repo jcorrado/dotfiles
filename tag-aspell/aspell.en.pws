@@ -1,4 +1,4 @@
-personal_ws-1.1 en 142 
+personal_ws-1.1 en 145 
 backends
 API
 Empatico
@@ -22,6 +22,7 @@ Turnbull
 clj
 Quinoa
 dev
+misconfigured
 easter
 SLA
 sidenote
@@ -56,9 +57,9 @@ repo
 decrement
 KTF
 uid
-DNS
-CSS
 FDs
+CSS
+DNS
 KZ
 CTO
 nl
@@ -69,6 +70,7 @@ TLS
 CWD
 ok
 vhost
+OpenWeatherMap
 chmod
 Arduino
 STDOUT
@@ -86,11 +88,12 @@ init
 umask
 MSA
 crypto
-KZ's
 PCI
+KZ's
 openssl
 CodePipeline
 localhost
+APIs
 Hayley
 Jereme
 deliverables
@@ -125,8 +128,8 @@ sytactic
 coldbrew
 startups
 Corrado
-Github
 GitHub
+Github
 orgs
 snuck
 Kibana
