@@ -259,7 +259,7 @@ point reaches the beginning or end of the buffer, stop there."
   :diminish highlight-parentheses-mode
   :init
   ;; ("firebrick1" "IndianRed1" "IndianRed3" "IndianRed4")
-  (setq hl-paren-colors '("red" "orange" "yellow" "green" "blue" "dark violet"))
+  (setq hl-paren-colors '("red" "orange" "yellow" "green" "cyan" "blue" "dark violet"))
   :config
   (global-highlight-parentheses-mode))
 
