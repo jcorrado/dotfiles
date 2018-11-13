@@ -197,6 +197,13 @@ point reaches the beginning or end of the buffer, stop there."
 	 '(85 . 30) '(100 . 100)))))
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
+(use-package emojify
+  :ensure t
+  :init
+  (setq emojify-emoji-styles '(unicode))
+  :config
+  (add-hook 'after-init-hook #'global-emojify-mode))
+
 
 ;;
 ;; Editing
