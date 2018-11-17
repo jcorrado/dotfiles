@@ -202,6 +202,7 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (setq emojify-emoji-styles '(unicode))
   :config
+  (setq emojify-inhibit-major-modes '())
   (add-hook 'after-init-hook #'global-emojify-mode))
 
 
