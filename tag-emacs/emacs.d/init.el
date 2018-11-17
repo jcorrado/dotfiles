@@ -139,10 +139,11 @@ point reaches the beginning or end of the buffer, stop there."
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(setq horizontal-scroll-bar nil)
 (setq column-number-mode t)
 ;(global-linum-mode)
 (global-font-lock-mode t)
-(set-frame-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1" t t)
+(set-frame-font "DejaVu Sans Mono 12" t t)
 
 
 ;;
