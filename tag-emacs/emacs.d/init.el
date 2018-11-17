@@ -40,7 +40,6 @@
   :ensure t
   :bind
   ("C-x o" . switch-window))
-;;(global-set-key (kbd "C-x o") 'other-window)
 
 (use-package smartscan
   :ensure t
@@ -141,7 +140,7 @@ point reaches the beginning or end of the buffer, stop there."
 (scroll-bar-mode -1)
 (setq horizontal-scroll-bar nil)
 (setq column-number-mode t)
-;(global-linum-mode)
+;;(global-display-line-numbers-mode)
 (global-font-lock-mode t)
 (set-frame-font "DejaVu Sans Mono 12" t t)
 
@@ -159,22 +158,21 @@ point reaches the beginning or end of the buffer, stop there."
 ;;(load-theme 'misterioso t)
 ;;(load-theme 'tango-dark t)
 ;;(load-theme 'tsdh-dark t)
-;;(load-theme 'wheatgrass t)
-(load-theme 'wombat t)
+(load-theme 'wheatgrass t)
+;;(load-theme 'wombat t)
 
-(use-package diminish)
+(use-package diminish
+  :ensure t
+  :config
+  (diminish 'eldoc-mode)
+  (diminish 'auto-revert-mode))
 
 (use-package nyan-mode
+  :disabled
   :ensure t
   :config
   (setq nyan-wavy-trail nil)
   (nyan-mode))
-
-;; (use-package mode-icons
-;;   :ensure t
-;;   :config
-;;   (mode-icons-mode t)
-;; )
 
 
 ;;
@@ -202,8 +200,8 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :init
   (setq emojify-emoji-styles '(unicode))
-  :config
   (setq emojify-inhibit-major-modes '())
+  :config
   (add-hook 'after-init-hook #'global-emojify-mode))
 
 
@@ -237,6 +235,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package git-gutter
   :ensure t
+  :diminish
   :init
   (global-git-gutter-mode +1))
 
