@@ -23,7 +23,7 @@
 
 (desktop-save-mode)
 ;; Unsetting this and forcing a save is a good way to clear out any
-;; workings theme state that's been unintentionally persisted to the
+;; wonky theme state that's been unintentionally persisted to the
 ;; desktop file.
 (setq desktop-restore-frames t)
 
@@ -101,6 +101,7 @@
 
 (global-font-lock-mode t)
 (set-frame-font "DejaVu Sans Mono 12" t t)
+(set-face-attribute 'fringe nil :background nil)
 
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
