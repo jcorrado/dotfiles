@@ -47,7 +47,7 @@
   :init (setq ivy-display-style 'fancy
               ivy-use-virtual-buffers t
               ivy-count-format "(%d/%d) ")
-  :config (ivy-mode))
+  :config (ivy-mode t))
 
 (use-package swiper
   :ensure t
@@ -114,7 +114,9 @@
 
 (global-font-lock-mode t)
 (set-frame-font "DejaVu Sans Mono 13" t t)
-(set-face-attribute 'fringe nil :background nil)
+(defun my/clear-fringe () (set-face-attribute 'fringe nil :background nil))
+(add-hook 'after-make-frame-functions (lambda (_) (my/clear-fringe)))
+(my/clear-fringe)
 
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
@@ -240,13 +242,16 @@
   :init (setq cider-repl-display-help-banner nil)
   :config (add-hook 'clojure-mode-hook 'prettify-symbols-mode))
 
+;; Emacs Lisp
+(add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
+
 (use-package clojure-snippets
   :ensure t)
 
 ;; JavaScript
 (setq js-indent-level 2)
 
-;; WWW
+;; External web browsing
 (setq browse-url-generic-program "sensible-browser"
       browse-url-browser-function 'browse-url-generic)
 
