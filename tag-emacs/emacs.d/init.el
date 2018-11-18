@@ -1,250 +1,218 @@
-(setq user-full-name "Jereme Corrado"
-      user-mail-address "jereme@zoion.net")
-
 (require 'package)
-(setq package-archives nil)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("gnu" . "http://elpa.gnu.org/packages/") t)
-(add-to-list 'package-archives
-	     '("org" . "http://orgmode.org/elpa/") t)
-(setq package-enable-at-startup nil)
+(setq package-archives nil
+      package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 (add-to-list 'load-path "~/.emacs.d/config")
+(add-to-list 'load-path "~/.emacs.d/elisp")
+(load "miscellaneous")
 
-(setq inhibit-startup-message t)
-(setq vc-follow-symlinks t)
-(setq make-backup-files nil)
+(setq custom-file "~/.emacs.d/custom-conf.el")
+
+(setq user-full-name "Jereme Corrado"
+      user-mail-address "jereme@zoion.net"
+      inhibit-startup-message t)
+
+(setq-default indent-tabs-mode nil)
+
 (fset 'yes-or-no-p 'y-or-n-p)
-;;(setq default-major-mode 'text-mode)
 
-(server-start)
-(setq  server-temp-file-regexp ".*")
+(desktop-save-mode)
+;; Unsetting this and forcing a save is a good way to clear out any
+;; workings theme state that's been unintentionally persisted to the
+;; desktop file.
+(setq desktop-restore-frames t)
 
-(global-set-key [(control n)] `forward-paragraph)
-(global-set-key [(control p)] `backward-paragraph)
-
+(global-set-key (kbd "C-n") 'forward-paragraph)
+(global-set-key (kbd "C-p") 'backward-paragraph)
 (global-set-key (kbd "<f5>") 'revert-buffer)
-
-;; Lots more to learn here
-;; http://martinowen.net/blog/2010/02/03/tips-for-emacs-ibuffer.html
-;; (global-set-key (kbd "C-x C-b") 'ibuffer-list-buffers)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key [remap move-beginning-of-line] 'my/smarter-move-beginning-of-line)
 
 ;; Alternative to default: other-window
 (use-package switch-window
   :ensure t
-  :bind
-  ("C-x o" . switch-window))
+  :init (setq switch-window-shortcut-style 'qwerty
+              switch-window-minibuffer-shortcut ?z)
+  :bind ("C-x o" . switch-window))
 
-(use-package smartscan
-  :ensure t
-  :config
-  (smartscan-mode 1))
-
-;; http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
-(defun my/smarter-move-beginning-of-line (arg)
-  "Move point back to indentation of beginning of line.
-
-Move point to the first non-whitespace character on this line.
-If point is already there, move to the beginning of the line.
-Effectively toggle between the first non-whitespace character and
-the beginning of the line.
-
-If ARG is not nil or 1, move forward ARG - 1 lines first.  If
-point reaches the beginning or end of the buffer, stop there."
-  (interactive "^p")
-  (setq arg (or arg 1))
-
-  ;; Move lines first
-  (when (/= arg 1)
-    (let ((line-move-visual nil))
-      (forward-line (1- arg))))
-
-  (let ((orig-point (point)))
-    (back-to-indentation)
-    (when (= orig-point (point))
-      (move-beginning-of-line 1))))
-
-;; remap C-a to `smarter-move-beginning-of-line'
-(global-set-key [remap move-beginning-of-line]
-                'my/smarter-move-beginning-of-line)
-
-; improved completion
+;; Improved completion
 (use-package ivy
   :ensure t
-  :diminish ivy-mode
-  :init
-  (setq ivy-display-style 'fancy)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) ")
-  :config
-  (ivy-mode))
+  :diminish
+  :init (setq ivy-display-style 'fancy
+              ivy-use-virtual-buffers t
+              ivy-count-format "(%d/%d) ")
+  :config (ivy-mode))
 
 (use-package swiper
   :ensure t
-  :diminish ivy-mode
-  :bind
-  ("C-s" . swiper)
-  ("C-r" . swiper)
-  :config
-  (setq enable-recursive-minibuffers nil))
+  :init (setq enable-recursive-minibuffers nil)
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)))
+
+(use-package company
+  :ensure t
+  :diminish
+  :config (global-company-mode))
 
 (use-package browse-kill-ring
   :ensure t
-  :init
-  (browse-kill-ring-default-keybindings))
+  :config (browse-kill-ring-default-keybindings))
 
 (use-package which-key
-  :ensure t)
+  :ensure t
+  :diminish
+  :config (which-key-mode))
 
+(use-package aggressive-indent
+  :ensure t
+  :diminish
+  :config (global-aggressive-indent-mode))
 
-;;
-;; string insert shortcuts
-;;
-(global-unset-key (kbd "C-x C-e"))
-
-(defun insert-domain ()
-  "Birchbox's primary domain name"
-  (interactive)
-  (insert "birchbox.com"))
-(global-set-key (kbd "C-x C-e d") 'insert-domain)
-
-(defun insert-thanks-jereme ()
-  "The close I always type"
-  (interactive)
-  (insert "Thanks,\nJereme"))
-(global-set-key (kbd "C-x C-e t") 'insert-thanks-jereme)
+(use-package smartscan
+  :ensure t
+  :config (global-smartscan-mode))
 
 (use-package dictionary
   :ensure t
-  :init
-  (global-set-key "\M-%" 'dictionary-lookup-definition))
+  :config (global-set-key (kbd "M-%") 'dictionary-lookup-definition))
 
 
 ;;
 ;; Appearance
 ;;
-(setq visible-bell t)
-(setq blink-cursor-mode t
+(setq visible-bell t
+      blink-cursor-mode t
       blink-cursor-blinks 180
       blink-cursor-delay 0.5
-      blink-cursor-interval 0.85)
-(setq blink-matching-paren t)
+      blink-cursor-interval 0.85
+      blink-matching-paren t
+      horizontal-scroll-bar nil
+      column-number-mode nil)
+
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
-(setq horizontal-scroll-bar nil)
-(setq column-number-mode t)
-;;(global-display-line-numbers-mode)
+
 (global-font-lock-mode t)
 (set-frame-font "DejaVu Sans Mono 12" t t)
 
+(global-set-key (kbd "C-c t") 'toggle-transparency)
 
-;;
-;; Pleasing, darker themes
-;;
-
-;; (use-package arjen-grey-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'arjen-grey t))
-
+;; Included themes
 ;;(load-theme 'deeper-blue t)
 ;;(load-theme 'misterioso t)
 ;;(load-theme 'tango-dark t)
 ;;(load-theme 'tsdh-dark t)
-(load-theme 'wheatgrass t)
+;;(load-theme 'wheatgrass t)
 ;;(load-theme 'wombat t)
+
+;; Packaged themes - retrieve as needed (but don't use-package)
+;;(load-theme 'arjen-grey t)
+(load-theme 'zenburn t)
+;;(load-theme 'monokai t)
+
+(use-package smart-mode-line
+  :ensure t
+  :config
+  (add-to-list 'sml/replacer-regexp-list '("^~/projects/" ":PRJ:") t)
+  (sml/setup))
 
 (use-package diminish
   :ensure t
   :config
   (diminish 'eldoc-mode)
-  (diminish 'auto-revert-mode))
+  (diminish 'auto-fill-function)
+  (diminish 'flyspell-mode)
+  (diminish 'abbrev-mode "Abv")
+  (diminish 'mml-mode))
+
+;; This isn't working consistently for me
+(use-package dimmer
+  :disabled
+  :ensure t
+  :init (setq dimmer-fraction 0.55
+              dimmer-exclusion-regexp "^\*")
+  :config (dimmer-mode))
+
+(use-package focus
+  :disabled
+  :ensure t)
 
 (use-package nyan-mode
   :disabled
   :ensure t
-  :config
-  (setq nyan-wavy-trail nil)
-  (nyan-mode))
-
-
-;;
-;; transparency
-;;
-;; https://www.emacswiki.org/emacs/TransparentEmacs
-;;
-(set-frame-parameter (selected-frame) 'alpha '(85 . 30))
-;;(add-to-list 'default-frame-alist '(alpha . (85 . 30)))
-
-(defun toggle-transparency ()
-  (interactive)
-  (let ((alpha (frame-parameter nil 'alpha)))
-    (set-frame-parameter
-     nil 'alpha
-     (if (eql (cond ((numberp alpha) alpha)
-		    ((numberp (cdr alpha)) (cdr alpha))
-		    ;; Also handle undocumented (<active> <inactive>) form.
-		    ((numberp (cadr alpha)) (cadr alpha)))
-	      100)
-	 '(85 . 30) '(100 . 100)))))
-(global-set-key (kbd "C-c t") 'toggle-transparency)
+  :init (setq nyan-wavy-trail nil)
+  :config (nyan-mode))
 
 (use-package emojify
   :ensure t
-  :init
-  (setq emojify-emoji-styles '(unicode))
-  (setq emojify-inhibit-major-modes '())
-  :config
-  (add-hook 'after-init-hook #'global-emojify-mode))
+  :init (setq emojify-emoji-styles '(unicode)
+              emojify-inhibit-major-modes '())
+  :config (add-hook 'after-init-hook #'global-emojify-mode))
 
 
 ;;
 ;; Editing
 ;;
-(setq-default indent-tabs-mode nil)
+(setq make-backup-files nil
+      vc-follow-symlinks t)
+
+(server-start)
+(setq  server-temp-file-regexp ".*")
 
 (defun my-text-mode-hook ()
-  (auto-fill-mode 1)
-  (flyspell-mode 1)
-  (abbrev-mode 1)
-  (setq fill-column 72))
+  (setq fill-column 72)
+  (auto-fill-mode t)
+  (flyspell-mode t)
+  (abbrev-mode t)
+  (auto-revert-mode t))
 
 (add-hook 'text-mode-hook 'my-text-mode-hook)
 
+(require 'setup-abbrev-mode)
+(require 'setup-org-mode)
+
 (use-package undo-tree
   :ensure t
-  :diminish undo-tree-mode
-  :init
-  (setq undo-tree-visualizer-diff t)
-  (setq undo-tree-visualizer-timestamps t)
-  :config
-  (global-undo-tree-mode))
+  :diminish
+  :init (setq undo-tree-visualizer-diff t
+              undo-tree-visualizer-timestamps t)
+  :config (global-undo-tree-mode))
+
+(use-package yasnippet
+  :ensure t
+  :diminish (yas-minor-mode . "Yas")
+  :config (yas-global-mode t))
+
+(use-package yasnippet-snippets
+  :ensure t)
+
+(use-package ivy-yasnippet
+  :ensure t
+  :bind ("C-x C-i" . ivy-yasnippet))
 
 (use-package magit
   :ensure t
-  :config
-  (global-set-key (kbd "C-c m") 'magit-status)
-  (setq magit-diff-refine-hunk t))
+  :init (setq magit-diff-refine-hunk t)
+  :config (global-set-key (kbd "C-c m") 'magit-status))
 
-(use-package git-gutter
+(use-package git-gutter-fringe
   :ensure t
-  :diminish
-  :init
-  (global-git-gutter-mode +1))
+  :diminish git-gutter-mode
+  :config (global-git-gutter-mode t))
 
 (use-package git-timemachine
   :ensure t)
 
 (use-package paredit
   :ensure t
-  :diminish paredit-mode
+  :diminish
   :config
   (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
   (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
@@ -253,93 +221,51 @@ point reaches the beginning or end of the buffer, stop there."
   (add-hook 'scheme-mode-hook #'enable-paredit-mode)
   (add-hook 'clojure-mode-hook #'enable-paredit-mode))
 
-;; The line numbers were starting to drive me crazy
-;;(add-hook 'prog-mode-hook (lambda () (linum-mode)))
-
 (use-package paredit-everywhere
   :ensure t
-  :diminish paredit-everywhere-mode
-  :config
-  (paredit-everywhere-mode))
+  :diminish
+  :config (paredit-everywhere-mode))
 
 (use-package highlight-parentheses
   :ensure t
-  :diminish highlight-parentheses-mode
-  :init
-  ;; ("firebrick1" "IndianRed1" "IndianRed3" "IndianRed4")
-  (setq hl-paren-colors '("red" "orange" "yellow" "green" "cyan" "blue" "dark violet"))
-  :config
-  (global-highlight-parentheses-mode))
+  :diminish
+  :init (setq hl-paren-colors '("red" "orange" "yellow" "green"
+                                "cyan" "blue" "dark violet"))
+  :config (global-highlight-parentheses-mode))
 
-(use-package company
-  :ensure t
-  :diminish company-mode
-  :config
-  (global-company-mode))
-
-
-;;
 ;; Clojure
-;;
-;; This works if your project.clj specifies Figwheel
-;; See `lein new figwheel foo'
-;; (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
 (use-package cider
   :ensure t
-  :config
-  (setq cider-repl-display-help-banner nil)
-  (add-hook 'clojure-mode-hook 'prettify-symbols-mode))
+  :init (setq cider-repl-display-help-banner nil)
+  :config (add-hook 'clojure-mode-hook 'prettify-symbols-mode))
+
+(use-package clojure-snippets
+  :ensure t)
 
 ;; JavaScript
 (setq js-indent-level 2)
 
-
-;; org-mode
-(require 'setup-org-mode)
-
-
-;; ;; elfeed - RSS Reader
-;; (require 'setup-elfeed)
-
-
-;;
 ;; WWW
-;;
-(setq browse-url-generic-program "sensible-browser")
-(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program "sensible-browser"
+      browse-url-browser-function 'browse-url-generic)
 
+;; ediff
+(setq ediff-split-window-function 'split-window-horizontally
+      ediff-window-setup-function 'ediff-setup-windows-plain)
 
 ;;
-;; mail
+;; Mail composition, in mutt
 ;;
-
-; mutt mail composition
 (add-to-list 'auto-mode-alist '("/mutt" . (lambda ()
 					    (forward-paragraph)
                                             (message-mode))))
 
 (defun my-message-mode-hook ()
-  (auto-fill-mode 1)
-  (flyspell-mode 1)
-  (abbrev-mode 1)
   (setq fill-column 72)
+  (auto-fill-mode t)
+  (flyspell-mode t)
+  (abbrev-mode t)
   (append)
-  (bbdb-insinuate-message)
   (local-set-key "\C-c\C-c" 'server-edit))
 
 (add-hook 'message-mode-hook 'my-message-mode-hook)
-
-
-;;
-;; ediff
-;;
-(setq ediff-split-window-function 'split-window-horizontally)
-;; Disable separate frame for control window, instead using a window
-;; in the main frame.  I never much cared for the little floater
-;; window, but now, with the way my window compositor is setup, it
-;; makes ediff unusable.
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-
-
-(desktop-read)
-(desktop-save-mode)

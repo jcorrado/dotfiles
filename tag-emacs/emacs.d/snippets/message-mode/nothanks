@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: nothanks
+# key: nothanks
+# --
+Hi ${1:Sender},
+
+Thanks for thinking of us but I have to decline at this time.
+
+
+Thanks,
+Jereme

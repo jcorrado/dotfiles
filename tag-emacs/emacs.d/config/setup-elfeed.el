@@ -2,32 +2,29 @@
 ;; elfeed RSS reader
 ;;
 (use-package elfeed
-  :ensure t)
+  :disabled
+  :ensure t
+  :init (setq  shr-inhibit-images nil)
+  :config (global-set-key (kbd "C-x w") 'elfeed)
+  (eval-after-load 'elfeed-search
+    '(define-key elfeed-search-mode-map (kbd "*") 'elfeed-toggle-starred)))
 
 (use-package elfeed-goodies
+  :disabled
   :ensure t
-  :config
-  (elfeed-goodies/setup))
+  :config (elfeed-goodies/setup))
 
 ;; Use an org file to organize feeds
 (use-package elfeed-org
+  :disabled
   :ensure t
-  :config
-  (elfeed-org)
-  (setq rmh-elfeed-org-files (list "~/.elfeed.org")))
-
-(global-set-key (kbd "C-x w") 'elfeed)
+  :init (setq rmh-elfeed-org-files (list "~/.elfeed.org"))
+  :config (elfeed-org))
 
 ;; Starring articles
 ;; http://pragmaticemacs.com/emacs/star-and-unstar-articles-in-elfeed/
 (defalias 'elfeed-toggle-starred
   (elfeed-expose #'elfeed-search-toggle-all '*))
-
-(eval-after-load 'elfeed-search
-  '(define-key elfeed-search-mode-map (kbd "*") 'elfeed-toggle-starred))
-
-;; inihibit image render in HTML
-(setq shr-inhibit-images nil)
 
 ;; Faces
 
