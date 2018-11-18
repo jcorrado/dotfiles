@@ -99,12 +99,6 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-(global-font-lock-mode t)
-(set-frame-font "DejaVu Sans Mono 12" t t)
-(set-face-attribute 'fringe nil :background nil)
-
-(global-set-key (kbd "C-c t") 'toggle-transparency)
-
 ;; Included themes
 ;;(load-theme 'deeper-blue t)
 ;;(load-theme 'misterioso t)
@@ -117,6 +111,12 @@
 ;;(load-theme 'arjen-grey t)
 (load-theme 'zenburn t)
 ;;(load-theme 'monokai t)
+
+(global-font-lock-mode t)
+(set-frame-font "DejaVu Sans Mono 13" t t)
+(set-face-attribute 'fringe nil :background nil)
+
+(global-set-key (kbd "C-c t") 'toggle-transparency)
 
 (use-package smart-mode-line
   :ensure t
