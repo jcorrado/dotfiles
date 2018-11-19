@@ -2,7 +2,7 @@
 # name: nothanks
 # key: nothanks
 # --
-Hi ${1:Sender},
+Hi ${1:Willy Loman},
 
 Thanks for thinking of us but I have to decline at this time.
 
