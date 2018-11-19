@@ -1,4 +1,4 @@
-personal_ws-1.1 en 145 
+personal_ws-1.1 en 152 
 backends
 API
 Empatico
@@ -20,6 +20,7 @@ pty
 cli
 Turnbull
 clj
+tcp
 Quinoa
 dev
 misconfigured
@@ -53,13 +54,14 @@ javascript
 withholdings
 techops
 ELB
+addrs
 repo
 decrement
 KTF
 uid
-FDs
-CSS
 DNS
+CSS
+FDs
 KZ
 CTO
 nl
@@ -69,8 +71,8 @@ cloudfront
 TLS
 CWD
 ok
-vhost
 OpenWeatherMap
+vhost
 chmod
 Arduino
 STDOUT
@@ -84,17 +86,20 @@ oncall
 webkit
 env
 Devops
+Postgres
 init
 umask
 MSA
 crypto
-PCI
 KZ's
+PCI
 openssl
 CodePipeline
 localhost
+schemas
 APIs
 Hayley
+jereme
 Jereme
 deliverables
 shorn
@@ -107,6 +112,7 @@ VPC
 creds
 txn
 mysql
+PostgreSQL
 CNAME
 Kula
 CloudWatch
@@ -128,13 +134,14 @@ sytactic
 coldbrew
 startups
 Corrado
-GitHub
 Github
+GitHub
 orgs
 snuck
 Kibana
 jcorrado
 webhook
+RDS
 Jenieze
 addr
 Makefile
