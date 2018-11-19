@@ -120,6 +120,8 @@
 (use-package smart-mode-line
   :ensure t
   :config
+  (add-to-list 'sml/replacer-regexp-list '("^~/projects/auaap/empatico/" ":PRJ-EMP:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^~/projects/birchbox/" ":PRJ-BB:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/projects/" ":PRJ:") t)
   (sml/setup))
 
