@@ -8,6 +8,7 @@
     ("gi" "goldandapager.io")
     ("bc" "birchbox.com")
     ("eo" "empatico.org")
+    ("exz" "empatico.xyz")
 
     ("tj" "Thanks,\nJereme")))
 
