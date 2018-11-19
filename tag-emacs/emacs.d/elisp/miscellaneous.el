@@ -1,10 +1,3 @@
-(defun my/install-missing-package (p)
-  "Quick boostrapper for use-package and themes, which I don't
-like to pull via use-package."
-  (when (not (package-installed-p p))
-    (package-refresh-contents)
-    (package-install p)))
-
 ;; http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
 (defun my/smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.

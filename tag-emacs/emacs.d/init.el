@@ -1,3 +1,6 @@
+(setq user-full-name "Jereme Corrado"
+      user-mail-address "jereme@zoion.net")
+
 (require 'package)
 (setq package-archives nil
       package-enable-at-startup nil)
@@ -11,16 +14,12 @@
 (add-to-list 'load-path "~/.emacs.d/config")
 (load "miscellaneous")
 
-(my/install-missing-package 'use-package)
+(when (not (package-installed-p 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 ;; For the Customization bits that Emacs wants to manage itself
 (setq custom-file "~/.emacs.d/custom-conf.el")
-
-(setq user-full-name "Jereme Corrado"
-      user-mail-address "jereme@zoion.net"
-      inhibit-startup-message t)
-
-(fset 'yes-or-no-p 'y-or-n-p)
 
 (desktop-save-mode)
 ;; Unsetting `desktop-restore-frames` and forcing a save is a good way
@@ -35,6 +34,8 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-c t") 'my/toggle-transparency)
 (global-set-key [remap move-beginning-of-line] 'my/smarter-move-beginning-of-line)
+
+(fset 'yes-or-no-p 'y-or-n-p)
 
 (use-package switch-window
   :ensure t
@@ -92,7 +93,8 @@
 ;;
 ;; Appearance
 ;;
-(setq visible-bell t
+(setq inhibit-startup-message t
+      visible-bell t
       blink-cursor-mode t
       blink-cursor-blinks 180
       blink-cursor-delay 0.5
@@ -106,19 +108,11 @@
 (scroll-bar-mode -1)
 (add-hook 'after-make-frame-functions (lambda (_) (my/clear-fringe)))
 
-;; Included themes
-;;(load-theme 'deeper-blue t)
-;;(load-theme 'misterioso t)
-;;(load-theme 'tango-dark t)
-;;(load-theme 'tsdh-dark t)
-;;(load-theme 'wheatgrass t)
-;;(load-theme 'wombat t)
-
-;; Packaged themes
-;; arjen-grey, monokai, zenburn
-(my/install-missing-package 'zenburn-theme)
-(load-theme 'zenburn t)
-(my/clear-fringe)
+(use-package zenburn-theme
+  :ensure t
+  :config
+  (load-theme 'zenburn t)
+  (my/clear-fringe))
 
 (global-font-lock-mode t)
 (set-frame-font "DejaVu Sans Mono 13" t t)
