@@ -241,6 +241,13 @@
                                 "cyan" "blue" "dark violet"))
   :config (global-highlight-parentheses-mode))
 
+(use-package dumb-jump
+  :ensure
+  :init (setq dumb-jump-selector 'ivy)
+  :bind (("M-g j" . dumb-jump-go)
+         ("M-g p" . dumb-jump-back)
+         ("M-g q" . dumb-jump-quick-look)))
+
 ;; Clojure
 (use-package cider
   :ensure t
