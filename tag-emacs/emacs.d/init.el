@@ -7,10 +7,13 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
-(add-to-list 'load-path "~/.emacs.d/config")
 (add-to-list 'load-path "~/.emacs.d/elisp")
+(add-to-list 'load-path "~/.emacs.d/config")
 (load "miscellaneous")
 
+(my/install-missing-package 'use-package)
+
+;; For the Customization bits that Emacs wants to manage itself
 (setq custom-file "~/.emacs.d/custom-conf.el")
 
 (setq user-full-name "Jereme Corrado"
@@ -107,10 +110,11 @@
 ;;(load-theme 'wheatgrass t)
 ;;(load-theme 'wombat t)
 
-;; Packaged themes - retrieve as needed (but don't use-package)
-;;(load-theme 'arjen-grey t)
+;; Packaged themes
+;; arjen-grey, monokai, zenburn
+
+(my/install-missing-package 'zenburn-theme)
 (load-theme 'zenburn t)
-;;(load-theme 'monokai t)
 
 (global-font-lock-mode t)
 (set-frame-font "DejaVu Sans Mono 13" t t)
