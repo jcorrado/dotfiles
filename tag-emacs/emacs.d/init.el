@@ -20,30 +20,28 @@
       user-mail-address "jereme@zoion.net"
       inhibit-startup-message t)
 
-(setq-default indent-tabs-mode nil)
-
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (desktop-save-mode)
-;; Unsetting this and forcing a save is a good way to clear out any
-;; wonky theme state that's been unintentionally persisted to the
-;; desktop file.
-(setq desktop-restore-frames t)
+;; Unsetting `desktop-restore-frames` and forcing a save is a good way
+;; to clear out any wonky theme state that's been unintentionally
+;; persisted to the desktop file.
+(setq desktop-restore-frames t
+      desktop-files-not-to-save nil)
 
 (global-set-key (kbd "C-n") 'forward-paragraph)
 (global-set-key (kbd "C-p") 'backward-paragraph)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-c t") 'my/toggle-transparency)
 (global-set-key [remap move-beginning-of-line] 'my/smarter-move-beginning-of-line)
 
-;; Alternative to default: other-window
 (use-package switch-window
   :ensure t
   :init (setq switch-window-shortcut-style 'qwerty
               switch-window-minibuffer-shortcut ?z)
   :bind ("C-x o" . switch-window))
 
-;; Improved completion
 (use-package ivy
   :ensure t
   :diminish
@@ -57,6 +55,15 @@
   :init (setq enable-recursive-minibuffers nil)
   :bind (("C-s" . swiper)
          ("C-r" . swiper)))
+
+(use-package ibuffer-vc
+  :ensure t
+  :init
+  (add-hook 'ibuffer-hook
+            (lambda ()
+              (ibuffer-vc-set-filter-groups-by-vc-root)
+              (unless (eq ibuffer-sorting-mode 'alphabetic)
+                (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package company
   :ensure t
@@ -72,18 +79,14 @@
   :diminish
   :config (which-key-mode))
 
-(use-package aggressive-indent
-  :ensure t
-  :diminish
-  :config (global-aggressive-indent-mode))
-
 (use-package smartscan
   :ensure t
   :config (global-smartscan-mode))
 
 (use-package dictionary
   :ensure t
-  :config (global-set-key (kbd "M-%") 'dictionary-lookup-definition))
+  ;;:config (global-set-key (kbd "M-%") 'dictionary-lookup-definition)
+  :bind ("M-%" . dictionary-lookup-definition))
 
 
 ;;
@@ -101,6 +104,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(add-hook 'after-make-frame-functions (lambda (_) (my/clear-fringe)))
 
 ;; Included themes
 ;;(load-theme 'deeper-blue t)
@@ -112,17 +116,12 @@
 
 ;; Packaged themes
 ;; arjen-grey, monokai, zenburn
-
 (my/install-missing-package 'zenburn-theme)
 (load-theme 'zenburn t)
+(my/clear-fringe)
 
 (global-font-lock-mode t)
 (set-frame-font "DejaVu Sans Mono 13" t t)
-(defun my/clear-fringe () (set-face-attribute 'fringe nil :background nil))
-(add-hook 'after-make-frame-functions (lambda (_) (my/clear-fringe)))
-(my/clear-fringe)
-
-(global-set-key (kbd "C-c t") 'toggle-transparency)
 
 (use-package smart-mode-line
   :ensure t
@@ -168,22 +167,23 @@
 ;; Editing
 ;;
 (setq make-backup-files nil
-      vc-follow-symlinks t)
+      vc-follow-symlinks t
+      server-temp-file-regexp ".*"
+      default-major-mode 'text-mode)
 
-(server-start)
-(setq  server-temp-file-regexp ".*")
+(setq-default indent-tabs-mode nil)
 
-(defun my-text-mode-hook ()
-  (setq fill-column 72)
-  (auto-fill-mode t)
-  (flyspell-mode t)
-  (abbrev-mode t)
-  (auto-revert-mode t))
-
-(add-hook 'text-mode-hook 'my-text-mode-hook)
+(add-hook 'text-mode-hook (lambda ()
+                            (setq fill-column 72)
+                            (auto-fill-mode t)
+                            (flyspell-mode t)
+                            (abbrev-mode t)
+                            (auto-revert-mode t)))
 
 (require 'setup-abbrev-mode)
 (require 'setup-org-mode)
+
+(server-start)
 
 (use-package undo-tree
   :ensure t
@@ -191,6 +191,11 @@
   :init (setq undo-tree-visualizer-diff t
               undo-tree-visualizer-timestamps t)
   :config (global-undo-tree-mode))
+
+(use-package aggressive-indent
+  :ensure t
+  :diminish
+  :config (global-aggressive-indent-mode))
 
 (use-package yasnippet
   :ensure t
@@ -207,7 +212,7 @@
 (use-package magit
   :ensure t
   :init (setq magit-diff-refine-hunk t)
-  :config (global-set-key (kbd "C-c m") 'magit-status))
+  :bind ("C-c m" . magit-status))
 
 (use-package git-gutter-fringe
   :ensure t
@@ -263,19 +268,8 @@
 (setq ediff-split-window-function 'split-window-horizontally
       ediff-window-setup-function 'ediff-setup-windows-plain)
 
-;;
-;; Mail composition, in mutt
-;;
+;; Mail, via mutt
+(add-hook 'mail-mode-hook (lambda () (local-set-key "\C-c\C-c" 'server-edit)))
 (add-to-list 'auto-mode-alist '("/mutt" . (lambda ()
-					    (forward-paragraph)
-                                            (message-mode))))
-
-(defun my-message-mode-hook ()
-  (setq fill-column 72)
-  (auto-fill-mode t)
-  (flyspell-mode t)
-  (abbrev-mode t)
-  (append)
-  (local-set-key "\C-c\C-c" 'server-edit))
-
-(add-hook 'message-mode-hook 'my-message-mode-hook)
+                                            (mail-mode)
+                                            (forward-paragraph))))

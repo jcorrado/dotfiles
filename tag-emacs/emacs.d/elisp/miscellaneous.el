@@ -6,7 +6,6 @@ like to pull via use-package."
     (package-install p)))
 
 ;; http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
-
 (defun my/smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
 
@@ -30,16 +29,10 @@ point reaches the beginning or end of the buffer, stop there."
     (when (= orig-point (point))
       (move-beginning-of-line 1))))
 
+(defun my/clear-fringe () (set-face-attribute 'fringe nil :background nil))
 
-;;
-;; transparency
-;;
 ;; https://www.emacswiki.org/emacs/TransparentEmacs
-;;
-(set-frame-parameter (selected-frame) 'alpha '(85 . 30))
-;;(add-to-list 'default-frame-alist '(alpha . (85 . 30)))
-
-(defun toggle-transparency ()
+(defun my/toggle-transparency ()
   (interactive)
   (let ((alpha (frame-parameter nil 'alpha)))
     (set-frame-parameter
