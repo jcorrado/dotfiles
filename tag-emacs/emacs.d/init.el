@@ -39,7 +39,14 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(use-package ace-window
+  :ensure t
+  :bind (("C-x o" . ace-window))
+  :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+              aw-scope 'frame))
+
 (use-package switch-window
+  :disabled
   :ensure t
   :init (setq switch-window-shortcut-style 'qwerty
               switch-window-minibuffer-shortcut ?z)
