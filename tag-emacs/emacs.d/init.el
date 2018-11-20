@@ -241,8 +241,9 @@
 
 (use-package dumb-jump
   :ensure
-  :init (setq dumb-jump-selector 'ivy)
-  :bind (("M-g j" . dumb-jump-go)
+  :init (setq dumb-jump-selector 'ivy
+              dumb-jump-force-searcher 'ag)
+  :bind (("M-g j" . dumb-jump-go-prefer-external)
          ("M-g p" . dumb-jump-back)
          ("M-g q" . dumb-jump-quick-look)))
 
