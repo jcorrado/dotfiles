@@ -24,7 +24,7 @@
 
 (use-package org-bullets
   :ensure t
-  :init (setq org-bullets-bullet-list '("◉" "●" "○" "✚" "✜" "◇" "◆" "✿" "✸" "▸"))
+  :init (setq org-bullets-bullet-list '("◉" "○" "●" "✚" "✜" "◇" "◆" "✿" "✸" "▸"))
   :config (org-bullets-mode))
 
 (provide 'setup-org-mode)
