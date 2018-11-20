@@ -18,8 +18,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; For the Customization bits that Emacs wants to manage itself
-(setq custom-file "~/.emacs.d/custom-conf.el")
+(setq help-window-select t
+      custom-file "~/.emacs.d/custom-conf.el")
 
 (desktop-save-mode)
 ;; Unsetting `desktop-restore-frames` and forcing a save is a good way
@@ -163,6 +163,12 @@
   :ensure t
   :init (setq nyan-wavy-trail nil)
   :config (nyan-mode))
+
+(use-package beacon
+  :ensure t
+  :init (setq beacon-size 20
+              beacon-color "yellow")
+  :config (beacon-mode))
 
 (use-package emojify
   :ensure t
