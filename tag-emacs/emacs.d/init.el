@@ -35,6 +35,8 @@
 (global-set-key (kbd "C-c t") 'my/toggle-transparency)
 (global-set-key [remap move-beginning-of-line] 'my/smarter-move-beginning-of-line)
 
+(global-unset-key (kbd "C-x m"))
+
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (use-package switch-window
@@ -48,7 +50,8 @@
   :diminish
   :init (setq ivy-display-style 'fancy
               ivy-use-virtual-buffers t
-              ivy-count-format "(%d/%d) ")
+              ivy-count-format "(%d/%d) "
+              ivy-use-selectable-prompt t)
   :config (ivy-mode t))
 
 (use-package swiper
@@ -120,8 +123,10 @@
 (use-package smart-mode-line
   :ensure t
   :config
-  (add-to-list 'sml/replacer-regexp-list '("^~/projects/auaap/empatico/" ":PRJ-EMP:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^~/projects/birchbox/" ":PRJ-BB:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^~/projects/auaap/empatico/" ":EMP:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^~/projects/birchbox/" ":BBX:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^~/projects/yetibot/yetibot.core" ":YETI.CORE:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^~/projects/yetibot/yetibot" ":YETI:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/projects/" ":PRJ:") t)
   (sml/setup))
 
@@ -176,6 +181,10 @@
                             (abbrev-mode t)
                             (auto-revert-mode t)))
 
+(add-hook 'prog-mode-hook (lambda ()
+                            (enable-paredit-mode)
+                            (flyspell-prog-mode)))
+
 (require 'setup-abbrev-mode)
 (require 'setup-org-mode)
 
@@ -221,18 +230,7 @@
 (use-package paredit
   :ensure t
   :diminish
-  :config
-  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
-  (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-  (add-hook 'lisp-mode-hook #'enable-paredit-mode)
-  (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-  (add-hook 'scheme-mode-hook #'enable-paredit-mode)
-  (add-hook 'clojure-mode-hook #'enable-paredit-mode))
-
-(use-package paredit-everywhere
-  :ensure t
-  :diminish
-  :config (paredit-everywhere-mode))
+  :config (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode))
 
 (use-package highlight-parentheses
   :ensure t

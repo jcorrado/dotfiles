@@ -19,7 +19,8 @@
                 ("CANCELLED" :foreground "green" :weight bold :strike-through t)))
   :config
   (add-hook 'org-mode-hook 'flyspell-mode t)
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC")))
 
 (use-package org-bullets
   :ensure t
