@@ -46,7 +46,6 @@
 (global-unset-key (kbd "C-x m"))
 
 (server-start)
-(desktop-save-mode)
 (winner-mode)
 
 ;;
@@ -60,7 +59,7 @@
       blink-matching-paren t
       horizontal-scroll-bar nil
       column-number-mode nil
-      my/frame-opacity 85)
+      my/frame-opacity '(85 . 30))
 
 (blink-cursor-mode)
 (tool-bar-mode -1)
@@ -122,6 +121,9 @@
 (use-package rainbow-mode
   :ensure t
   :diminish)
+
+(desktop-save-mode)
+
 
 ;;
 ;; Interface
