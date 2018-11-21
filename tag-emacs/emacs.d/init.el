@@ -27,18 +27,8 @@
       desktop-restore-frames t
       desktop-files-not-to-save nil
       help-window-select t
-
-      inhibit-startup-message t
-      visible-bell t
-      blink-cursor-mode t
-      blink-cursor-blinks 180
-      blink-cursor-delay 0.5
-      blink-cursor-interval 0.85
-      blink-matching-paren t
-      horizontal-scroll-bar nil
-      column-number-mode nil
-
-      my/frame-opacity 85)
+      ispell-program-name "aspell"
+      ispell-silently-savep t)
 
 (setq-default indent-tabs-mode nil)
 
@@ -56,12 +46,22 @@
 (global-unset-key (kbd "C-x m"))
 
 (server-start)
-(desktop-save-mode)
-
+(winner-mode)
 
 ;;
 ;; Appearance
 ;;
+(setq inhibit-startup-message t
+      visible-bell t
+      blink-cursor-blinks 10
+      blink-cursor-delay 0.5
+      blink-cursor-interval 0.85
+      blink-matching-paren t
+      horizontal-scroll-bar nil
+      column-number-mode nil
+      my/frame-opacity '(85 . 30))
+
+(blink-cursor-mode)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -122,6 +122,9 @@
   :ensure t
   :diminish)
 
+(desktop-save-mode)
+
+
 ;;
 ;; Interface
 ;;
@@ -129,7 +132,10 @@
   :ensure t
   :bind (("C-x o" . ace-window))
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
-              aw-scope 'frame))
+              aw-scope 'frame)
+  :config (custom-set-faces
+           '(aw-leading-char-face
+             ((t (:inherit aw-mode-line-face :foreground "orange red" :height 3.0))))))
 
 (use-package ivy
   :ensure t
@@ -179,6 +185,12 @@
 (use-package smartscan
   :ensure t
   :config (global-smartscan-mode))
+
+(use-package avy
+  :ensure t
+  :init (setq avy-background t
+              avy-all-windows nil)
+  :bind (("M-g w" . avy-goto-char)))
 
 
 ;;
