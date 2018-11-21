@@ -1,6 +1,3 @@
-(setq user-full-name "Jereme Corrado"
-      user-mail-address "jereme@zoion.net")
-
 (require 'package)
 (setq package-archives nil
       package-enable-at-startup nil)
@@ -10,100 +7,28 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
-(add-to-list 'load-path "~/.emacs.d/elisp")
-(add-to-list 'load-path "~/.emacs.d/config")
-(load "miscellaneous")
-
 (when (not (package-installed-p 'use-package))
   (package-refresh-contents)
   (package-install 'use-package))
 
-(setq help-window-select t
-      custom-file "~/.emacs.d/custom-conf.el")
+(setq custom-file "~/.emacs.d/custom-conf.el")
 
-(desktop-save-mode)
-;; Unsetting `desktop-restore-frames` and forcing a save is a good way
-;; to clear out any wonky theme state that's been unintentionally
-;; persisted to the desktop file.
-(setq desktop-restore-frames t
-      desktop-files-not-to-save nil)
+(add-to-list 'load-path "~/.emacs.d/elisp")
+(add-to-list 'load-path "~/.emacs.d/config")
+(load "miscellaneous")
 
-(global-set-key (kbd "C-n") 'forward-paragraph)
-(global-set-key (kbd "C-p") 'backward-paragraph)
-(global-set-key (kbd "<f5>") 'revert-buffer)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-c t") 'my/toggle-transparency)
-(global-set-key [remap move-beginning-of-line] 'my/smarter-move-beginning-of-line)
+(setq user-full-name "Jereme Corrado"
+      user-mail-address "jereme@zoion.net"
 
-(global-unset-key (kbd "C-x m"))
+      default-major-mode 'text-mode
+      make-backup-files nil
+      vc-follow-symlinks t
+      server-temp-file-regexp ".*"
+      desktop-restore-frames t
+      desktop-files-not-to-save nil
+      help-window-select t
 
-(fset 'yes-or-no-p 'y-or-n-p)
-
-(use-package ace-window
-  :ensure t
-  :bind (("C-x o" . ace-window))
-  :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
-              aw-scope 'frame))
-
-(use-package switch-window
-  :disabled
-  :ensure t
-  :init (setq switch-window-shortcut-style 'qwerty
-              switch-window-minibuffer-shortcut ?z)
-  :bind ("C-x o" . switch-window))
-
-(use-package ivy
-  :ensure t
-  :diminish
-  :init (setq ivy-display-style 'fancy
-              ivy-use-virtual-buffers t
-              ivy-count-format "(%d/%d) "
-              ivy-use-selectable-prompt t)
-  :config (ivy-mode t))
-
-(use-package swiper
-  :ensure t
-  :init (setq enable-recursive-minibuffers nil)
-  :bind (("C-s" . swiper)
-         ("C-r" . swiper)))
-
-(use-package ibuffer-vc
-  :ensure t
-  :init
-  (add-hook 'ibuffer-hook
-            (lambda ()
-              (ibuffer-vc-set-filter-groups-by-vc-root)
-              (unless (eq ibuffer-sorting-mode 'alphabetic)
-                (ibuffer-do-sort-by-alphabetic)))))
-
-(use-package company
-  :ensure t
-  :diminish
-  :config (global-company-mode))
-
-(use-package browse-kill-ring
-  :ensure t
-  :config (browse-kill-ring-default-keybindings))
-
-(use-package which-key
-  :ensure t
-  :diminish
-  :config (which-key-mode))
-
-(use-package smartscan
-  :ensure t
-  :config (global-smartscan-mode))
-
-(use-package dictionary
-  :ensure t
-  ;;:config (global-set-key (kbd "M-%") 'dictionary-lookup-definition)
-  :bind ("M-%" . dictionary-lookup-definition))
-
-
-;;
-;; Appearance
-;;
-(setq inhibit-startup-message t
+      inhibit-startup-message t
       visible-bell t
       blink-cursor-mode t
       blink-cursor-blinks 180
@@ -111,21 +36,48 @@
       blink-cursor-interval 0.85
       blink-matching-paren t
       horizontal-scroll-bar nil
-      column-number-mode nil)
+      column-number-mode nil
 
+      my/frame-opacity 85)
+
+(setq-default indent-tabs-mode nil)
+
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(global-set-key (kbd "C-n") 'forward-paragraph)
+(global-set-key (kbd "C-p") 'backward-paragraph)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-a") 'my/smarter-move-beginning-of-line)
+(global-set-key (kbd "C-c t") (lambda ()
+                                (interactive)
+                                (my/toggle-transparency my/frame-opacity)))
+(global-set-key (kbd "<f5>") 'revert-buffer)
+
+(global-unset-key (kbd "C-x m"))
+
+(server-start)
+(desktop-save-mode)
+
+
+;;
+;; Appearance
+;;
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(set-frame-parameter (selected-frame) 'alpha my/frame-opacity)
+
+(add-to-list 'default-frame-alist '(alpha . 85))
 (add-hook 'after-make-frame-functions (lambda (_) (my/clear-fringe)))
+
+(global-font-lock-mode t)
+(set-frame-font "DejaVu Sans Mono 13" t t)
 
 (use-package zenburn-theme
   :ensure t
   :config
   (load-theme 'zenburn t)
   (my/clear-fringe))
-
-(global-font-lock-mode t)
-(set-frame-font "DejaVu Sans Mono 13" t t)
 
 (use-package smart-mode-line
   :ensure t
@@ -146,28 +98,12 @@
   (diminish 'abbrev-mode "Abv")
   (diminish 'mml-mode))
 
-;; This isn't working consistently for me
-(use-package dimmer
-  :disabled
-  :ensure t
-  :init (setq dimmer-fraction 0.55
-              dimmer-exclusion-regexp "^\*")
-  :config (dimmer-mode))
-
-(use-package focus
-  :disabled
-  :ensure t)
-
-(use-package nyan-mode
-  :disabled
-  :ensure t
-  :init (setq nyan-wavy-trail nil)
-  :config (nyan-mode))
-
 (use-package beacon
   :ensure t
-  :init (setq beacon-size 20
-              beacon-color "yellow")
+  :diminish
+  :init (setq beacon-size 25
+              beacon-blink-when-window-scrolls nil
+              beacon-color "magenta")
   :config (beacon-mode))
 
 (use-package emojify
@@ -176,17 +112,72 @@
               emojify-inhibit-major-modes '())
   :config (add-hook 'after-init-hook #'global-emojify-mode))
 
+(use-package nyan-mode
+  :disabled
+  :ensure t
+  :init (setq nyan-wavy-trail nil)
+  :config (nyan-mode))
+
+(use-package rainbow-mode
+  :ensure t
+  :diminish
+  :config (rainbow-mode))
+
+;;
+;; Interface
+;;
+(use-package ace-window
+  :ensure t
+  :bind (("C-x o" . ace-window))
+  :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+              aw-scope 'frame))
+
+(use-package ivy
+  :ensure t
+  :diminish
+  :init (setq ivy-display-style 'fancy
+              ivy-use-virtual-buffers t
+              ivy-count-format "(%d/%d) "
+              ivy-use-selectable-prompt t)
+  :config (ivy-mode t))
+
+(use-package swiper
+  :ensure t
+  :init (setq enable-recursive-minibuffers nil)
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)))
+
+(use-package company
+  :ensure t
+  :diminish
+  :config (global-company-mode))
+
+(use-package ibuffer-vc
+  :ensure t
+  :init
+  (add-hook 'ibuffer-hook
+            (lambda ()
+              (ibuffer-vc-set-filter-groups-by-vc-root)
+              (unless (eq ibuffer-sorting-mode 'alphabetic)
+                (ibuffer-do-sort-by-alphabetic)))))
+
+(use-package browse-kill-ring
+  :ensure t
+  :config (browse-kill-ring-default-keybindings))
+
+(use-package which-key
+  :ensure t
+  :diminish
+  :config (which-key-mode))
+
+(use-package smartscan
+  :ensure t
+  :config (global-smartscan-mode))
+
 
 ;;
 ;; Editing
 ;;
-(setq make-backup-files nil
-      vc-follow-symlinks t
-      server-temp-file-regexp ".*"
-      default-major-mode 'text-mode)
-
-(setq-default indent-tabs-mode nil)
-
 (add-hook 'text-mode-hook (lambda ()
                             (setq fill-column 72)
                             (auto-fill-mode t)
@@ -198,10 +189,12 @@
                             (enable-paredit-mode)
                             (flyspell-prog-mode)))
 
+(add-hook 'conf-mode-hook (lambda ()
+                            (flyspell-prog-mode)
+                            (auto-revert-mode t)))
+
 (require 'setup-abbrev-mode)
 (require 'setup-org-mode)
-
-(server-start)
 
 (use-package undo-tree
   :ensure t
@@ -248,8 +241,8 @@
 (use-package highlight-parentheses
   :ensure t
   :diminish
-  :init (setq hl-paren-colors '("red" "orange" "yellow" "green"
-                                "cyan" "blue" "dark violet"))
+  :init (setq hl-paren-colors '("red" "orange red" "yellow" "green"
+                                "cyan" "blue" "magenta" "dark violet"))
   :config (global-highlight-parentheses-mode))
 
 (use-package dumb-jump
@@ -288,3 +281,7 @@
 (add-to-list 'auto-mode-alist '("/mutt" . (lambda ()
                                             (mail-mode)
                                             (forward-paragraph))))
+
+(use-package dictionary
+  :ensure t
+  :bind ("M-%" . dictionary-lookup-definition))

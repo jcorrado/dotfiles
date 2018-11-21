@@ -24,15 +24,10 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defun my/clear-fringe () (set-face-attribute 'fringe nil :background nil))
 
-;; https://www.emacswiki.org/emacs/TransparentEmacs
-(defun my/toggle-transparency ()
+(defun my/toggle-transparency (opacity)
+  "https://www.emacswiki.org/emacs/TransparentEmacs"
   (interactive)
   (let ((alpha (frame-parameter nil 'alpha)))
-    (set-frame-parameter
-     nil 'alpha
-     (if (eql (cond ((numberp alpha) alpha)
-		    ((numberp (cdr alpha)) (cdr alpha))
-		    ;; Also handle undocumented (<active> <inactive>) form.
-		    ((numberp (cadr alpha)) (cadr alpha)))
-	      100)
-	 '(85 . 30) '(100 . 100)))))
+    (set-frame-parameter (selected-frame)
+                         'alpha
+                         (if (eql alpha 100) opacity 100))))
