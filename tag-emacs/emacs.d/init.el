@@ -26,19 +26,7 @@
       server-temp-file-regexp ".*"
       desktop-restore-frames t
       desktop-files-not-to-save nil
-      help-window-select t
-
-      inhibit-startup-message t
-      visible-bell t
-      blink-cursor-mode t
-      blink-cursor-blinks 180
-      blink-cursor-delay 0.5
-      blink-cursor-interval 0.85
-      blink-matching-paren t
-      horizontal-scroll-bar nil
-      column-number-mode nil
-
-      my/frame-opacity 85)
+      help-window-select t)
 
 (setq-default indent-tabs-mode nil)
 
@@ -62,6 +50,17 @@
 ;;
 ;; Appearance
 ;;
+(setq inhibit-startup-message t
+      visible-bell t
+      blink-cursor-blinks 10
+      blink-cursor-delay 0.5
+      blink-cursor-interval 0.85
+      blink-matching-paren t
+      horizontal-scroll-bar nil
+      column-number-mode nil
+      my/frame-opacity 85)
+
+(blink-cursor-mode)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
