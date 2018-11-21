@@ -26,7 +26,9 @@
       server-temp-file-regexp ".*"
       desktop-restore-frames t
       desktop-files-not-to-save nil
-      help-window-select t)
+      help-window-select t
+      ispell-program-name "aspell"
+      ispell-silently-savep t)
 
 (setq-default indent-tabs-mode nil)
 
@@ -45,7 +47,7 @@
 
 (server-start)
 (desktop-save-mode)
-
+(winner-mode)
 
 ;;
 ;; Appearance
@@ -128,7 +130,10 @@
   :ensure t
   :bind (("C-x o" . ace-window))
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
-              aw-scope 'frame))
+              aw-scope 'frame)
+  :config (custom-set-faces
+           '(aw-leading-char-face
+             ((t (:inherit aw-mode-line-face :foreground "orange red" :height 3.0))))))
 
 (use-package ivy
   :ensure t
@@ -178,6 +183,12 @@
 (use-package smartscan
   :ensure t
   :config (global-smartscan-mode))
+
+(use-package avy
+  :ensure t
+  :init (setq avy-background t
+              avy-all-windows nil)
+  :bind (("M-g w" . avy-goto-char)))
 
 
 ;;
