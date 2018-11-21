@@ -120,8 +120,7 @@
 
 (use-package rainbow-mode
   :ensure t
-  :diminish
-  :config (rainbow-mode))
+  :diminish)
 
 ;;
 ;; Interface
@@ -165,6 +164,13 @@
   :ensure t
   :config (browse-kill-ring-default-keybindings))
 
+(use-package undo-tree
+  :ensure t
+  :diminish
+  :init (setq undo-tree-visualizer-diff t
+              undo-tree-visualizer-timestamps t)
+  :config (global-undo-tree-mode))
+
 (use-package which-key
   :ensure t
   :diminish
@@ -187,21 +193,16 @@
 
 (add-hook 'prog-mode-hook (lambda ()
                             (enable-paredit-mode)
-                            (flyspell-prog-mode)))
+                            (flyspell-prog-mode)
+                            (rainbow-mode)))
 
 (add-hook 'conf-mode-hook (lambda ()
                             (flyspell-prog-mode)
-                            (auto-revert-mode t)))
+                            (auto-revert-mode t)
+                            (rainbow-mode)))
 
 (require 'setup-abbrev-mode)
 (require 'setup-org-mode)
-
-(use-package undo-tree
-  :ensure t
-  :diminish
-  :init (setq undo-tree-visualizer-diff t
-              undo-tree-visualizer-timestamps t)
-  :config (global-undo-tree-mode))
 
 (use-package aggressive-indent
   :ensure t
