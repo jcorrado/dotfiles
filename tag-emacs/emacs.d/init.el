@@ -285,6 +285,10 @@
 ;; JavaScript
 (setq js-indent-level 2)
 
+;; Web browsing
+(setq eww-search-prefix "https://www.google.com/search?q=")
+(add-hook 'eww-mode-hook (lambda () (setq-local shr-use-fonts nil)))
+
 ;; External web browsing
 (setq browse-url-generic-program "sensible-browser"
       browse-url-browser-function 'browse-url-generic)
