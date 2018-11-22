@@ -53,13 +53,16 @@
 ;;
 (setq inhibit-startup-message t
       visible-bell t
-      blink-cursor-blinks 10
+      blink-cursor-blinks 30
       blink-cursor-delay 0.5
       blink-cursor-interval 0.85
       blink-matching-paren t
+      cursor-type 'box
       horizontal-scroll-bar nil
       column-number-mode nil
       my/frame-opacity '(85 . 30))
+
+(setq-default cursor-in-non-selected-windows nil)
 
 (blink-cursor-mode)
 (tool-bar-mode -1)
@@ -135,7 +138,7 @@
               aw-scope 'frame)
   :config (custom-set-faces
            '(aw-leading-char-face
-             ((t (:inherit aw-mode-line-face :foreground "orange red" :height 3.0))))))
+             ((t (:inherit aw-mode-line-face :foreground "orange red" :height 5.0))))))
 
 (use-package ivy
   :ensure t
