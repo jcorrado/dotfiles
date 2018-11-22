@@ -158,6 +158,7 @@
 (use-package company
   :ensure t
   :diminish
+  :bind (("M-/" . company-complete))
   :config (global-company-mode))
 
 (use-package ibuffer-vc
