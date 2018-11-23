@@ -34,6 +34,8 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(require 'setup-hyrda)
+
 (global-set-key (kbd "C-n") 'forward-paragraph)
 (global-set-key (kbd "C-p") 'backward-paragraph)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -42,6 +44,8 @@
                                 (interactive)
                                 (my/toggle-transparency my/frame-opacity)))
 (global-set-key (kbd "<f5>") 'revert-buffer)
+(global-set-key (kbd "C-c h d") 'hydra-adjust-display/body)
+(global-set-key (kbd "C-c h g") 'hydra-git-gutter/body)
 
 (global-unset-key (kbd "C-x m"))
 
@@ -196,6 +200,8 @@
               avy-all-windows nil)
   :bind (("M-g w" . avy-goto-char-2)))
 
+(use-package hydra
+  :ensure t)
 
 ;;
 ;; Editing
