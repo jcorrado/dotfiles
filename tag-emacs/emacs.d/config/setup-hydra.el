@@ -14,13 +14,13 @@ Adjust Text:
   ("p" prettify-symbols-mode)
   ("q" nil :color blue))
 
-(defhydra hydra-git-gutter (:body-pre (git-gutter-mode 1)
-                                      :hint nil)
+(defhydra hydra-git-gutter (:pre (git-gutter-mode t)
+                                 :hint nil)
   "
 Git Gutter:
   [_n_]: next hunk        [_s_]: _s_tage hunk
   [_p_]: previous hunk    [_r_]: _r_evert hunk
-  ^ ^                     [_o_]: p_o_pup hunk
+   ^ ^                    [_o_]: toggle p_o_pup hunk
   [_h_]: first hunk
   [_l_]: last hunk        [_R_]: set start _R_evision
 "
@@ -30,9 +30,12 @@ Git Gutter:
               (git-gutter:next-hunk 1)))
   ("l" (progn (goto-char (point-min))
               (git-gutter:previous-hunk 1)))
-  ("s" git-gutter:stage-hunk)
+  ("s" (progn
+         (git-gutter:stage-hunk)
+         (message nil)))
   ("r" git-gutter:revert-hunk)
-  ("o" git-gutter:popup-hunk)
+  ("o" (let ((buff "*git-gutter:diff*"))
+         (if (get-buffer-window buff) (kill-buffer buff) (git-gutter:popup-hunk))))
   ("R" git-gutter:set-start-revision)
   ("q" nil :color blue))
 
