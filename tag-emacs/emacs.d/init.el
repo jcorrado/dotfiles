@@ -54,7 +54,7 @@
 ;; Appearance
 ;;
 (setq inhibit-startup-message t
-      visible-bell t
+      visible-bell nil
       blink-cursor-blinks 30
       blink-cursor-delay 0.5
       blink-cursor-interval 0.85
