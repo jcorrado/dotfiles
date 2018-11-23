@@ -1,6 +1,9 @@
 (defhydra hydra-adjust-display (:hint nil)
   "
-Adjust Text: [_i_]ncrease, [_d_]ecrease, [_r_]eset size, [_c_]olorize, [_p_]rettify symbols
+Adjust Text:
+[_i_]ncrease, [_d_]ecrease, [_r_]eset font size
+[_c_]olor names %(if rainbow-mode 'off 'on)
+[_p_]rettify symbols %(if prettify-symbols-mode 'off 'on)
 "
   ("i" text-scale-increase)
   ("d" text-scale-decrease)
