@@ -1,6 +1,3 @@
-;;
-;; org-mode
-;;
 (use-package org
   :ensure t
   :init (setq org-hide-leading-stars t

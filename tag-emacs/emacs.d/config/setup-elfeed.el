@@ -1,6 +1,3 @@
-;;
-;; elfeed RSS reader
-;;
 (use-package elfeed
   :disabled
   :ensure t
