@@ -34,8 +34,6 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(require 'setup-hydra)
-
 (global-set-key (kbd "C-n") 'forward-paragraph)
 (global-set-key (kbd "C-p") 'backward-paragraph)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -201,7 +199,8 @@
   :bind (("M-g w" . avy-goto-char-2)))
 
 (use-package hydra
-  :ensure t)
+  :ensure t
+  :config (require 'setup-hydra))
 
 ;;
 ;; Editing
