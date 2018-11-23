@@ -194,7 +194,7 @@
   :ensure t
   :init (setq avy-background t
               avy-all-windows nil)
-  :bind (("M-g w" . avy-goto-char)))
+  :bind (("M-g w" . avy-goto-char-2)))
 
 
 ;;
@@ -245,7 +245,11 @@
 (use-package git-gutter-fringe
   :ensure t
   :diminish git-gutter-mode
-  :config (global-git-gutter-mode t))
+  :config
+  (set-face-foreground 'git-gutter-fr:modified "deep sky blue")
+  (set-face-foreground 'git-gutter-fr:added    "green")
+  (set-face-foreground 'git-gutter-fr:deleted  "red")
+  (global-git-gutter-mode t))
 
 (use-package git-timemachine
   :ensure t)
