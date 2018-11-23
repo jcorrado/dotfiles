@@ -34,7 +34,7 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(require 'setup-hyrda)
+(require 'setup-hydra)
 
 (global-set-key (kbd "C-n") 'forward-paragraph)
 (global-set-key (kbd "C-p") 'backward-paragraph)
