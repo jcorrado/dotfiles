@@ -20,7 +20,6 @@
 (setq user-full-name "Jereme Corrado"
       user-mail-address "jereme@zoion.net"
 
-      default-major-mode 'text-mode
       make-backup-files nil
       vc-follow-symlinks t
       server-temp-file-regexp ".*"
@@ -30,7 +29,8 @@
       ispell-program-name "aspell"
       ispell-silently-savep t)
 
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil
+              major-mode 'text-mode)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -205,22 +205,24 @@
 ;;
 ;; Editing
 ;;
-(add-hook 'text-mode-hook (lambda ()
-                            (setq fill-column 72)
-                            (auto-fill-mode t)
-                            (flyspell-mode t)
-                            (abbrev-mode t)
-                            (auto-revert-mode t)))
 
-(add-hook 'prog-mode-hook (lambda ()
-                            (enable-paredit-mode)
-                            (flyspell-prog-mode)
-                            (rainbow-mode)))
+(defun my/text-mode-hook ()
+  (setq fill-column 72)
+  (auto-fill-mode t)
+  (flyspell-mode t)
+  (abbrev-mode t)
+  (auto-revert-mode t))
+(add-hook 'text-mode-hook 'my/text-mode-hook)
 
-(add-hook 'conf-mode-hook (lambda ()
-                            (flyspell-prog-mode)
-                            (auto-revert-mode t)
-                            (rainbow-mode)))
+(defun my/prog-mode-hook ()
+  (enable-paredit-mode)
+  (flyspell-prog-mode))
+(add-hook 'prog-mode-hook 'my/prog-mode-hook)
+
+(defun my/conf-unix-mode-hook ()
+  (flyspell-prog-mode)
+  (auto-revert-mode t))
+(add-hook 'conf-unix-mode-hook 'my/conf-unix-mode-hook)
 
 (require 'setup-abbrev-mode)
 (require 'setup-org-mode)
