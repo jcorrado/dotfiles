@@ -82,7 +82,10 @@
   :ensure t
   :config
   (load-theme 'zenburn t)
-  (my/clear-fringe))
+  (my/clear-fringe)
+  (custom-set-faces
+   '(ivy-current-match
+     ((t (:foreground "#000000" :background "#d3d3d3" :underline nil))))))
 
 (use-package smart-mode-line
   :ensure t
@@ -246,7 +249,8 @@
 
 (use-package magit
   :ensure t
-  :init (setq magit-diff-refine-hunk t)
+  :init (setq magit-diff-refine-hunk t
+              magit-completing-read-function 'ivy-completing-read)
   :bind ("C-c m" . magit-status))
 
 (use-package git-gutter-fringe

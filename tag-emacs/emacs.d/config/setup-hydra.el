@@ -18,14 +18,12 @@ Adjust Text:
                                  :hint nil)
   "
 Git Gutter:
-  [_n_]: next hunk        [_s_]: _s_tage hunk
-  [_p_]: previous hunk    [_r_]: _r_evert hunk
-   ^ ^                    [_o_]: toggle p_o_pup hunk
-  [_h_]: first hunk
-  [_l_]: last hunk        [_R_]: set start _R_evision
+  ^ ^ _k_ ^ ^  [_s_] stage hunk
+  _h_ ^+^ _l_  [_r_] revert hunk
+  ^ ^ _j_ ^ ^  [_p_] popup hunk    [_R_] set start revision
 "
-  ("n" git-gutter:next-hunk)
-  ("p" git-gutter:previous-hunk)
+  ("j" git-gutter:next-hunk)
+  ("k" git-gutter:previous-hunk)
   ("h" (progn (goto-char (point-min))
               (git-gutter:next-hunk 1)))
   ("l" (progn (goto-char (point-min))
@@ -34,9 +32,9 @@ Git Gutter:
          (git-gutter:stage-hunk)
          (message nil)))
   ("r" git-gutter:revert-hunk)
-  ("o" (let ((buff "*git-gutter:diff*"))
+  ("p" (let ((buff "*git-gutter:diff*"))
          (if (get-buffer-window buff) (kill-buffer buff) (git-gutter:popup-hunk))))
   ("R" git-gutter:set-start-revision)
-  ("q" nil :color blue))
+  ("q" (kill-buffer "*git-gutter:diff*") :color blue))
 
 (provide 'setup-hydra)
