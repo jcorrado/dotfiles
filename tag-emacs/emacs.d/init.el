@@ -107,8 +107,8 @@
   :ensure t
   :diminish
   :init (setq beacon-size 25
-              beacon-blink-when-window-scrolls nil
-              beacon-color "magenta")
+              beacon-blink-when-window-scrolls t
+              beacon-color "orange red")
   :config (beacon-mode))
 
 (use-package emojify

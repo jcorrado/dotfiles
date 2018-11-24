@@ -1,4 +1,4 @@
-personal_ws-1.1 en 153 
+personal_ws-1.1 en 154 
 backends
 API
 Empatico
@@ -59,9 +59,9 @@ repo
 decrement
 KTF
 uid
-FDs
-CSS
 DNS
+CSS
+FDs
 KZ
 CTO
 nl
@@ -91,8 +91,8 @@ init
 umask
 MSA
 crypto
-PCI
 KZ's
+PCI
 openssl
 CodePipeline
 localhost
@@ -110,8 +110,8 @@ ACM
 VPC
 creds
 txn
-mysql
 MySQL
+mysql
 PostgreSQL
 CNAME
 Kula
@@ -130,12 +130,13 @@ Evernote
 colo
 Magento
 backend
+netblocks
 sytactic
 coldbrew
 startups
 Corrado
-GitHub
 Github
+GitHub
 orgs
 refactored
 snuck
