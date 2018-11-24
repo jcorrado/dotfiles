@@ -20,7 +20,6 @@
 (setq user-full-name "Jereme Corrado"
       user-mail-address "jereme@zoion.net"
 
-      default-major-mode 'text-mode
       make-backup-files nil
       vc-follow-symlinks t
       server-temp-file-regexp ".*"
@@ -30,7 +29,8 @@
       ispell-program-name "aspell"
       ispell-silently-savep t)
 
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil
+              major-mode 'text-mode)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -82,7 +82,10 @@
   :ensure t
   :config
   (load-theme 'zenburn t)
-  (my/clear-fringe))
+  (my/clear-fringe)
+  (custom-set-faces
+   '(ivy-current-match
+     ((t (:foreground "#000000" :background "#d3d3d3" :underline nil))))))
 
 (use-package smart-mode-line
   :ensure t
@@ -205,22 +208,24 @@
 ;;
 ;; Editing
 ;;
-(add-hook 'text-mode-hook (lambda ()
-                            (setq fill-column 72)
-                            (auto-fill-mode t)
-                            (flyspell-mode t)
-                            (abbrev-mode t)
-                            (auto-revert-mode t)))
 
-(add-hook 'prog-mode-hook (lambda ()
-                            (enable-paredit-mode)
-                            (flyspell-prog-mode)
-                            (rainbow-mode)))
+(defun my/text-mode-hook ()
+  (setq fill-column 72)
+  (auto-fill-mode t)
+  (flyspell-mode t)
+  (abbrev-mode t)
+  (auto-revert-mode t))
+(add-hook 'text-mode-hook 'my/text-mode-hook)
 
-(add-hook 'conf-mode-hook (lambda ()
-                            (flyspell-prog-mode)
-                            (auto-revert-mode t)
-                            (rainbow-mode)))
+(defun my/prog-mode-hook ()
+  (enable-paredit-mode)
+  (flyspell-prog-mode))
+(add-hook 'prog-mode-hook 'my/prog-mode-hook)
+
+(defun my/conf-unix-mode-hook ()
+  (flyspell-prog-mode)
+  (auto-revert-mode t))
+(add-hook 'conf-unix-mode-hook 'my/conf-unix-mode-hook)
 
 (require 'setup-abbrev-mode)
 (require 'setup-org-mode)
@@ -244,7 +249,8 @@
 
 (use-package magit
   :ensure t
-  :init (setq magit-diff-refine-hunk t)
+  :init (setq magit-diff-refine-hunk t
+              magit-completing-read-function 'ivy-completing-read)
   :bind ("C-c m" . magit-status))
 
 (use-package git-gutter-fringe
