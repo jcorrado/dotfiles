@@ -10,7 +10,9 @@ set mbox_type = Maildir
 set move = no
 set record = no
 set delete = yes
-set editor = "emacsclient -c -F '(quote (height . 50) (width . 80) (top . 75) (left . 75))'"
+set editor = "emacsclient -c -F '(quote (top . 75) (left . 125) \
+                                        (height . 50) (width . 80) \
+                                        (alpha 100 . 30))'"
 set fast_reply = yes
 set mime_forward = yes
 set mime_forward_rest = yes

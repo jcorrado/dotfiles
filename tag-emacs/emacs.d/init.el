@@ -70,8 +70,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
-(set-frame-parameter (selected-frame) 'alpha my/frame-opacity)
-
+(add-to-list 'initial-frame-alist (cons 'alpha my/frame-opacity))
 (add-to-list 'default-frame-alist (cons 'alpha my/frame-opacity))
 (add-hook 'after-make-frame-functions (lambda (_) (my/clear-fringe)))
 
