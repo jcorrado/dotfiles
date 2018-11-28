@@ -239,8 +239,8 @@
   :diminish (yas-minor-mode . "Yas")
   :config (yas-global-mode t))
 
-(use-package yasnippet-snippets
-  :ensure t)
+(use-package yasnippet-snippets :ensure t)
+(use-package aws-snippets :ensure t)
 
 (use-package ivy-yasnippet
   :ensure t
