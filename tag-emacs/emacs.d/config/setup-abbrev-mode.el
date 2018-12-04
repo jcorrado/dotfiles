@@ -10,6 +10,7 @@
     ("eo" "empatico.org")
     ("exz" "empatico.xyz")
 
+    ("gm" "Good Morning")
     ("tj" "Thanks,\nJereme")))
 
 (set-default 'abbrev-mode t)
