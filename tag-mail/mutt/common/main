@@ -17,6 +17,7 @@ set fast_reply = yes
 set mime_forward = yes
 set mime_forward_rest = yes
 set include = yes
+#set autoedit = yes
 set edit_headers = yes
 set pager_stop = yes
 set strict_threads = yes
