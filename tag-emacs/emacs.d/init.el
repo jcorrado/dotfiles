@@ -228,6 +228,7 @@
 
 (require 'setup-abbrev-mode)
 (require 'setup-org-mode)
+(require 'setup-org-gcal-creds)
 
 (use-package aggressive-indent
   :ensure t

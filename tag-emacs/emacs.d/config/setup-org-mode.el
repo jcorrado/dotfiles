@@ -1,15 +1,21 @@
 (use-package org
   :ensure t)
 
-(use-package org-bullets
-  :ensure t
-  :init (setq org-bullets-bullet-list '("◉" "○" "●" "✚" "✜" "◇" "◆" "✿" "✸" "▸"))
-  :config (org-bullets-mode))
-
 ;; (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 ;; (global-set-key (kbd "C-c c") 'org-capture)
 ;; (global-set-key (kbd "C-c b") 'org-switchb)
+
+(use-package org-bullets
+  :ensure t
+  :init (setq org-bullets-bullet-list '("●" "○" "◉" "✚" "✜" "◇" "◆" "✿" "✸" "▸"))
+  :config (org-bullets-mode))
+
+(use-package org-gcal
+  :ensure t)
+
+(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch)))
+;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
 
 ;; General Appearance
 (setq org-hide-leading-stars t
@@ -27,7 +33,9 @@
                                ("DONE" :foreground "green" :weight bold)
                                ("CANCELLED" :foreground "green" :weight bold :strike-through t)))
 
-(setq org-agenda-files '("~/org/auaap.org"
+(setq org-agenda-files '("~/org/gcal/personal"
+                         "~/org/gcal/birchbox"
+                         "~/org/auaap.org"
                          "~/org/notes.org"
                          "~/org/todo.org"))
 
