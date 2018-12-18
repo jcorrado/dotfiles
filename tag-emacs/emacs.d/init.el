@@ -301,7 +301,9 @@
 (setq js-indent-level 2)
 
 ;; Web browsing
-(setq eww-search-prefix "https://www.google.com/search?q=")
+(setq eww-search-prefix
+      ;;"https://www.google.com/search?q="
+      "https://duckduckgo.com/html/?q=")
 (add-hook 'eww-mode-hook (lambda ()
                            (setq-local shr-use-fonts nil)
                            (define-key eww-link-keymap (kbd "I") 'endless/toggle-image-display)))
