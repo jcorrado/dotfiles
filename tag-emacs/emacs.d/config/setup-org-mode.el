@@ -14,8 +14,13 @@
 (use-package org-gcal
   :ensure t)
 
+;;
+;; Agenda
+;;
 (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch)))
 ;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
+
+(setq org-agenda-span 1)
 
 ;; General Appearance
 (setq org-hide-leading-stars t
@@ -24,14 +29,14 @@
       org-log-into-drawer 'LOGBOOK)
 
 ;; TODOs
-(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-                          (sequence "WAITING(w)" "HOLD(h)" "|" "CANCELLED(c)"))
-      org-todo-keyword-faces '(("TODO" :foreground "red" :weight bold)
-                               ("NEXT" :foreground "cyan" :weight bold)
+(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(i)" "|" "DONE(d)")
+                          (sequence "WAITING(w)" "|" "CANCELED(c)"))
+      org-todo-keyword-faces '(("TODO" :foreground "orange red" :weight bold)
+                               ("NEXT" :foreground "lawn green" :weight bold)
+                               ("IN-PROGRESS" :foreground "navy" :background "sky blue" :weight bold)
                                ("WAITING" :foreground "yellow" :weight bold)
-                               ("HOLD" :foreground "yellow" :weight bold)
-                               ("DONE" :foreground "green" :weight bold)
-                               ("CANCELLED" :foreground "green" :weight bold :strike-through t)))
+                               ("DONE" :foreground "dim gray")
+                               ("CANCELED" :foreground "dim gray" :strike-through t)))
 
 (setq org-agenda-files '("~/org/gcal/personal"
                          "~/org/gcal/birchbox"
