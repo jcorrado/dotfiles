@@ -52,12 +52,23 @@
          ((agenda)
           (todo "NEXT")))))
 
-(setq org-agenda-files '("~/org/todo"
-                         "~/org/gcal/personal"
-                         "~/org/gcal/birchbox"
-                         "~/org/notes.org"))
+(setq org-agenda-files '("~/org/todo/"
+                         "~/org/gcal/personal/"
+                         "~/org/gcal/birchbox/"
+                         "~/org/notes.org"
+                         "~/org/from-email/"))
 
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))
+
+;;
+;; My mail Message-ID link handler
+;;
+(org-add-link-type "message-id" 'org-message-id-open)
+
+(defun org-message-id-open (msg-id)
+  "Visit mail message with external MUA"
+  (let ((cmd "mutt_for_msgid.sh"))
+    (shell-command (concat cmd " " msg-id))))
 
 (provide 'setup-org-mode)
