@@ -1,7 +1,8 @@
-personal_ws-1.1 en 154 
+personal_ws-1.1 en 157 
 backends
 API
 Empatico
+SDK
 quesadillas
 cacheable
 yml
@@ -24,6 +25,7 @@ tcp
 Quinoa
 dev
 misconfigured
+operationalize
 easter
 SLA
 sidenote
@@ -37,6 +39,7 @@ ECS
 CloudFormation
 BST
 io
+programmatically
 Clojure's
 jpeg
 SMS
