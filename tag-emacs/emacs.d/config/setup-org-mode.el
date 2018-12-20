@@ -22,17 +22,18 @@
 ;; Capture
 ;;
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/org/todo/personal.org" "Tasks")
+      '(("p" "Personal Task" entry (file+headline "~/org/todo/Personal.org" "Inbox")
          "* TODO %?\n  %i\n  %a")
-        ("m" "Mail task" entry (file+headline "~/org/todo/personal.org" "Tasks")
-         "* TODO %(concat \"[[message-id:\" msg-id \"][\" text \"]]\") %?\n  %i\n  %a")))
+        ("b" "Birchbox Task" entry (file+headline "~/org/todo/Birchbox.org" "Inbox")
+         "* TODO %?\n  %i\n  %a")
+        ("e" "Empatico Task" entry (file+headline "~/org/todo/Empatico.org" "Inbox")
+         "* TODO %?\n  %i\n  %a")))
 
-(defun my/mail-capture (msg-id text)
-  (use-local-map (copy-keymap org-capture-mode-map))
-  (local-set-key (kbd "C-c C-c") (lambda () (org-capture-finalize)
-                                   (delete-frame)))
-  (org-capture nil "m")
-  (delete-other-windows))
+(setq org-refile-targets '((("~/org/todo/Personal.org"
+                             "~/org/todo/Birchbox.org"
+                             "~/org/todo/Empatico.org") . (:maxlevel . 2)))
+      org-refile-use-outline-path t)
+
 
 ;;
 ;; TODOs
@@ -74,8 +75,7 @@
 
 (setq org-agenda-span 1
       org-agenda-files '("~/org/todo/"
-                         "~/org/gcal/personal/"
-                         "~/org/gcal/birchbox/"
+                         "~/org/gcal/"
                          "~/org/notes.org"
                          "~/org/from-email/"))
 
