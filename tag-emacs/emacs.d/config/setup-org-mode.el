@@ -1,42 +1,101 @@
 (use-package org
   :ensure t
   :diminish org-indent-mode
-  :init (setq org-startup-indented t
+  :init (setq org-modules '(org-w3m
+                            org-bbdb
+                            org-bibtex
+                            org-docview
+                            org-info
+                            org-protocol)
+              org-startup-indented t
               org-src-window-setup 'current-window
-              org-catch-invisible-edits 'show-and-error))
-
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
-;; (global-set-key (kbd "C-c l") 'org-store-link)
-;; (global-set-key (kbd "C-c b") 'org-switchb)
+              org-catch-invisible-edits 'show-and-error)
+  :config (progn
+            (global-set-key (kbd "C-c a") 'org-agenda)
+            (global-set-key (kbd "C-c c") 'hydra-org-capture/body)
+            (add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))))
 
 (use-package org-bullets
   :ensure t
   :init (setq org-bullets-bullet-list '("●" "◉" "○"))
-  :config (org-bullets-mode))
+  :config (progn
+            (org-bullets-mode)
+            (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
 
 (use-package org-gcal :ensure t)
+
+(setq my/org-personal-todo "~/org/todo/Personal.org"
+      my/org-birchbox-todo "~/org/todo/Birchbox.org"
+      my/org-empatico-todo "~/org/todo/Empatico.org"
+
+      my/org-todo-files (list my/org-personal-todo
+                              my/org-birchbox-todo
+                              my/org-empatico-todo)
+
+      my/org-inbox (concat org-directory "/inbox.org")
+      my/org-notes (concat org-directory "/notes.org")
+      my/org-email-todo (concat org-directory "/from-email"))
+
+;;
+;; Agenda
+;;
+;;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch)))
+;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
+
+(setq org-agenda-span 1
+      org-agenda-files (append my/org-todo-files
+                               (list my/org-notes
+                                     my/org-email-todo
+                                     org-gcal-dir)))
+
+(setq org-agenda-custom-commands
+      '(("p" . "Personal agenda views")
+        ("pt" "Personal Upcoming Tasks" tags-todo "personal+TODO=\"TODO\"|personal+TODO=\"NEXT\"")
+        ("pn" "Personal NEXT" tags-todo "personal+TODO=\"NEXT\"")
+
+        ("b" . "Birchbox agenda views")
+        ("bt" "Birchbox Upcoming Tasks" tags-todo "birchbox+TODO=\"TODO\"|birchbox+TODO=\"NEXT\"")
+        ("bn" "Birchbox NEXT" tags-todo "birchbox+TODO=\"NEXT\"")
+
+        ("x" "Agenda + task view"
+         ((agenda)
+          (todo "NEXT|IN-PROGRESS")))))
 
 
 ;;
 ;; Capture
 ;;
 (setq org-capture-templates
-      '(("p" "Personal Task" entry (file+headline "~/org/todo/Personal.org" "Inbox")
-         "* TODO %?\n  %i\n  %a")
-        ("b" "Birchbox Task" entry (file+headline "~/org/todo/Birchbox.org" "Inbox")
-         "* TODO %?\n  %i\n  %a")
-        ("e" "Empatico Task" entry (file+headline "~/org/todo/Empatico.org" "Inbox")
-         "* TODO %?\n  %i\n  %a")))
+      '(("p" "Personal Task" entry (file+headline my/org-inbox "Inbox")
+         "* TODO %?  :personal:\n  %i\n  %a")
+        ("b" "Birchbox Task" entry (file+headline my/org-inbox "Inbox")
+         "* TODO %?  :birchbox:\n  %i\n  %a")
+        ("e" "Empatico Task" entry (file+headline my/org-inbox "Inbox")
+         "* TODO %?  :empatico:\n  %i\n  %a")))
 
-(setq org-refile-targets '((("~/org/todo/Personal.org"
-                             "~/org/todo/Birchbox.org"
-                             "~/org/todo/Empatico.org") . (:maxlevel . 2)))
-      org-refile-use-outline-path t)
+(setq org-refile-targets '((my/org-todo-files . (:maxlevel . 3)))
+      org-refile-use-outline-path t
+      org-outline-path-complete-in-steps nil)
+
+;; Les intrusive than the standard org-capture pop-up, but maybe it doesn't matter
+(defhydra hydra-org-capture (:hint nil)
+  "
+Org Capture:
+^^[_p_]ersonal task  ^^[_b_]irchbox task  ^^[_e_]mpatico task
+"
+  ("p" (org-capture nil "p"))
+  ("b" (org-capture nil "b"))
+  ("e" (org-capture nil "e"))
+  ("q" nil :color blue)
+  )
+
+
+;; 
+;; org-refile-allow-creating-parent-nodes
 
 
 ;;
-;; TODOs
+;; Tasks
 ;;
 (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(i!/!)" "|" "DONE(d!/!)")
                           (sequence "WAITING(w@/!)" "|" "CANCELED(c@/!)"))
@@ -52,35 +111,6 @@
 
 ;; Give some thought to this as my process evolves
 ;; (setq org-agenda-todo-list-sublevels nil)
-
-
-;;
-;; Agenda
-;;
-;;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch)))
-;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
-
-(setq org-agenda-custom-commands
-      '(("p" . "Personal agenda views")
-        ("pt" "Personal Upcoming Tasks" tags-todo "personal+TODO=\"TODO\"|personal+TODO=\"NEXT\"")
-        ("pn" "Personal NEXT" tags-todo "personal+TODO=\"NEXT\"")
-
-        ("b" . "Birchbox agenda views")
-        ("bt" "Birchbox Upcoming Tasks" tags-todo "birchbox+TODO=\"TODO\"|birchbox+TODO=\"NEXT\"")
-        ("bn" "Birchbox NEXT" tags-todo "birchbox+TODO=\"NEXT\"")
-
-        ("x" "Agenda + task view"
-         ((agenda)
-          (todo "NEXT")))))
-
-(setq org-agenda-span 1
-      org-agenda-files '("~/org/todo/"
-                         "~/org/gcal/"
-                         "~/org/notes.org"
-                         "~/org/from-email/"))
-
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-(add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))
 
 ;;
 ;; My mail Message-ID link handler
