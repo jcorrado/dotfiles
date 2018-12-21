@@ -24,7 +24,7 @@
       vc-follow-symlinks t
       server-temp-file-regexp ".*"
       desktop-restore-frames t
-      desktop-files-not-to-save nil
+      ;;desktop-files-not-to-save nil
       help-window-select t
       ispell-program-name "aspell"
       ispell-silently-savep t)
