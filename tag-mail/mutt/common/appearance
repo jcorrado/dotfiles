@@ -1,5 +1,7 @@
 # -*- mode: conf -*-
 
+set date_format = "!%a, %b %d, %Y at %H:%M:%S%p %Z"
+
 
 #
 # index
