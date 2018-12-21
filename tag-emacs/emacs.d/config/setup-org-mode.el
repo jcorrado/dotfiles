@@ -36,6 +36,7 @@
       my/org-notes (concat org-directory "/notes.org")
       my/org-email-todo (concat org-directory "/from-email"))
 
+
 ;;
 ;; Agenda
 ;;
@@ -71,7 +72,11 @@
         ("b" "Birchbox Task" entry (file+headline my/org-inbox "Inbox")
          "* TODO %?  :birchbox:\n  %i\n  %a")
         ("e" "Empatico Task" entry (file+headline my/org-inbox "Inbox")
-         "* TODO %?  :empatico:\n  %i\n  %a")))
+         "* TODO %?  :empatico:\n  %i\n  %a")
+        ("m" "Personal Mail Followup Task" entry (file+headline my/org-personal-todo  "Tasks")
+         "* NEXT [[%:link][%:description]] :%i:@email:\n%?\n")
+        ("n" "Birchbox Mail Followup Task" entry (file+headline my/org-birchbox-todo  "Tasks")
+         "* NEXT [[%:link][%:description]] :%i:@email:\n%?\n")))
 
 (setq org-refile-targets '((my/org-todo-files . (:maxlevel . 3)))
       org-refile-use-outline-path t

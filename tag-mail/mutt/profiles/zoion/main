@@ -44,4 +44,4 @@ macro index,pager Ri "<enter-command>set wait_key=no<enter><shell-escape>mbsync 
 macro index,pager Ra "<shell-escape>clear && ~/.mutt/bin/get_mail.sh zoion <enter>" "sync all zoion and rebuild indexes"
 
 # org-mode TODO integration
-macro index,pager \CT "| save_mail_followup_task.pl -f ~/org/from-email/Personal.org -t ':personal:@email:' <enter>"
+macro index,pager \CT "| save_mail_followup_task.pl -c personal<enter>"
