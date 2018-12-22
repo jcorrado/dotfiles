@@ -1,7 +1,7 @@
 (use-package org
   :ensure t
   :diminish org-indent-mode
-  :init (setq org-modules '(org-w3m
+  :init (setq org-modules '(org-eww
                             org-bbdb
                             org-bibtex
                             org-docview
@@ -44,7 +44,11 @@
 (setq org-agenda-span 1
       org-agenda-files (append my/org-todo-files
                                (list my/org-notes
-                                     org-gcal-dir)))
+                                     org-gcal-dir))
+      org-agenda-skip-deadline-prewarning-if-scheduled t
+      org-agenda-time-grid '((daily today require-timed)
+                             (800 1000 1200 1400 1600 1800)
+                             "      " "----------------"))
 
 (setq org-agenda-custom-commands
       '(("p" . "Personal agenda views")
