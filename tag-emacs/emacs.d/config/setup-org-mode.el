@@ -33,8 +33,7 @@
                               my/org-empatico-todo)
 
       my/org-inbox (concat org-directory "/inbox.org")
-      my/org-notes (concat org-directory "/notes.org")
-      my/org-email-todo (concat org-directory "/from-email"))
+      my/org-notes (concat org-directory "/notes.org"))
 
 ;;
 ;; Agenda
@@ -45,7 +44,6 @@
 (setq org-agenda-span 1
       org-agenda-files (append my/org-todo-files
                                (list my/org-notes
-                                     my/org-email-todo
                                      org-gcal-dir)))
 
 (setq org-agenda-custom-commands
