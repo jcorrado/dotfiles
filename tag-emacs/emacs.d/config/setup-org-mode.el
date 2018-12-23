@@ -52,16 +52,16 @@
 
 (setq org-agenda-custom-commands
       '(("p" . "Personal agenda views")
-        ("pt" "Personal Upcoming Tasks" tags-todo "personal+TODO=\"TODO\"|personal+TODO=\"NEXT\"")
-        ("pn" "Personal NEXT" tags-todo "personal+TODO=\"NEXT\"")
+        ("pt" "Personal Upcoming Tasks" tags-todo "per+TODO=\"TODO\"|per+TODO=\"NEXT\"")
+        ("pn" "Personal NEXT" tags-todo "per+TODO=\"NEXT\"")
 
         ("b" . "Birchbox agenda views")
-        ("bt" "Birchbox Upcoming Tasks" tags-todo "birchbox+TODO=\"TODO\"|birchbox+TODO=\"NEXT\"")
-        ("bn" "Birchbox NEXT" tags-todo "birchbox+TODO=\"NEXT\"")
+        ("bt" "Birchbox Upcoming Tasks" tags-todo "bbx+TODO=\"TODO\"|bbx+TODO=\"NEXT\"")
+        ("bn" "Birchbox NEXT" tags-todo "bbx+TODO=\"NEXT\"")
 
         ("x" "Agenda + task view"
          ((agenda)
-          (todo "NEXT|IN-PROGRESS")))))
+          (tags "TODO=\"NEXT\"|TODO=\"IN-PROGRESS\"|TIMESTAMP_IA>=\"<-1d>\"+TODO=\"DONE\"")))))
 
 
 ;;
@@ -69,11 +69,11 @@
 ;;
 (setq org-capture-templates
       '(("p" "Personal Task" entry (file+headline my/org-inbox "Inbox")
-         "* TODO %?  :personal:\n  %i\n  %a")
+         "* TODO %?  :per:\n  %i\n  %a")
         ("b" "Birchbox Task" entry (file+headline my/org-inbox "Inbox")
-         "* TODO %?  :birchbox:\n  %i\n  %a")
+         "* TODO %?  :bbx:\n  %i\n  %a")
         ("e" "Empatico Task" entry (file+headline my/org-inbox "Inbox")
-         "* TODO %?  :empatico:\n  %i\n  %a")))
+         "* TODO %?  :emp:\n  %i\n  %a")))
 
 (setq org-refile-targets '((my/org-todo-files . (:maxlevel . 3)))
       org-refile-use-outline-path t
