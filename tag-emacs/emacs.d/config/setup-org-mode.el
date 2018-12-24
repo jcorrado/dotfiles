@@ -6,7 +6,8 @@
                             org-bibtex
                             org-docview
                             org-info
-                            org-protocol)
+                            org-protocol
+                            org-habit)
               org-startup-indented t
               org-src-window-setup 'current-window
               org-catch-invisible-edits 'show-and-error)
@@ -66,7 +67,7 @@
 ;;
 (setq org-capture-templates
       '(("p" "Personal Task" entry (file+headline my/org-inbox "Inbox")
-         "* TODO %?  :personal:\n  %i\n  %a")
+         "* TODO %?  :per:\n  %i\n%x\n  %a")
         ("b" "Birchbox Task" entry (file+headline my/org-inbox "Inbox")
          "* TODO %?  :birchbox:\n  %i\n  %a")
         ("e" "Empatico Task" entry (file+headline my/org-inbox "Inbox")
@@ -111,6 +112,12 @@ Org Capture:
       org-log-into-drawer 'LOGBOOK
       org-closed-keep-when-no-todo t
       org-treat-insert-todo-heading-as-state-change nil)
+
+;; Habits
+(setq org-habit-graph-column 58
+      org-habit-preceding-days 21
+      org-habit-following-days 7
+      org-habit-show-habits-only-for-today nil)
 
 ;; Give some thought to this as my process evolves
 ;; (setq org-agenda-todo-list-sublevels nil)
