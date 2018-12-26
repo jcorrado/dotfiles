@@ -24,8 +24,8 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defun my/clear-fringe () (set-face-attribute 'fringe nil :background nil))
 
+;; "https://www.emacswiki.org/emacs/TransparentEmacs"
 (defun my/toggle-transparency (opacity)
-  "https://www.emacswiki.org/emacs/TransparentEmacs"
   (interactive)
   (let ((alpha (frame-parameter nil 'alpha)))
     (set-frame-parameter (selected-frame)
@@ -65,3 +65,30 @@ buffer."
                       (point-max)))
         (when (eq (car prop) 'image)
           (add-text-properties left pos (list from nil to prop) object))))))
+
+;; Change and freeze time
+;; https://www.reddit.com/r/emacs/comments/75nkj6/orgmode_tasks_closed_yesterday/
+(defun my/freeze-time ()
+  "Freeze `current-time' at the current active or inactive timestamp. If point
+is not on a timestamp, the function prompts for one. If time is not specified,
+either by the timstamp under point or prompt, the time defaults to the
+current HH:MM of today at the selected date."
+  (interactive)
+  (let ((time
+         (cond ((if (org-at-timestamp-p 'lax) t)
+                (match-string 0))
+               (t
+                (org-read-date t nil nil "Input freeze time:")))))
+    (eval (macroexpand
+           `(defadvice current-time (around freeze activate)
+              (setq ad-return-value ',
+                    (append (org-read-date nil t time) '(0 0))))))
+    (set-face-background 'fringe "firebrick2")))
+
+;; Release changed / frozen time
+(defun my/release-time ()
+  "Release the time frozen by `freeze-time'."
+  (interactive)
+  (ad-remove-advice 'current-time 'around 'freeze)
+  (ad-activate 'current-time)
+  (set-face-background 'fringe nil))

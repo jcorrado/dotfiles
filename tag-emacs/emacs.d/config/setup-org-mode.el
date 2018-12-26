@@ -25,13 +25,17 @@
 
 (use-package org-gcal :ensure t)
 
-(setq my/org-personal-todo "~/org/todo/Personal.org"
-      my/org-birchbox-todo "~/org/todo/Birchbox.org"
-      my/org-empatico-todo "~/org/todo/Empatico.org"
+(setq my/org-personal-todo (concat org-directory "/todo/Personal.org")
+      my/org-birchbox-todo (concat org-directory "/todo/Birchbox.org")
+      my/org-empatico-todo (concat org-directory "/todo/Empatico.org")
 
       my/org-todo-files (list my/org-personal-todo
                               my/org-birchbox-todo
                               my/org-empatico-todo)
+
+      my/org-personal-routine (concat org-directory "/routine/Personal.org")
+
+      my/org-routine-files (list my/org-personal-routine)
 
       my/org-inbox (concat org-directory "/inbox.org")
       my/org-notes (concat org-directory "/notes.org"))
@@ -45,6 +49,7 @@
 
 (setq org-agenda-span 1
       org-agenda-files (append my/org-todo-files
+                               my/org-routine-files
                                (list my/org-notes
                                      org-gcal-dir)))
 
@@ -102,14 +107,17 @@ Org Capture:
 ;; Tasks
 ;;
 (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(i!/!)" "|" "DONE(d!/!)")
-                          (sequence "WAITING(w@/!)" "|" "CANCELED(c@/!)"))
+                          (sequence "WAITING(w@/!)" "|" "CANCELED(c@/!)")
+                          (sequence "HABIT(h)" "|" "DONE(d!)"))
       org-todo-keyword-faces '(("TODO" :foreground "orange red" :weight bold)
                                ("NEXT" :foreground "lawn green" :weight bold)
                                ("IN-PROGRESS" :foreground "navy" :background "sky blue" :weight bold)
                                ("WAITING" :foreground "yellow" :weight bold)
                                ("DONE" :foreground "dim gray")
-                               ("CANCELED" :foreground "dim gray" :strike-through t))
+                               ("CANCELED" :foreground "dim gray" :strike-through t)
+                               ("HABIT" :foreground "light blue" :weight bold))
       org-log-into-drawer 'LOGBOOK
+      org-log-done-with-time t
       org-closed-keep-when-no-todo t
       org-treat-insert-todo-heading-as-state-change nil)
 
@@ -117,7 +125,8 @@ Org Capture:
 (setq org-habit-graph-column 58
       org-habit-preceding-days 21
       org-habit-following-days 7
-      org-habit-show-habits-only-for-today nil)
+      org-habit-show-habits-only-for-today t
+      org-habit-show-all-today t)
 
 ;; Give some thought to this as my process evolves
 ;; (setq org-agenda-todo-list-sublevels nil)
