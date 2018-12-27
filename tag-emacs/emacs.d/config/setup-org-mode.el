@@ -70,17 +70,19 @@
 ;;
 ;; Capture
 ;;
+
 (setq org-capture-templates
-      '(("p" "Personal Task" entry (file+headline my/org-inbox "Inbox")
-         "* TODO %?  :per:\n  %i\n%x\n  %a")
-        ("b" "Birchbox Task" entry (file+headline my/org-inbox "Inbox")
-         "* TODO %?  :birchbox:\n  %i\n  %a")
-        ("e" "Empatico Task" entry (file+headline my/org-inbox "Inbox")
-         "* TODO %?  :empatico:\n  %i\n  %a")
+      '(("p" "Personal Task" entry (file+headline my/org-inbox "Personal")
+         "* TODO %?\n")
+        ("b" "Birchbox Task" entry (file+headline my/org-inbox "Birchbox")
+         "* TODO %?\n")
+        ("e" "Empatico Task" entry (file+headline my/org-inbox "Empatico")
+         "* TODO %?\n")
         ("m" "Personal Mail Followup Task" entry (file+headline my/org-personal-todo  "Tasks")
-         "* NEXT [[%:link][%:description]] :%i:@email:\n%?\n")
+         "* NEXT [[%:link][%:description]] :@email:%i\n%?\n")
         ("n" "Birchbox Mail Followup Task" entry (file+headline my/org-birchbox-todo  "Tasks")
-         "* NEXT [[%:link][%:description]] :%i:@email:\n%?\n")))
+         "* NEXT [[%:link][%:description]] :@email:%i\n%?\n")
+        ))
 
 (setq org-refile-targets '((my/org-todo-files . (:maxlevel . 3)))
       org-refile-use-outline-path t
