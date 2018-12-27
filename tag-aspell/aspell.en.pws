@@ -1,4 +1,4 @@
-personal_ws-1.1 en 157 
+personal_ws-1.1 en 158 
 backends
 API
 Empatico
@@ -62,9 +62,9 @@ repo
 decrement
 KTF
 uid
-DNS
-CSS
 FDs
+CSS
+DNS
 KZ
 CTO
 nl
@@ -93,9 +93,10 @@ Postgres
 init
 umask
 MSA
+iCloud
 crypto
-KZ's
 PCI
+KZ's
 openssl
 CodePipeline
 localhost
@@ -113,8 +114,8 @@ ACM
 VPC
 creds
 txn
-MySQL
 mysql
+MySQL
 PostgreSQL
 CNAME
 Kula
@@ -138,8 +139,8 @@ sytactic
 coldbrew
 startups
 Corrado
-Github
 GitHub
+Github
 orgs
 refactored
 snuck
