@@ -10,7 +10,8 @@
                             org-habit)
               org-startup-indented t
               org-src-window-setup 'current-window
-              org-catch-invisible-edits 'show-and-error)
+              org-catch-invisible-edits 'show-and-error
+              org-tags-column -100)
   :config (progn
             (global-set-key (kbd "C-c a") 'org-agenda)
             (global-set-key (kbd "C-c c") 'hydra-org-capture/body)
@@ -42,6 +43,13 @@
 
 
 ;;
+;; Tags
+;;
+(setq org-tag-alist '(("shared" . ?s)))
+
+
+
+;;
 ;; Agenda
 ;;
 ;;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch)))
@@ -55,16 +63,21 @@
 
 (setq org-agenda-custom-commands
       '(("p" . "Personal agenda views")
-        ("pt" "Personal Upcoming Tasks" tags-todo "personal+TODO=\"TODO\"|personal+TODO=\"NEXT\"")
-        ("pn" "Personal NEXT" tags-todo "personal+TODO=\"NEXT\"")
+        ("pt" "Personal Upcoming Tasks" tags-todo "per/TODO|NEXT")
+        ("pn" "Personal NEXT" tags-todo "per/NEXT")
 
         ("b" . "Birchbox agenda views")
-        ("bt" "Birchbox Upcoming Tasks" tags-todo "birchbox+TODO=\"TODO\"|birchbox+TODO=\"NEXT\"")
-        ("bn" "Birchbox NEXT" tags-todo "birchbox+TODO=\"NEXT\"")
+        ("bt" "Birchbox Upcoming Tasks" tags-todo "bbx/TODO|NEXT")
+        ("bn" "Birchbox NEXT" tags-todo "bbx/next")
 
         ("x" "Agenda + task view"
          ((agenda)
-          (todo "NEXT|IN-PROGRESS")))))
+          (todo "NEXT|IN-PROGRESS")))
+
+        ("y" "test agenda view" agenda ""
+         ((org-agenda-entry-types '(:scheduled)))
+         )
+        ))
 
 
 ;;
@@ -127,8 +140,10 @@ Org Capture:
 (setq org-habit-graph-column 58
       org-habit-preceding-days 21
       org-habit-following-days 7
-      org-habit-show-habits-only-for-today t
-      org-habit-show-all-today t)
+      org-habit-show-habits-only-for-today t)
+
+;; Works as a a habits "report"
+(setq  org-habit-show-all-today nil)
 
 ;; Give some thought to this as my process evolves
 ;; (setq org-agenda-todo-list-sublevels nil)
