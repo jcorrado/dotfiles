@@ -55,7 +55,8 @@
 ;;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch)))
 ;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
 
-(setq org-agenda-span 1
+(setq org-agenda-tags-todo-honor-ignore-options t
+      org-agenda-span 1
       org-agenda-files (append my/org-todo-files
                                my/org-routine-files
                                (list my/org-notes
@@ -64,20 +65,17 @@
 (setq org-agenda-custom-commands
       '(("p" . "Personal agenda views")
         ("pt" "Personal Upcoming Tasks" tags-todo "per/TODO|NEXT")
-        ("pn" "Personal NEXT" tags-todo "per/NEXT")
+        ("pn" "Personal unscheduled NEXT" tags-todo "per/NEXT"
+         ((org-agenda-todo-ignore-scheduled 'all)))
 
         ("b" . "Birchbox agenda views")
         ("bt" "Birchbox Upcoming Tasks" tags-todo "bbx/TODO|NEXT")
-        ("bn" "Birchbox NEXT" tags-todo "bbx/next")
+        ("bn" "Birchbox NEXT" tags-todo "bbx/next"
+         ((org-agenda-todo-ignore-scheduled 'all)))
 
         ("x" "Agenda + task view"
          ((agenda)
-          (todo "NEXT|IN-PROGRESS")))
-
-        ("y" "test agenda view" agenda ""
-         ((org-agenda-entry-types '(:scheduled)))
-         )
-        ))
+          (todo "NEXT|IN-PROGRESS")))))
 
 
 ;;
