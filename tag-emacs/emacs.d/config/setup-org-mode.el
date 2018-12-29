@@ -63,14 +63,19 @@
                                      org-gcal-dir)))
 
 (setq org-agenda-custom-commands
-      '(("p" . "Personal agenda views")
+      '(("p" . "Personal Agenda Views")
         ("pt" "Personal Upcoming Tasks" tags-todo "per/TODO|NEXT")
-        ("pn" "Personal unscheduled NEXT" tags-todo "per/NEXT"
+        ("pn" "Personal Unscheduled NEXT Tasks" tags-todo "per/NEXT"
          ((org-agenda-todo-ignore-scheduled 'all)))
 
-        ("b" . "Birchbox agenda views")
+        ("b" . "Birchbox Agenda Views")
         ("bt" "Birchbox Upcoming Tasks" tags-todo "bbx/TODO|NEXT")
-        ("bn" "Birchbox NEXT" tags-todo "bbx/next"
+        ("bn" "Birchbox Unscheduled NEXT Tasks" tags-todo "bbx/next"
+         ((org-agenda-todo-ignore-scheduled 'all)))
+
+        ("e" . "Empatico Agenda Views")
+        ("et" "Empatico Upcoming Tasks" tags-todo "emp/TODO|NEXT")
+        ("en" "Empatico Unscheduled NEXT Tasks" tags-todo "emp/next"
          ((org-agenda-todo-ignore-scheduled 'all)))
 
         ("x" "Agenda + task view"
