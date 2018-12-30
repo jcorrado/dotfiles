@@ -7,7 +7,8 @@
                             org-docview
                             org-info
                             org-protocol
-                            org-habit)
+                            org-habit
+                            org-mobile)
               org-startup-indented t
               org-src-window-setup 'current-window
               org-catch-invisible-edits 'show-and-error
@@ -39,7 +40,8 @@
       my/org-routine-files (list my/org-personal-routine)
 
       my/org-inbox (concat org-directory "/inbox.org")
-      my/org-notes (concat org-directory "/notes.org"))
+      my/org-notes (concat org-directory "/notes.org")
+      my/org-errands (concat org-directory "/errands.org"))
 
 
 ;;
@@ -60,7 +62,8 @@
       org-agenda-files (append my/org-todo-files
                                my/org-routine-files
                                (list my/org-notes
-                                     org-gcal-dir)))
+                                     org-gcal-dir
+                                     my/org-errands)))
 
 (setq org-agenda-custom-commands
       '(("p" . "Personal Agenda Views")
@@ -160,5 +163,13 @@ Org Capture:
   "Visit mail message with external MUA"
   (let ((cmd "mutt_for_msgid.sh"))
     (shell-command (concat cmd " " msg-id))))
+
+
+;;
+;; MobileOrg
+;;
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg"
+      org-mobile-files (cons my/org-errands
+                             my/org-routine-files))
 
 (provide 'setup-org-mode)
