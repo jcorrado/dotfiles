@@ -121,7 +121,7 @@
          "* NEXT [[%:link][%:description]] :@email:%i\n%?\n")))
 
 (setq org-refile-targets '((my/org-todo-files . (:maxlevel . 3)))
-      org-refile-use-outline-path t
+      org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil)
 
 ;; ;; Les intrusive than the standard org-capture pop-up, but maybe it doesn't matter
@@ -135,10 +135,6 @@
 ;;   ("e" (org-capture nil "e"))
 ;;   ("q" nil :color blue)
 ;;   )
-
-
-;; 
-;; org-refile-allow-creating-parent-nodes
 
 
 ;;
