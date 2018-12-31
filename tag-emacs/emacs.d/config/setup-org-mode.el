@@ -63,6 +63,7 @@
 ;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
 
 (setq org-agenda-tags-todo-honor-ignore-options t
+      org-agenda-todo-list-sublevels nil
       org-agenda-span 1
       org-agenda-files (append my/org-todo-files
                                my/org-routine-files
