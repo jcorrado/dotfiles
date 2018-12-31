@@ -48,7 +48,12 @@
 ;;
 ;; Tags
 ;;
-(setq org-tag-alist '(("shared" . ?s)))
+(setq org-tag-alist '((:startgroup . nil)
+                      ("@email" . ?m) ("@errands" . ?e) ("@home" . ?h) ("@nyc2" . ?n)
+                      (:endgroup . nil)
+                      ("project" . ?p)
+                      ("routine" . ?r)
+                      ("shared" . ?s)))
 
 
 ;;
