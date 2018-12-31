@@ -116,34 +116,46 @@
                                      my/org-errands)))
 
 (setq org-agenda-custom-commands
-      '(("p" . "Personal Agenda Views")
-        ("pt" "Personal Upcoming Tasks" tags-todo "per/TODO|NEXT")
-        ("pn" "Personal Unscheduled NEXT Tasks" tags-todo "per/NEXT"
-         ((org-agenda-todo-ignore-scheduled 'all)))
+      '(("p" . "Personal Agendas")
+        ("pt" "Personal Upcoming TODO, NEXT Tasks" todo "TODO|NEXT"
+         ((org-agenda-overriding-header "Personal Upcoming Tasks")
+          (org-agenda-category-filter-preset '("+Personal"))))
+        ("pn" "Personal Unscheduled NEXT Tasks" todo "NEXT"
+         ((org-agenda-overriding-header "Personal Unscheduled NEXT Tasks")
+          (org-agenda-category-filter-preset '("+Personal"))
+          (org-agenda-todo-ignore-scheduled 'all)))
 
         ("h" "Habits Report" agenda ""
-         ((org-habit-show-all-today t)
+         ((org-agenda-overriding-header "All Habits")
+          (org-habit-show-all-today t)
           (org-habit-show-habits-only-for-today t)
           (org-agenda-tag-filter-preset '("+routine"))
           (org-agenda-use-time-grid nil)))
 
-        ("b" . "Birchbox Agenda Views")
-        ("bt" "Birchbox Upcoming Tasks" tags-todo "bbx/TODO|NEXT")
-        ("bn" "Birchbox Unscheduled NEXT Tasks" tags-todo "bbx/next"
-         ((org-agenda-todo-ignore-scheduled 'all)))
+        ("b" . "Birchbox Agendas")
+        ("bt" "Birchbox Upcoming TODO, NEXT Tasks" todo "TODO|NEXT"
+         ((org-agenda-overriding-header "Birchbox Upcoming Tasks")
+          (org-agenda-category-filter-preset '("+Birchbox"))))
+        ("bn" "Birchbox Unscheduled NEXT Tasks" todo "NEXT"
+         ((org-agenda-overriding-header "Birchbox Unscheduled NEXT Tasks")
+          (org-agenda-category-filter-preset '("+Birchbox"))
+          (org-agenda-todo-ignore-scheduled 'all)))
 
-        ("e" . "Empatico Agenda Views")
-        ("et" "Empatico Upcoming Tasks" tags-todo "emp/TODO|NEXT")
-        ("en" "Empatico Unscheduled NEXT Tasks" tags-todo "emp/next"
-         ((org-agenda-todo-ignore-scheduled 'all)))
+        ("e" . "Empatico Agendas")
+        ("et" "Empatico Upcoming TODO, NEXT Tasks" todo "TODO|NEXT"
+         ((org-agenda-overriding-header "Empatico Upcoming Tasks")
+          (org-agenda-category-filter-preset '("+Empatico"))))
+        ("en" "Empatico Unscheduled NEXT Tasks" todo "NEXT"
+         ((org-agenda-overriding-header "Empatico Unscheduled NEXT Tasks")
+          (org-agenda-category-filter-preset '("+Empatico"))
+          (org-agenda-todo-ignore-scheduled 'all)))
 
         ("x" "Agenda + task view"
          ((agenda)
           (todo "NEXT|IN-PROGRESS"
-                ((org-agenda-overriding-header "Unscheduled NEXT, IN-PROGRESS")
+                ((org-agenda-overriding-header "Unscheduled NEXT, IN-PROGRESS Tasks")
                  (org-agenda-todo-ignore-scheduled 'all))))
-         ((org-agenda-tag-filter-preset '("-shared"))))
-        ))
+         ((org-agenda-tag-filter-preset '("-shared"))))))
 
 
 ;;
