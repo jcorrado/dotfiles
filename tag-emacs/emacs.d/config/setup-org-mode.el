@@ -15,7 +15,8 @@
               org-tags-column -100)
   :config (progn
             (global-set-key (kbd "C-c a") 'org-agenda)
-            (global-set-key (kbd "C-c c") 'hydra-org-capture/body)
+            ;; (global-set-key (kbd "C-c c") 'hydra-org-capture/body)
+            (global-set-key (kbd "C-c c") 'org-capture)
             (add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))))
 
 (use-package org-bullets
@@ -50,7 +51,6 @@
 (setq org-tag-alist '(("shared" . ?s)))
 
 
-
 ;;
 ;; Agenda
 ;;
@@ -71,6 +71,12 @@
         ("pn" "Personal Unscheduled NEXT Tasks" tags-todo "per/NEXT"
          ((org-agenda-todo-ignore-scheduled 'all)))
 
+        ("h" "Habits Report" agenda ""
+         ((org-habit-show-all-today t)
+          (org-habit-show-habits-only-for-today t)
+          (org-agenda-tag-filter-preset '("+routine"))
+          (org-agenda-use-time-grid nil)))
+
         ("b" . "Birchbox Agenda Views")
         ("bt" "Birchbox Upcoming Tasks" tags-todo "bbx/TODO|NEXT")
         ("bn" "Birchbox Unscheduled NEXT Tasks" tags-todo "bbx/next"
@@ -83,41 +89,46 @@
 
         ("x" "Agenda + task view"
          ((agenda)
-          (todo "NEXT|IN-PROGRESS")))))
+          (todo "NEXT|IN-PROGRESS"
+                ((org-agenda-overriding-header "Unscheduled NEXT, IN-PROGRESS")
+                 (org-agenda-todo-ignore-scheduled 'all))))
+         ((org-agenda-tag-filter-preset '("-shared"))))
+        ))
 
 
 ;;
 ;; Capture
 ;;
-
 (setq org-capture-templates
       '(("p" "Personal Task" entry (file+headline my/org-inbox "Personal")
          "* TODO %?\n")
-        ("b" "Birchbox Task" entry (file+headline my/org-inbox "Birchbox")
+        ("e" "Errands" entry (file my/org-errands)
          "* TODO %?\n")
-        ("e" "Empatico Task" entry (file+headline my/org-inbox "Empatico")
+        ("w" "Work Tasks")
+        ("wb" "Birchbox Task" entry (file+headline my/org-inbox "Birchbox")
+         "* TODO %?\n")
+        ("we" "Empatico Task" entry (file+headline my/org-inbox "Empatico")
          "* TODO %?\n")
         ("m" "Personal Mail Followup Task" entry (file+headline my/org-personal-todo  "Tasks")
          "* NEXT [[%:link][%:description]] :@email:%i\n%?\n")
         ("n" "Birchbox Mail Followup Task" entry (file+headline my/org-birchbox-todo  "Tasks")
-         "* NEXT [[%:link][%:description]] :@email:%i\n%?\n")
-        ))
+         "* NEXT [[%:link][%:description]] :@email:%i\n%?\n")))
 
 (setq org-refile-targets '((my/org-todo-files . (:maxlevel . 3)))
       org-refile-use-outline-path t
       org-outline-path-complete-in-steps nil)
 
-;; Les intrusive than the standard org-capture pop-up, but maybe it doesn't matter
-(defhydra hydra-org-capture (:hint nil)
-  "
-Org Capture:
-^^[_p_]ersonal task  ^^[_b_]irchbox task  ^^[_e_]mpatico task
-"
-  ("p" (org-capture nil "p"))
-  ("b" (org-capture nil "b"))
-  ("e" (org-capture nil "e"))
-  ("q" nil :color blue)
-  )
+;; ;; Les intrusive than the standard org-capture pop-up, but maybe it doesn't matter
+;; (defhydra hydra-org-capture (:hint nil)
+;;   "
+;; Org Capture:
+;; ^^[_p_]ersonal task  ^^[_b_]irchbox task  ^^[_e_]mpatico task
+;; "
+;;   ("p" (org-capture nil "p"))
+;;   ("b" (org-capture nil "b"))
+;;   ("e" (org-capture nil "e"))
+;;   ("q" nil :color blue)
+;;   )
 
 
 ;; 
@@ -129,7 +140,7 @@ Org Capture:
 ;;
 (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(i!/!)" "|" "DONE(d!/!)")
                           (sequence "WAITING(w@/!)" "|" "CANCELED(c@/!)")
-                          (sequence "HABIT(h)" "|" "DONE(d!)"))
+                          (sequence "HABIT(h)" "|" "DONE(d!)" "CANCELED(c@/!)"))
       org-todo-keyword-faces '(("TODO" :foreground "orange red" :weight bold)
                                ("NEXT" :foreground "lawn green" :weight bold)
                                ("IN-PROGRESS" :foreground "navy" :background "sky blue" :weight bold)
@@ -148,11 +159,6 @@ Org Capture:
       org-habit-following-days 7
       org-habit-show-habits-only-for-today t)
 
-;; Works as a a habits "report"
-(setq  org-habit-show-all-today nil)
-
-;; Give some thought to this as my process evolves
-;; (setq org-agenda-todo-list-sublevels nil)
 
 ;;
 ;; My mail Message-ID link handler
