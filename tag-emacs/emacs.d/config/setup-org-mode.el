@@ -48,7 +48,7 @@
 ;; Tags
 ;;
 (setq org-tag-alist '((:startgroup . nil)
-                      ("@email" . ?m) ("@errands" . ?e) ("@home" . ?h) ("@nyc2" . ?n)
+                      ("@errands" . ?e) ("@home" . ?h) ("@nyc2" . ?n)
                       (:endgroup . nil)
                       ("project" . ?p)
                       ("routine" . ?r)
@@ -58,20 +58,30 @@
 ;;
 ;; Capture
 ;;
+(setq my/simple-task-template (list (concat "* TODO %^{Task Summary}\n"
+                                            ":PROPERTIES:\n:Created: %U\n:END:\n"
+                                            "%?\n\n"
+                                            "%i"))
+      my/mail-task-template (list (concat "* NEXT %^{Task Summary} %i\n"
+                                          ":PROPERTIES:\n:Created: %U\n:END:\n"
+                                          "[[%:link][%:description]]\n"
+                                          "%?")))
+
 (setq org-capture-templates
-      '(("p" "Personal Task" entry (file+headline my/org-inbox "Personal")
-         "* TODO %?\n")
-        ("e" "Errands" entry (file my/org-errands)
-         "* TODO %?\n")
-        ("w" "Work Tasks")
-        ("wb" "Birchbox Task" entry (file+headline my/org-inbox "Birchbox")
-         "* TODO %?\n")
-        ("we" "Empatico Task" entry (file+headline my/org-inbox "Empatico")
-         "* TODO %?\n")
-        ("m" "Personal Mail Followup Task" entry (file+headline my/org-personal-todo  "Tasks")
-         "* NEXT [[%:link][%:description]] :@email:%i\n%?\n")
-        ("n" "Birchbox Mail Followup Task" entry (file+headline my/org-birchbox-todo  "Tasks")
-         "* NEXT [[%:link][%:description]] :@email:%i\n%?\n")))
+      (list (append '("p" "Personal Task" entry (file+headline my/org-inbox "Personal"))
+                    my/simple-task-template)
+            (append '("e" "Errands" entry (file my/org-errands))
+                    my/simple-task-template)
+            '("w" "Work Tasks")
+            (append '("wb" "Birchbox Task" entry (file+headline my/org-inbox "Birchbox"))
+                    my/simple-task-template)
+            (append '("we" "Empatico Task" entry (file+headline my/org-inbox "Empatico"))
+                    my/simple-task-template)
+            '("m" "Mail Tasks")
+            (append '("mp" "Personal Mail Followup Task" entry (file+headline my/org-personal-todo  "Tasks"))
+                    my/mail-task-template)
+            (append '("mb" "Birchbox Mail Followup Task" entry (file+headline my/org-birchbox-todo  "Tasks"))
+                    my/mail-task-template)))
 
 (setq org-refile-targets '((my/org-todo-files . (:maxlevel . 3)))
       org-refile-use-outline-path 'file
@@ -106,7 +116,8 @@
 ;;
 ;; Agenda
 ;;
-(setq org-agenda-tags-todo-honor-ignore-options t
+(setq org-agenda-sticky t
+      org-agenda-tags-todo-honor-ignore-options t
       org-agenda-todo-list-sublevels nil
       org-agenda-span 1
       org-agenda-files (append my/org-todo-files
