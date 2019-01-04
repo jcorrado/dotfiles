@@ -125,6 +125,9 @@
                                (list org-gcal-dir
                                      my/org-errands)))
 
+(setq org-stuck-projects '("LEVEL=2&:project:/-DONE-CANCELED" ("NEXT") nil ""))
+
+
 (setq org-agenda-custom-commands
       '(("p" . "Personal Agendas")
         ("pt" "Personal Upcoming TODO, NEXT Tasks" todo "TODO|NEXT"
