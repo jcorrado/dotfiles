@@ -122,8 +122,7 @@
       org-agenda-span 1
       org-agenda-files (append my/org-todo-files
                                my/org-routine-files
-                               (list my/org-notes
-                                     org-gcal-dir
+                               (list org-gcal-dir
                                      my/org-errands)))
 
 (setq org-agenda-custom-commands
