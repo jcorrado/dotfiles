@@ -50,9 +50,8 @@
 (setq org-tag-alist '((:startgroup . nil)
                       ("@errands" . ?e) ("@home" . ?h) ("@nyc2" . ?n)
                       (:endgroup . nil)
-                      ("project" . ?p)
-                      ("routine" . ?r)
-                      ("shared" . ?s)))
+                      ("project" . ?p))
+      org-tags-exclude-from-inheritance '("project"))
 
 
 ;;
@@ -125,7 +124,7 @@
                                (list org-gcal-dir
                                      my/org-errands)))
 
-(setq org-stuck-projects '("LEVEL=2&:project:/-DONE-CANCELED" ("NEXT") nil ""))
+(setq org-stuck-projects '("project/-DONE-CANCELED" ("NEXT") nil ""))
 
 
 (setq org-agenda-custom-commands
