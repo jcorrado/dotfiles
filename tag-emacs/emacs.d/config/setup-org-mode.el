@@ -47,10 +47,12 @@
 ;;
 ;; Tags
 ;;
-(setq org-tag-alist '((:startgroup . nil)
+(setq org-tag-alist '(("project" . ?p)
+                      (:startgroup)
                       ("@errands" . ?e) ("@home" . ?h) ("@nyc2" . ?n)
-                      (:endgroup . nil)
-                      ("project" . ?p))
+                      (:endgroup))
+
+      org-use-tag-inheritance t
       org-tags-exclude-from-inheritance '("project"))
 
 
