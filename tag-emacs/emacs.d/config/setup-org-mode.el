@@ -117,7 +117,8 @@
 ;;
 ;; Agenda
 ;;
-(setq org-agenda-sticky t
+(setq org-agenda-sticky nil
+      org-agenda-timegrid-use-ampm t
       org-agenda-tags-todo-honor-ignore-options t
       org-agenda-todo-list-sublevels nil
       org-agenda-span 1

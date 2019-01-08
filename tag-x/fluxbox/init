@@ -48,7 +48,7 @@ session.screen0.demandsAttentionTimeout:	500
 session.screen0.defaultDeco:	NONE
 session.screen0.rowPlacementDirection:	LeftToRight
 session.screen0.noFocusWhileTypingDelay:	0
-session.screen0.strftimeFormat:	%a, %b %d %H:%M 
+session.screen0.strftimeFormat:	%a, %b %d %I:%M %p
 session.screen0.maxDisableMove:	false
 session.screen0.edgeSnapThreshold:	10
 session.screen0.maxIgnoreIncrement:	false
