@@ -16,7 +16,8 @@
   :config (progn
             (global-set-key (kbd "C-c a") 'org-agenda)
             (global-set-key (kbd "C-c c") 'org-capture)
-            (add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))))
+            (add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))
+            (add-hook 'org-agenda-mode-hook (lambda () (hl-line-mode)))))
 
 (use-package org-bullets
   :ensure t
@@ -35,10 +36,6 @@
                               my/org-birchbox-todo
                               my/org-empatico-todo)
 
-      my/org-personal-routine (concat org-directory "/routine/Personal.org")
-
-      my/org-routine-files (list my/org-personal-routine)
-
       my/org-inbox (concat org-directory "/inbox.org")
       my/org-notes (concat org-directory "/notes.org")
       my/org-errands (concat org-directory "/errands.org"))
@@ -48,11 +45,16 @@
 ;; Tags
 ;;
 (setq org-tag-alist '(("project" . ?p)
+
+                      (:startgroup)
+                      ("reading" . ?r) ("coding" . ?c)
+                      (:endgroup)
+
                       (:startgroup)
                       ("@errands" . ?e) ("@home" . ?h) ("@nyc2" . ?n)
-                      (:endgroup))
+                      (:endgroup)))
 
-      org-use-tag-inheritance t
+(setq org-use-tag-inheritance t
       org-tags-exclude-from-inheritance '("project"))
 
 
@@ -84,7 +86,8 @@
             (append '("mb" "Birchbox Mail Followup Task" entry (file+headline my/org-birchbox-todo  "Tasks"))
                     my/mail-task-template)))
 
-(setq org-refile-targets '((my/org-todo-files . (:maxlevel . 3)))
+(setq org-refile-targets '((nil :maxlevel . 3)
+                           (my/org-todo-files . (:maxlevel . 3)))
       org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil)
 
@@ -93,15 +96,13 @@
 ;; Tasks
 ;;
 (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(i!/!)" "|" "DONE(d!/!)")
-                          (sequence "WAITING(w@/!)" "|" "CANCELED(c@/!)")
-                          (sequence "HABIT(h)" "|" "DONE(d!)" "CANCELED(c@/!)"))
+                          (sequence "WAITING(w@/!)" "|" "CANCELED(c@/!)"))
       org-todo-keyword-faces '(("TODO" :foreground "orange red" :weight bold)
                                ("NEXT" :foreground "lawn green" :weight bold)
                                ("IN-PROGRESS" :foreground "navy" :background "sky blue" :weight bold)
                                ("WAITING" :foreground "yellow" :weight bold)
                                ("DONE" :foreground "dim gray")
-                               ("CANCELED" :foreground "dim gray" :strike-through t)
-                               ("HABIT" :foreground "light blue" :weight bold))
+                               ("CANCELED" :foreground "dim gray" :strike-through t))
       org-log-into-drawer 'LOGBOOK
       org-log-done-with-time t
       org-closed-keep-when-no-todo t
@@ -123,7 +124,6 @@
       org-agenda-todo-list-sublevels nil
       org-agenda-span 1
       org-agenda-files (append my/org-todo-files
-                               my/org-routine-files
                                (list org-gcal-dir
                                      my/org-errands)))
 
@@ -132,12 +132,10 @@
 
 (setq org-agenda-custom-commands
       '(("p" . "Personal Agendas")
-        ("pt" "Personal Upcoming TODO, NEXT Tasks" todo "TODO|NEXT"
-         ((org-agenda-overriding-header "Personal Upcoming Tasks")
-          (org-agenda-category-filter-preset '("+Personal"))))
-        ("pn" "Personal Unscheduled NEXT Tasks" todo "NEXT"
+        ("pt" "Personal Upcoming TODO, NEXT Tasks" tags-todo "PER/!TODO|NEXT"
+         ((org-agenda-overriding-header "Personal Upcoming Tasks")))
+        ("pn" "Personal Unscheduled NEXT Tasks" tags-todo "PER/!NEXT"
          ((org-agenda-overriding-header "Personal Unscheduled NEXT Tasks")
-          (org-agenda-category-filter-preset '("+Personal"))
           (org-agenda-todo-ignore-scheduled 'all)))
 
         ("h" "Habits Report" agenda ""
@@ -148,29 +146,24 @@
           (org-agenda-use-time-grid nil)))
 
         ("b" . "Birchbox Agendas")
-        ("bt" "Birchbox Upcoming TODO, NEXT Tasks" todo "TODO|NEXT"
-         ((org-agenda-overriding-header "Birchbox Upcoming Tasks")
-          (org-agenda-category-filter-preset '("+Birchbox"))))
-        ("bn" "Birchbox Unscheduled NEXT Tasks" todo "NEXT"
+        ("bt" "Birchbox Upcoming TODO, NEXT Tasks" tags-todo "BBX/!TODO|NEXT"
+         ((org-agenda-overriding-header "Birchbox Upcoming Tasks")))
+        ("bn" "Birchbox Unscheduled NEXT Tasks" tags-todo "BBX/!NEXT"
          ((org-agenda-overriding-header "Birchbox Unscheduled NEXT Tasks")
-          (org-agenda-category-filter-preset '("+Birchbox"))
           (org-agenda-todo-ignore-scheduled 'all)))
 
         ("e" . "Empatico Agendas")
-        ("et" "Empatico Upcoming TODO, NEXT Tasks" todo "TODO|NEXT"
-         ((org-agenda-overriding-header "Empatico Upcoming Tasks")
-          (org-agenda-category-filter-preset '("+Empatico"))))
-        ("en" "Empatico Unscheduled NEXT Tasks" todo "NEXT"
+        ("et" "Empatico Upcoming TODO, NEXT Tasks" tags-todo "EMP/!TODO|NEXT"
+         ((org-agenda-overriding-header "Empatico Upcoming Tasks")))
+        ("en" "Empatico Unscheduled NEXT Tasks" tags-todo "EMP/!NEXT"
          ((org-agenda-overriding-header "Empatico Unscheduled NEXT Tasks")
-          (org-agenda-category-filter-preset '("+Empatico"))
           (org-agenda-todo-ignore-scheduled 'all)))
 
         ("x" "Agenda + task view"
          ((agenda)
           (todo "NEXT|IN-PROGRESS"
                 ((org-agenda-overriding-header "Unscheduled NEXT, IN-PROGRESS Tasks")
-                 (org-agenda-todo-ignore-scheduled 'all))))
-         ((org-agenda-tag-filter-preset '("-shared"))))))
+                 (org-agenda-todo-ignore-scheduled 'all)))))))
 
 
 ;;
@@ -188,7 +181,6 @@
 ;; MobileOrg
 ;;
 (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg"
-      org-mobile-files (cons my/org-errands
-                             my/org-routine-files))
+      org-mobile-files (list my/org-errands))
 
 (provide 'setup-org-mode)
