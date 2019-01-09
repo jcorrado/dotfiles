@@ -12,7 +12,11 @@
               org-startup-indented t
               org-src-window-setup 'current-window
               org-catch-invisible-edits 'show-and-error
-              org-tags-column -100)
+              org-tags-column -100
+              org-show-context-detail '((agenda . ancestors)
+                                        (bookmark-jump . lineage)
+                                        (isearch . lineage)
+                                        (default . ancestors)))
   :config (progn
             (global-set-key (kbd "C-c a") 'org-agenda)
             (global-set-key (kbd "C-c c") 'org-capture)
@@ -28,7 +32,9 @@
 
 (use-package org-gcal :ensure t)
 
-(setq my/org-personal-todo (concat org-directory "/todo/Personal.org")
+(setq my/org-refile (concat org-directory "/refile.org")
+
+      my/org-personal-todo (concat org-directory "/todo/Personal.org")
       my/org-birchbox-todo (concat org-directory "/todo/Birchbox.org")
       my/org-empatico-todo (concat org-directory "/todo/Empatico.org")
 
@@ -36,7 +42,6 @@
                               my/org-birchbox-todo
                               my/org-empatico-todo)
 
-      my/org-inbox (concat org-directory "/inbox.org")
       my/org-notes (concat org-directory "/notes.org")
       my/org-errands (concat org-directory "/errands.org"))
 
@@ -47,7 +52,7 @@
 (setq org-tag-alist '(("project" . ?p)
 
                       (:startgroup)
-                      ("reading" . ?r) ("coding" . ?c)
+                      ("reading" . ?r) ("coding" . ?c) ("writing" . ?w)
                       (:endgroup)
 
                       (:startgroup)
@@ -65,25 +70,25 @@
                                             ":PROPERTIES:\n:Created: %U\n:END:\n"
                                             "%?\n\n"
                                             "%i"))
-      my/mail-task-template (list (concat "* NEXT %^{Task Summary} %i\n"
+      my/mail-task-template (list (concat "* TODO %^{Task Summary} :email:%i\n"
                                           ":PROPERTIES:\n:Created: %U\n:END:\n"
-                                          "[[%:link][%:description]]\n"
-                                          "%?")))
+                                          "%?\n\n"
+                                          "[[%:link][%:description]]\n")))
 
 (setq org-capture-templates
-      (list (append '("p" "Personal Task" entry (file+headline my/org-inbox "Personal"))
+      (list (append '("p" "Personal Task" entry (file+headline my/org-refile "Personal"))
                     my/simple-task-template)
             (append '("e" "Errands" entry (file my/org-errands))
                     my/simple-task-template)
             '("w" "Work Tasks")
-            (append '("wb" "Birchbox Task" entry (file+headline my/org-inbox "Birchbox"))
+            (append '("wb" "Birchbox Task" entry (file+headline my/org-refile "Birchbox"))
                     my/simple-task-template)
-            (append '("we" "Empatico Task" entry (file+headline my/org-inbox "Empatico"))
+            (append '("we" "Empatico Task" entry (file+headline my/org-refile "Empatico"))
                     my/simple-task-template)
             '("m" "Mail Tasks")
-            (append '("mp" "Personal Mail Followup Task" entry (file+headline my/org-personal-todo  "Tasks"))
+            (append '("mp" "Personal Mail Followup Task" entry (file+headline my/org-refile  "Personal"))
                     my/mail-task-template)
-            (append '("mb" "Birchbox Mail Followup Task" entry (file+headline my/org-birchbox-todo  "Tasks"))
+            (append '("mb" "Birchbox Mail Followup Task" entry (file+headline my/org-refile  "Birchbox"))
                     my/mail-task-template)))
 
 (setq org-refile-targets '((nil :maxlevel . 3)
@@ -106,7 +111,8 @@
       org-log-into-drawer 'LOGBOOK
       org-log-done-with-time t
       org-closed-keep-when-no-todo t
-      org-treat-insert-todo-heading-as-state-change nil)
+      org-treat-insert-todo-heading-as-state-change nil
+      org-treat-S-cursor-todo-selection-as-state-change nil)
 
 ;; Habits
 (setq org-habit-graph-column 58
@@ -124,8 +130,9 @@
       org-agenda-todo-list-sublevels nil
       org-agenda-span 1
       org-agenda-files (append my/org-todo-files
-                               (list org-gcal-dir
-                                     my/org-errands)))
+                               (list my/org-refile
+                                     my/org-errands
+                                     org-gcal-dir)))
 
 (setq org-stuck-projects '("project/-DONE-CANCELED" ("NEXT") nil ""))
 
@@ -161,6 +168,8 @@
 
         ("x" "Agenda + task view"
          ((agenda)
+          (tags-todo "refile"
+                     ((org-agenda-overriding-header "Captured Tasks To Refile")))
           (todo "NEXT|IN-PROGRESS"
                 ((org-agenda-overriding-header "Unscheduled NEXT, IN-PROGRESS Tasks")
                  (org-agenda-todo-ignore-scheduled 'all)))))))
