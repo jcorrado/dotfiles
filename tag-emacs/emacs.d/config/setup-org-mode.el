@@ -8,20 +8,7 @@
                             org-info
                             org-protocol
                             org-habit
-                            org-mobile)
-              org-startup-indented t
-              org-src-window-setup 'current-window
-              org-catch-invisible-edits 'show-and-error
-              org-tags-column -100
-              org-show-context-detail '((agenda . ancestors)
-                                        (bookmark-jump . lineage)
-                                        (isearch . lineage)
-                                        (default . ancestors)))
-  :config (progn
-            (global-set-key (kbd "C-c a") 'org-agenda)
-            (global-set-key (kbd "C-c c") 'org-capture)
-            (add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))
-            (add-hook 'org-agenda-mode-hook (lambda () (hl-line-mode)))))
+                            org-mobile)))
 
 (use-package org-bullets
   :ensure t
@@ -32,6 +19,24 @@
 
 (use-package org-gcal :ensure t)
 
+(setq org-startup-indented t
+      org-src-window-setup 'current-window
+      org-catch-invisible-edits 'show-and-error
+      org-tags-column -100
+      org-show-context-detail '((agenda . ancestors)
+                                (bookmark-jump . lineage)
+                                (isearch . lineage)
+                                (default . ancestors)))
+
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+(add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))
+(add-hook 'org-agenda-mode-hook (lambda () (hl-line-mode)))
+
+
+;;
+;; Agenda Files
+;;
 (setq my/org-refile (concat org-directory "/refile.org")
 
       my/org-personal-todo (concat org-directory "/todo/Personal.org")
