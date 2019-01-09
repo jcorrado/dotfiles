@@ -129,15 +129,17 @@
 ;;
 ;; Agenda
 ;;
+(setq org-agenda-files (append my/org-todo-files
+                               (list my/org-refile
+                                     my/org-errands
+                                     org-gcal-dir)))
+
 (setq org-agenda-sticky nil
       org-agenda-timegrid-use-ampm t
       org-agenda-tags-todo-honor-ignore-options t
       org-agenda-todo-list-sublevels nil
       org-agenda-span 1
-      org-agenda-files (append my/org-todo-files
-                               (list my/org-refile
-                                     my/org-errands
-                                     org-gcal-dir)))
+      org-agenda-compact-blocks nil)
 
 (setq org-stuck-projects '("project/-DONE-CANCELED" ("NEXT") nil ""))
 
@@ -171,7 +173,15 @@
          ((org-agenda-overriding-header "Empatico Unscheduled NEXT Tasks")
           (org-agenda-todo-ignore-scheduled 'all)))
 
-        ("x" "Agenda + task view"
+        ("w" "Agenda Planning View"
+         ((stuck ""
+                 ((org-agenda-overriding-header "Stuck Projects")))
+          (todo "WAITING"
+                ((org-agenda-overriding-header "WAITING Task To Follow Up")))
+          (tags-todo "refile"
+                     ((org-agenda-overriding-header "Captured Tasks To Refile")))))
+
+        ("x" "Agenda + Task View"
          ((agenda)
           (tags-todo "refile"
                      ((org-agenda-overriding-header "Captured Tasks To Refile")))
