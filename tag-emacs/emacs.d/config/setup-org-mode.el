@@ -208,4 +208,32 @@
 (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg"
       org-mobile-files (list my/org-errands))
 
+;; Reformat items captured by MobileOrg
+;;
+;; Based on https://www.emacswiki.org/emacs/mobileorg
+(defun my/org-convert-incoming-mobile-items (file)
+  "Convert incoming MobileOrg items to tasks and move them to file"
+  (interactive)
+  (with-current-buffer (find-file-noselect org-mobile-inbox-for-pull)
+    (goto-char (point-min))
+    (while (re-search-forward "^\\* " nil t)
+      (goto-char (match-beginning 0))
+      (forward-char 2)
+      (insert "TODO ")
+      (forward-line)
+      (insert ":PROPERTIES:\n:Created: ")
+      (forward-line)
+      (insert ":END:\n"))
+    (let ((tasks (buffer-string)))
+      (erase-buffer)
+      (save-buffer)
+      (kill-buffer (current-buffer))
+      (with-current-buffer (find-file-noselect file)
+        (save-excursion
+          (goto-char (point-max))
+          (forward-line)
+          (insert tasks))))))
+
+(add-hook 'org-mobile-post-pull-hook '(lambda () (my/org-convert-incoming-mobile-items my/org-refile)))
+
 (provide 'setup-org-mode)
