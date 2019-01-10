@@ -35,7 +35,7 @@
 
 
 ;;
-;; Agenda Files
+;; Org Files
 ;;
 (setq my/org-refile (concat org-directory "/refile.org")
 
@@ -48,8 +48,8 @@
                               my/org-empatico-todo)
 
       my/org-notes (concat org-directory "/notes.org")
-      my/org-errands (concat org-directory "/errands.org"))
-
+      my/org-errands (concat org-directory "/errands.org")
+      my/org-someday (concat org-directory "/someday.org"))
 
 ;;
 ;; Tags
@@ -96,8 +96,9 @@
             (append '("mb" "Birchbox Mail Followup Task" entry (file+headline my/org-refile  "Birchbox"))
                     my/mail-task-template)))
 
-(setq org-refile-targets '((nil :maxlevel . 3)
-                           (my/org-todo-files . (:maxlevel . 3)))
+(setq org-refile-targets '((nil :maxlevel . 5)
+                           (my/org-todo-files . (:maxlevel . 5))
+                           (my/org-someday . (:maxlevel . 1)))
       org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil)
 
