@@ -236,4 +236,18 @@
 
 (add-hook 'org-mobile-post-pull-hook '(lambda () (my/org-convert-incoming-mobile-items my/org-refile)))
 
+
+;;
+;; Org-gcal
+;;
+(setq my/org-gcal-fetch-timer
+      (run-with-timer 10
+                      (* 60 5)
+                      (lambda ()
+                        (when (> (nth 1 (current-idle-time)) 15)
+                          (org-gcal-fetch)))))
+
+;; (cancel-timer my/org-gcal-fetch-timer)
+
+
 (provide 'setup-org-mode)
