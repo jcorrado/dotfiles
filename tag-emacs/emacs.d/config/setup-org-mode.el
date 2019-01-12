@@ -241,13 +241,13 @@
 ;; Org-gcal
 ;;
 (setq my/org-gcal-fetch-timer
-      (run-with-timer 10
-                      (* 60 5)
+      (run-with-timer 1
+                      (* 60 3)
                       (lambda ()
-                        (when (> (nth 1 (current-idle-time)) 15)
+                        (when (> (nth 1 (current-idle-time)) 60)
                           (org-gcal-fetch)))))
 
-;; (cancel-timer my/org-gcal-fetch-timer)
+;;(cancel-timer my/org-gcal-fetch-timer)
 
 
 (provide 'setup-org-mode)
