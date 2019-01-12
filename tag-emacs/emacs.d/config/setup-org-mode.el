@@ -247,7 +247,8 @@
                         (when (> (nth 1 (current-idle-time)) 60)
                           (org-gcal-fetch)))))
 
-;;(cancel-timer my/org-gcal-fetch-timer)
+;; (describe-variable 'timer-list)
+;; (cancel-timer my/org-gcal-fetch-timer)
 
 
 (provide 'setup-org-mode)
