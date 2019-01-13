@@ -78,8 +78,8 @@
                                             "%i"))
       my/mail-task-template (list (concat "* TODO %^{Task Summary} :email:%i\n"
                                           ":PROPERTIES:\n:Created: %U\n:END:\n"
-                                          "%?\n\n"
-                                          "[[%:link][%:description]]\n")))
+                                          "[[%:link][%:description]]\n\n"
+                                          "%?\n")))
 
 (setq org-capture-templates
       (list (append '("p" "Personal Task" entry (file+headline my/org-refile "Personal"))
