@@ -26,7 +26,8 @@
       org-show-context-detail '((agenda . ancestors)
                                 (bookmark-jump . lineage)
                                 (isearch . lineage)
-                                (default . ancestors)))
+                                (default . ancestors))
+      org-deadline-warning-days 10)
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
@@ -76,10 +77,14 @@
                                             ":PROPERTIES:\n:Created: %U\n:END:\n"
                                             "%?\n\n"
                                             "%i"))
-      my/mail-task-template (list (concat "* TODO %^{Task Summary} :email:%i\n"
+      my/mail-task-template (list (concat "* TODO %^{Task Summary} :email:\n"
                                           ":PROPERTIES:\n:Created: %U\n:END:\n"
                                           "[[%:link][%:description]]\n\n"
-                                          "%?\n")))
+                                          "%?\n"))
+      my/mail-reply-task-template (list (concat "* TODO Reply: [[%:link][%:description]] :email:\n"
+                                                "SCHEDULED: %t\n"
+                                                ":PROPERTIES:\n:Created: %U\n:END:\n")
+                                        :immediate-finish t))
 
 (setq org-capture-templates
       (list (append '("p" "Personal Task" entry (file+headline my/org-refile "Personal"))
@@ -95,7 +100,12 @@
             (append '("mp" "Personal Mail Followup Task" entry (file+headline my/org-refile  "Personal"))
                     my/mail-task-template)
             (append '("mb" "Birchbox Mail Followup Task" entry (file+headline my/org-refile  "Birchbox"))
-                    my/mail-task-template)))
+                    my/mail-task-template)
+            '("r" "Mail Reply Tasks")
+            (append '("rp" "Personal Mail Reply Task" entry (file+headline my/org-personal-todo  "Tasks"))
+                    my/mail-reply-task-template)
+            (append '("rb" "Birchbox Mail Reply Task" entry (file+headline my/org-birchbox-todo  "Tasks"))
+                    my/mail-reply-task-template)))
 
 (setq org-refile-targets '((nil :maxlevel . 5)
                            (my/org-todo-files . (:maxlevel . 5))

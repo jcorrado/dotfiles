@@ -45,3 +45,4 @@ macro index,pager Ra "<shell-escape>clear && ~/.mutt/bin/get_mail.sh zoion <ente
 
 # org-mode TODO integration
 macro index,pager \CT "<enter-command>set wait_key=no<enter>| save_mail_followup_task.pl -c personal<enter>"
+macro index,pager \CR "<enter-command>set wait_key=no<enter>| save_mail_followup_task.pl -c personal -r<enter>"
