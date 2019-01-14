@@ -155,6 +155,11 @@
 
 (setq org-stuck-projects '("project/-DONE-CANCELED" ("NEXT") nil ""))
 
+(setq org-agenda-sorting-strategy
+      '((agenda habit-down time-up todo-state-down priority-down category-keep)
+        (todo todo-state-down priority-down category-keep)
+        (tags todo-state-down priority-down category-keep)
+        (search category-keep)))
 
 (setq org-agenda-custom-commands
       '(("p" . "Personal Agendas")
@@ -164,8 +169,8 @@
          ((org-agenda-overriding-header "Personal Unscheduled NEXT Tasks")
           (org-agenda-todo-ignore-scheduled 'all)))
 
-        ("h" "Habits Report" agenda ""
-         ((org-agenda-overriding-header "All Habits")
+        ("h" "Routines" agenda ""
+         ((org-agenda-overriding-header "Routines")
           (org-habit-show-all-today t)
           (org-habit-show-habits-only-for-today t)
           (org-agenda-tag-filter-preset '("+routine"))
