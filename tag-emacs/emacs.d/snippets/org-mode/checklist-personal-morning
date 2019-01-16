@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+
+# name: checklist-personal-morning
+# key: checklist-personal-morning
+# --
+TODO $0
+SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
+- [ ] Sync MobileOrg
+  - Sync on phone
+  - (org-mobile-pull)
+- [ ] Process mail inboxes in Mutt
+  - Kill spam and bulk
+  - Reply when <= 1m
+  - Create 'Reply Tasks' for longer replies (C-r)  
+  - Create new tasks from messages (C-t)
+  - Add message links to existing tasks (C-l)
+- [ ] Refile captured tasks
+
