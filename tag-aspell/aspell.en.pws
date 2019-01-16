@@ -1,4 +1,4 @@
-personal_ws-1.1 en 160 
+personal_ws-1.1 en 161 
 backends
 API
 Empatico
@@ -62,9 +62,9 @@ repo
 decrement
 KTF
 uid
-FDs
-CSS
 DNS
+CSS
+FDs
 KZ
 CTO
 nl
@@ -115,10 +115,11 @@ ACM
 VPC
 creds
 txn
-mysql
 MySQL
+mysql
 PostgreSQL
 wellbeing
+featureful
 CNAME
 Kula
 CloudWatch
@@ -141,8 +142,8 @@ sytactic
 coldbrew
 startups
 Corrado
-GitHub
 Github
+GitHub
 orgs
 refactored
 snuck
