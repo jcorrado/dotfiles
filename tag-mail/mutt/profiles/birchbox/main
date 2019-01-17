@@ -6,9 +6,9 @@ source ~/.mutt/common/main
 source ~/.mutt/profiles/birchbox/appearance
 source ~/.mutt/profiles/birchbox/scoring
 
-source ~/.mutt/aliases/birchbox
-source ~/.mutt/aliases/auto_birchbox
 source ~/.mutt/aliases/mu_birchbox
+source ~/.mutt/aliases/auto_birchbox
+source ~/.mutt/aliases/birchbox
 
 set from = jereme@birchbox.com
 set realname = "Jereme Corrado"

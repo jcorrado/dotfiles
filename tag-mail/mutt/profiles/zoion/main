@@ -6,9 +6,9 @@ source ~/.mutt/common/main
 source ~/.mutt/profiles/zoion/appearance
 source ~/.mutt/profiles/zoion/scoring
 
-source ~/.mutt/aliases/zoion
-source ~/.mutt/aliases/auto_zoion
 source ~/.mutt/aliases/mu_zoion
+source ~/.mutt/aliases/auto_zoion
+source ~/.mutt/aliases/zoion
 
 set from = jereme@zoion.net
 set realname = "Jereme Corrado"
