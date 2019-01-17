@@ -3,16 +3,29 @@
 # name: checklist-personal-morning
 # key: checklist-personal-morning
 # --
-TODO $0
+TODO Morning Routine
 SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
+- [ ] check_conf_repos, merge and reload as needed
 - [ ] Sync MobileOrg
   - Sync on phone
   - (org-mobile-pull)
-- [ ] Process mail inboxes in Mutt
+- [ ] Mark routines and habits completed (C-c a h)
+  - (my/freeze-time)
+  - (my/release-time)
+- [ ] Quick mental sweep
+- [ ] Process mail inboxes in Mutt (pomodoro 10m)
   - Kill spam and bulk
   - Reply when <= 1m
   - Create 'Reply Tasks' for longer replies (C-r)  
   - Create new tasks from messages (C-t)
   - Add message links to existing tasks (C-l)
-- [ ] Refile captured tasks
-
+- [ ] Process task inbox, refiling captured tasks
+- [ ] Review WAITING tasks (C-c a w)
+- [ ] Look at today's calendar and determine available work time
+- [ ] Review Daily Agenda view (C-c a x)
+  - Deadlines
+  - Scheduled work
+  - IN-PROGRESS work
+- [ ] Plan 1-3-5
+  - What are my big goals for the day?
+  - Reschedule things as needed
