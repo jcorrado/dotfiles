@@ -73,17 +73,15 @@
 ;;
 ;; Capture
 ;;
-(setq my/simple-task-template (list (concat "* TODO %^{Task Summary}\n"
-                                            ":PROPERTIES:\n:Created: %U\n:END:\n"
-                                            "%?\n\n"
+(setq my/simple-task-template (list (concat "* TODO %?\n"
+                                            ":PROPERTIES:\n:Created: %U\n:END:\n\n"
                                             "%i"))
-      my/mail-task-template (list (concat "* TODO %^{Task Summary} :email:\n"
+      my/mail-task-template (list (concat "* TODO %? :email:\n"
                                           ":PROPERTIES:\n:Created: %U\n:END:\n"
-                                          "[[%:link][%:description]]\n\n"
-                                          "%?\n"))
+                                          "[[%:link][%:description]]\n\n"))
       my/mail-reply-task-template (list (concat "* TODO Reply: [[%:link][%:description]] :email:\n"
                                                 "SCHEDULED: %t\n"
-                                                ":PROPERTIES:\n:Created: %U\n:END:\n")
+                                                ":PROPERTIES:\n:Created: %U\n:END:\n\n")
                                         :immediate-finish t))
 
 (setq org-capture-templates

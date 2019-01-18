@@ -27,6 +27,7 @@ set quit = ask-no
 set wait_key = yes
 set uncollapse_jump = yes
 set query_command = "mu cfind --format=mutt-ab '%s'"
+set pipe_split = yes
 
 # helpful for lists, where I keep all mails (which I should enforce
 # with keybinding conf)
@@ -64,7 +65,7 @@ macro index,pager GR "<change-folder-readonly>=search_results<enter>" "go to las
 # See per-profile \Cf binding to search execution
 
 # org-mode TODO integration
-macro index,pager \CL "<enter-command>set wait_key=no<enter>| save_mail_followup_task.pl -l<enter>"
+macro index,pager \CL "<enter-command>set wait_key=no<enter>| org-mode-connector.rb<enter>"
 
 # toggle mini-index feature
 macro pager J "<enter-command>set pager_index_lines=6<enter>" "enable mini-index in pager"
