@@ -202,7 +202,12 @@
                      ((org-agenda-overriding-header "Captured Tasks To Refile")))
           (todo "NEXT|IN-PROGRESS"
                 ((org-agenda-overriding-header "Unscheduled NEXT, IN-PROGRESS Tasks")
-                 (org-agenda-todo-ignore-scheduled 'all)))))))
+                 (org-agenda-todo-ignore-scheduled 'all)))))
+
+        ("l" . "List Views")
+        ("lp" "Projects List" tags "project/-DONE-CANCELED"
+         ((org-agenda-overriding-header "Projects")
+          (org-agenda-sorting-strategy '(category-keep alpha-up))))))
 
 
 ;;

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+
+# name: checklist-weekly-review
+# key: checklist-weekly-review
+# --
+TODO Weekly Review
+SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
+- [ ] Collect lose paper (intray, pockets, etc.)
+
