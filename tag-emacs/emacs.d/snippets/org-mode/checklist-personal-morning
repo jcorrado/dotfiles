@@ -3,7 +3,7 @@
 # name: checklist-personal-morning
 # key: checklist-personal-morning
 # --
-TODO Morning Routine
+Morning Routine
 SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
 - [ ] Quick mental sweep
 - [ ] check_conf_repos, merge and reload as needed
