@@ -28,7 +28,7 @@
                                 (isearch . lineage)
                                 (default . ancestors))
       org-deadline-warning-days 10
-      org-global-properties '(("Effort_ALL" . "0 1 2 4 8")))
+      org-global-properties '(("Effort_ALL" . "0 0:05 0:15 0:30 1:00 2:00 4:00 6:00 8:00")))
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
@@ -58,8 +58,8 @@
 ;;
 ;; Column View
 ;;
-(setq org-columns-default-format "%55ITEM(TASK) %TODO(STATE) %3PRIORITY %Effort(EFFORT){+} %TAGS"
-      org-agenda-overriding-columns-format "%CATEGORY %70ITEM(TASK) %TODO(STATE) %3PRIORITY %Effort(EFFORT){+} %TAGS")
+(setq org-columns-default-format "%55ITEM(TASK) %TODO(STATE) %3PRIORITY %Effort(EFFORT){:} %TAGS"
+      org-agenda-overriding-columns-format "%CATEGORY %70ITEM(TASK) %TODO(STATE) %3PRIORITY %Effort(EFFORT){:} %TAGS")
 
 
 ;;
