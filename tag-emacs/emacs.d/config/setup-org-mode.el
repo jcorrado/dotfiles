@@ -59,7 +59,10 @@
 ;; Column View
 ;;
 (setq org-columns-default-format "%55ITEM(TASK) %TODO(STATE) %3PRIORITY %Effort(EFFORT){:} %TAGS"
-      org-agenda-overriding-columns-format "%CATEGORY %70ITEM(TASK) %TODO(STATE) %3PRIORITY %Effort(EFFORT){:} %TAGS")
+      org-agenda-overriding-columns-format "%CATEGORY %70ITEM(TASK) %TODO(STATE) %3PRIORITY %Effort(EFFORT){:} %TAGS"
+      org-agenda-columns-add-appointments-to-effort-sum t
+      org-effort-property "Effort"
+      org-agenda-default-appointment-duration 60)
 
 
 ;;
