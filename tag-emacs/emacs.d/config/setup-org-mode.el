@@ -172,33 +172,65 @@
         (search category-keep)))
 
 (setq org-agenda-custom-commands
-      '(("p" . "Personal Agendas")
-        ("pt" "Personal Upcoming TODO, NEXT Tasks" tags-todo "PER/!TODO|NEXT"
+      '(("x" "Complete Agenda"
+         ((agenda ""
+                  ((org-agenda-overriding-header "Complete Agenda")))
+          (tags-todo "refile"
+                     ((org-agenda-overriding-header "To Refile")))
+          (todo "NEXT|IN-PROGRESS"
+                ((org-agenda-overriding-header "Unscheduled Tasks (NEXT, IN-PROGRESS)")
+                 (org-agenda-todo-ignore-scheduled 'all)))))
+
+
+        ("p" . "Personal Agendas")
+
+        ("pa" "Personal Agenda"
+         ((agenda ""
+                  ((org-agenda-overriding-header "Personal Agenda")))
+          (tags-todo "refile"
+                     ((org-agenda-overriding-header "To Refile")))
+          (todo "NEXT|IN-PROGRESS"
+                ((org-agenda-overriding-header "Unscheduled Tasks (NEXT, IN-PROGRESS)")
+                 (org-agenda-todo-ignore-scheduled 'all))))
+         ((org-agenda-tag-filter-preset '("-BBX"))))
+
+        ("pw" "Personal Agenda - Office"
+         ((agenda ""
+                  ((org-agenda-overriding-header "Personal Agenda - Office")))
+          (tags-todo "refile"
+                     ((org-agenda-overriding-header "To Refile")))
+          (todo "NEXT|IN-PROGRESS"
+                ((org-agenda-overriding-header "Unscheduled Tasks (NEXT, IN-PROGRESS)")
+                 (org-agenda-todo-ignore-scheduled 'all))))
+         ((org-agenda-tag-filter-preset '("-BBX" "-@home"))))
+
+        ("pt" "Personal Upcoming Tasks" tags-todo "PER/!TODO|NEXT"
          ((org-agenda-overriding-header "Personal Upcoming Tasks")))
+
         ("pn" "Personal Unscheduled NEXT Tasks" tags-todo "PER/!NEXT"
          ((org-agenda-overriding-header "Personal Unscheduled NEXT Tasks")
           (org-agenda-todo-ignore-scheduled 'all)))
 
-        ("h" "Routines" agenda ""
-         ((org-agenda-overriding-header "Routines")
-          (org-habit-show-all-today t)
-          (org-habit-show-habits-only-for-today t)
-          (org-agenda-tag-filter-preset '("+routine"))
-          (org-agenda-use-time-grid nil)))
 
         ("b" . "Birchbox Agendas")
-        ("bt" "Birchbox Upcoming TODO, NEXT Tasks" tags-todo "BBX/!TODO|NEXT"
+
+        ("ba" "Birchbox Agenda"
+         ((agenda ""
+                  ((org-agenda-overriding-header "Birchbox Agenda")))
+          (tags-todo "refile"
+                     ((org-agenda-overriding-header "To Refile")))
+          (todo "NEXT|IN-PROGRESS"
+                ((org-agenda-overriding-header "Unscheduled Tasks (NEXT, IN-PROGRESS)")
+                 (org-agenda-todo-ignore-scheduled 'all))))
+         ((org-agenda-tag-filter-preset '("+BBX"))))
+
+        ("bt" "Birchbox Upcoming Tasks" tags-todo "BBX/!TODO|NEXT"
          ((org-agenda-overriding-header "Birchbox Upcoming Tasks")))
+
         ("bn" "Birchbox Unscheduled NEXT Tasks" tags-todo "BBX/!NEXT"
          ((org-agenda-overriding-header "Birchbox Unscheduled NEXT Tasks")
           (org-agenda-todo-ignore-scheduled 'all)))
 
-        ("e" . "Empatico Agendas")
-        ("et" "Empatico Upcoming TODO, NEXT Tasks" tags-todo "EMP/!TODO|NEXT"
-         ((org-agenda-overriding-header "Empatico Upcoming Tasks")))
-        ("en" "Empatico Unscheduled NEXT Tasks" tags-todo "EMP/!NEXT"
-         ((org-agenda-overriding-header "Empatico Unscheduled NEXT Tasks")
-          (org-agenda-todo-ignore-scheduled 'all)))
 
         ("w" "Agenda Planning View"
          ((stuck ""
@@ -208,15 +240,15 @@
           (tags-todo "refile"
                      ((org-agenda-overriding-header "Captured Tasks To Refile")))))
 
-        ("x" "Agenda + Task View"
-         ((agenda)
-          (tags-todo "refile"
-                     ((org-agenda-overriding-header "Captured Tasks To Refile")))
-          (todo "NEXT|IN-PROGRESS"
-                ((org-agenda-overriding-header "Unscheduled NEXT, IN-PROGRESS Tasks")
-                 (org-agenda-todo-ignore-scheduled 'all)))))
+        ("h" "Routines" agenda ""
+         ((org-agenda-overriding-header "Routines")
+          (org-habit-show-all-today t)
+          (org-habit-show-habits-only-for-today t)
+          (org-agenda-tag-filter-preset '("+routine"))
+          (org-agenda-use-time-grid nil)))
 
         ("l" . "List Views")
+
         ("lp" "Projects List" tags "project/-DONE-CANCELED"
          ((org-agenda-overriding-header "Projects")
           (org-agenda-sorting-strategy '(category-keep alpha-up))))))
