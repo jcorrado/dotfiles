@@ -20,8 +20,8 @@ SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
   - Create 'Reply Tasks' for longer replies (C-r)  
   - Create new tasks from messages (C-t)
   - Add message links to existing tasks (C-l)
-- [ ] Process task inbox, refiling captured tasks
-- [ ] Review WAITING tasks (C-c a w)
+- [ ] Process task inbox, refiling captured tasks (C-c a w)
+- [ ] Review WAITING tasks
 - [ ] Look at today's calendar and determine available work time
 - [ ] Review Daily Agenda view (C-c a x)
   - Deadlines
