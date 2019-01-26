@@ -161,7 +161,9 @@
       org-agenda-tags-todo-honor-ignore-options t
       org-agenda-todo-list-sublevels nil
       org-agenda-span 1
-      org-agenda-compact-blocks nil)
+      org-agenda-compact-blocks nil
+      org-agenda-window-setup 'current-window
+      org-agenda-restore-windows-after-quit t)
 
 (setq org-stuck-projects '("project/-DONE-CANCELED" ("NEXT") nil ""))
 
