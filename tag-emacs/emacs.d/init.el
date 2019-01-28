@@ -317,7 +317,15 @@
       ediff-window-setup-function 'ediff-setup-windows-plain)
 
 ;; Mail, via mutt
-(add-hook 'mail-mode-hook (lambda () (local-set-key "\C-c\C-c" 'server-edit)))
+(defun my/mail-mode-hook ()
+  (auto-fill-mode -1)
+  (whitespace-newline-mode)
+  (visual-line-mode)
+  (local-set-key (kbd  "C-c C-c") 'server-edit)
+  (local-set-key (kbd "M-q") (lambda ()
+                               (interactive)
+                               (message "fill-paragraph disabled in mail-mode"))))
+(add-hook 'mail-mode-hook 'my/mail-mode-hook)
 (add-to-list 'auto-mode-alist '("/mutt" . (lambda ()
                                             (mail-mode)
                                             (forward-paragraph))))
