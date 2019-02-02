@@ -165,7 +165,7 @@
       org-agenda-window-setup 'current-window
       org-agenda-restore-windows-after-quit t)
 
-(setq org-stuck-projects '("project/-DONE-CANCELED" ("NEXT") nil ""))
+(setq org-stuck-projects '("project/-DONE-CANCELED" ("NEXT" "WAITING") nil ""))
 
 (setq org-agenda-sorting-strategy
       '((agenda habit-down time-up todo-state-down priority-down category-keep)
