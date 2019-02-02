@@ -5,5 +5,87 @@
 # --
 TODO Weekly Review
 SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
-- [ ] Collect lose paper (intray, pockets, etc.)
+:PROPERTIES:
+:EFFORT:   1:30
+:END:
+*** GET CLEAR
+- [ ] Collect Loose Papers and Materials
+  Gather all accumulated business cards, receipts, and miscellaneous
+  paper-based materials into your in-tray.
 
+  + Sync OrgMobile on phone
+  + (org-mobile-pull)
+
+- [ ] Get "IN" to Zero
+  Process completely all outstanding paper materials, journal and meeting
+  notes, voicemails, dictation, and emails.
+
+  + Paper in-tray
+  + Email (Zoion, Birchbox)
+    - Kill spam and bulk
+    - Reply when <= 1m
+    - Create 'Reply Tasks' for longer replies (C-r)  
+    - Create new tasks from messages (C-t)
+    - Add message links to existing tasks (C-l)
+    - Don't forget sub-mailboxes in non-personal
+  + [[https://voice.google.com/u/0/voicemail][Google Voice]] voicemail messages
+  + Browser tabs
+    - Capture tasks
+    - Save to Pocket
+    - Bookmark
+    - Close non-essentials
+
+- [ ] Empty My Head
+  Put in writing and process any uncaptured new projects, action items,
+  waiting for’s, someday maybe’s, etc.
+
+- [ ] Process Task Inbox (C-c a w)
+  Refile backlog of captured tasks.
+
+*** GET CURRENT
+- [ ] Review Tasks Lists (non-project)
+  + Mark off completed actions
+  + Archive completed non-project tasks
+    These should not have substantive notes
+  + Review for reminders of further action steps to record
+  + Prune
+  + Re-prioritize
+
+    - [[file:Personal.org::*Tasks][todo/Personal.org::Tasks]]
+    - [[file:Empatico.org::*Tasks][todo/Empatico.org::Tasks]]
+    - [[file:Birchbox.org::*Tasks][todo/Birchbox.org::Tasks]]
+
+- [ ] Review Previous Calendar Data
+  Review past calendar in detail for remaining action items, reference
+  data, etc., and transfer into the active system.
+
+- [ ] Review Upcoming Calendar
+  Review upcoming calendar events–long and short term. Capture actions
+  triggered.
+
+- [ ] Review Waiting For List
+  Record appropriate actions for any needed follow-up. Check off received
+  ones.
+
+- [ ] Review Project (and Larger Outcome) Lists
+  Evaluate status of projects, goals, and outcomes, one by one, ensuring
+  at least one current action item on each.
+
+  Browse through project plans, support material, and any other
+  work-in-progress material to trigger new actions, completions, waiting
+  for’s, etc.
+
+  + Check Stuck Projects list, per area (C-c a l p)
+  + Check NEXT lists, per area (C-c a T "NEXT")
+
+- [ ] Review Any Relevant Checklists
+  Use as a trigger for any new actions.
+
+*** GET CREATIVE
+- [ ] Review Someday Maybe List
+  Review for any projects which may now have become active, and transfer
+  to "Projects." Delete items no longer of interest.
+
+- [ ] Be Creative and Courageous
+  Any new, wonderful, hare-brained, creative, thought-provoking,
+  risk-taking ideas to add into your system???
