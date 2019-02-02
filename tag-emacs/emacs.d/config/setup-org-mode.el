@@ -75,7 +75,7 @@
                       (:endgroup)
 
                       (:startgroup)
-                      ("@errands" . ?e) ("@home" . ?h) ("@nyc2" . ?n)
+                      ("@errands" . ?e) ("@home" . ?h) ("@nyc2" . ?n) ("@office" . ?o)
                       (:endgroup)))
 
 (setq org-use-tag-inheritance t
