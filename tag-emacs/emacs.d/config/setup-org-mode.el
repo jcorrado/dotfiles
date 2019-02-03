@@ -79,7 +79,7 @@
                       (:endgroup)))
 
 (setq org-use-tag-inheritance t
-      org-tags-exclude-from-inheritance '("project"))
+      org-tags-exclude-from-inheritance '("project" "ATTACH"))
 
 
 ;;

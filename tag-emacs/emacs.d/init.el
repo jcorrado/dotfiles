@@ -150,7 +150,8 @@
   :init (setq ivy-display-style 'fancy
               ivy-use-virtual-buffers t
               ivy-count-format "(%d/%d) "
-              ivy-use-selectable-prompt t)
+              ivy-use-selectable-prompt t
+              ivy-initial-inputs-alist nil)
   :config (ivy-mode t))
 
 (use-package swiper
