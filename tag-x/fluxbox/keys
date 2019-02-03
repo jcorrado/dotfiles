@@ -104,7 +104,7 @@ Control Shift 4 :Workspace 4
 # :ArrangeWindowsVertical
 Control Shift 5 :ArrangeWindowsVertical
 Control Shift 6 :Minimize
-Control Shift 7 :ToggleCmd {ResizeTo 1245 675} {ResizeTo 1900 1200} {ResizeTo 3100 1200}
+Control Shift 7 :ToggleCmd {ResizeTo 1245 675} {ResizeTo 1250 1350} {ResizeTo 1650 1350} {ResizeTo 2100 1350}
 Control Shift 8 :Maximize
 Control Shift 9 :Exec /usr/bin/xscreensaver-command -lock
 

@@ -23,7 +23,7 @@ fi
 # configuration.
 compton -b
 
-xfce4-terminal --geometry 172x57+54+74 &
+xfce4-terminal --geometry 113x32+51+54 &
 
 # Uses emacs-desktop to remember windows position and buffer state.
 emacs &

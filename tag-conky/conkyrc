@@ -11,7 +11,7 @@ own_window_class Conky
 own_window_transparent yes
 double_buffer yes
 draw_shades no
-alignment top_right
+alignment bottom_right
 gap_x 30
 gap_y 0
 no_buffers yes
