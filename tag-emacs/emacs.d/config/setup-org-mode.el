@@ -168,7 +168,7 @@
 (setq org-stuck-projects '("project/-DONE-CANCELED" ("NEXT" "WAITING") nil ""))
 
 (setq org-agenda-sorting-strategy
-      '((agenda habit-down time-up todo-state-down priority-down category-keep)
+      '((agenda habit-down time-up priority-down todo-state-down category-keep)
         (todo todo-state-down priority-down category-keep)
         (tags todo-state-down priority-down category-keep)
         (search category-keep)))
