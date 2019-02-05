@@ -1,6 +1,6 @@
-personal_ws-1.1 en 205 
-pty
+personal_ws-1.1 en 206 
 tzdata
+pty
 cacheable
 APIs
 operationalize
@@ -14,9 +14,9 @@ javascript
 CloudFormation
 ECR
 openssl
-ECS
-EDN
 aws
+EDN
+ECS
 shorn
 EFI
 efi
@@ -31,14 +31,14 @@ microservice
 homoiconicity
 techops
 src
-SSD
 uid
+SSD
 mysql
 MySQL
 ELB
-FDs
-CSS
 DNS
+CSS
+FDs
 TLS
 CTO
 CodePipeline
@@ -85,8 +85,8 @@ crypto
 MiBs
 prepended
 socat
-GPT
 gpt
+GPT
 Postgres
 wildcards
 startups
@@ -148,9 +148,9 @@ inode
 Arduino
 MSA
 LVM
-KZ's
 PCI
 pci
+KZ's
 birchbox
 RO
 MSI
@@ -175,6 +175,7 @@ Codebuild
 lein
 misconfigured
 Superblock
+strategize
 repo
 Corrado
 GitHub
@@ -194,8 +195,8 @@ siloed
 API
 CloudWatch
 CDNs
-cloudfront
 CloudFront
+cloudfront
 SDK
 coldbrew
 webhook
