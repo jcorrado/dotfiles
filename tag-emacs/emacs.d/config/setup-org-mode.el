@@ -119,7 +119,8 @@
 
 (setq org-refile-targets '((nil :maxlevel . 5)
                            (my/org-todo-files . (:maxlevel . 5))
-                           (my/org-someday . (:maxlevel . 1)))
+                           (my/org-someday . (:maxlevel . 1))
+                           (my/org-errands . (:maxlevel . 1)))
       org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil)
 
@@ -165,10 +166,10 @@
       org-agenda-window-setup 'current-window
       org-agenda-restore-windows-after-quit t)
 
-(setq org-stuck-projects '("project/-DONE-CANCELED" ("NEXT" "WAITING") nil ""))
+(setq org-stuck-projects '("project/-DONE-CANCELED" ("NEXT" "WAITING" "IN-PROGRESS") nil ""))
 
 (setq org-agenda-sorting-strategy
-      '((agenda habit-down time-up todo-state-down priority-down category-keep)
+      '((agenda habit-down time-up priority-down todo-state-down category-keep)
         (todo todo-state-down priority-down category-keep)
         (tags todo-state-down priority-down category-keep)
         (search category-keep)))
