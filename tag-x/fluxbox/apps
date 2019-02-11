@@ -6,3 +6,8 @@
 [transient] (role=GtkFileChooserDialog)
   [Position]	(CENTER)	{0 0}
 [end]
+
+# pinetry for gpg-agent
+[app] (Name=gcr-prompter)
+  [Position]	(CENTER)	{0 0}
+[end]
