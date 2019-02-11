@@ -8,7 +8,7 @@ use warnings;
 use strict;
 
 open my $fh, "< init"
-    or die "couldn't open init for read: $1!\n";
+    or die "couldn't open init for read: $!\n";
 my $init;
 {
     local $/;
@@ -19,7 +19,7 @@ close $fh;
 
 undef $fh;
 open $fh, "> init"
-    or die "couldn't open init for write: $1!\n";
+    or die "couldn't open init for write: $!\n";
 
 foreach my $line (sort split /\n/, $init) {
     my ($k, $v) = $line =~ /^([.\w]+:)\s*(.*)$/;
