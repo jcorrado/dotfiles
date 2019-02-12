@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 mailboxes=${@--a}
 
 echo Synchronizing mail

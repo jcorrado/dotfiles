@@ -1,11 +1,12 @@
 # elder-whale ~/.xsessionrc -*- mode: conf -*-
 
 # Pulse Audio sink to use
-#
-# alsa.card_name = "HDA ATI SB"
-# alsa.long_card_name = "HDA ATI SB at 0xfe400000 irq 16"
+
+# alsa.card_name = "HDA Intel PCH"
+# alsa.long_card_name = "HDA Intel PCH at 0x2fff020000 irq 151"
 # alsa.driver_name = "snd_hda_intel"
-# device.bus_path = "pci-0000:00:14.2"
-export PA_DEF_SINK="alsa_output.pci-0000_00_14.2.analog-stereo"
+# device.bus_path = "pci-0000:00:1f.3"
+export PA_DEF_SINK="alsa_output.pci-0000_00_1f.3.analog-stereo"
 
 export BROWSER=google-chrome
+export PATH="~/.bin:$PATH"
