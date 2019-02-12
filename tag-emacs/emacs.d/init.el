@@ -62,7 +62,7 @@
       cursor-type 'box
       horizontal-scroll-bar nil
       column-number-mode nil
-      my/frame-opacity '(80 . 30))
+      my/frame-opacity 80)
 
 (setq-default cursor-in-non-selected-windows nil)
 

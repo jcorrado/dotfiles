@@ -24,7 +24,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defun my/clear-fringe () (set-face-attribute 'fringe nil :background nil))
 
-;; "https://www.emacswiki.org/emacs/TransparentEmacs"
+;; https://www.emacswiki.org/emacs/TransparentEmacs
 (defun my/toggle-transparency (opacity)
   (interactive)
   (let ((alpha (frame-parameter nil 'alpha)))
