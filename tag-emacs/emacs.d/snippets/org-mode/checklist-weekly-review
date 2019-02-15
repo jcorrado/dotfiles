@@ -75,8 +75,9 @@ SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
   work-in-progress material to trigger new actions, completions, waiting
   for’s, etc.
 
-  + Check Stuck Projects list, per area (C-c a l p)
+  + Check Stuck Projects list, per area (C-c a w)
   + Check NEXT lists, per area (C-c a T "NEXT")
+  + Review master project list, per area (C-c a l p)
 
 - [ ] Review Any Relevant Checklists
   Use as a trigger for any new actions.
