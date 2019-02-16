@@ -11,7 +11,7 @@ own_window_class Conky
 own_window_transparent yes
 double_buffer yes
 draw_shades no
-alignment bottom_right
+alignment top_right
 gap_x 30
 gap_y 0
 no_buffers yes
@@ -26,33 +26,27 @@ minimum_size 500 1000
 maximum_width 500
 temperature_unit celsius #fahrenheit
 default_bar_size 240 4
-
-#default_color 999988
-default_color 707070
-#default_color white
-#default_color 303030  # gunmetal grey
-#default_color 204A82  # bluish
-#default_color 424242  # grey
+default_color 282828
 
 TEXT
 
 #
 # Clock and status header
 #
+${if_existing /home/jereme/.pomodoro_status}${font Monospace:size=18:style=bold}\
+${execp cat ~/.pomodoro_status} \
+${font Unifont Upper CSUR:style=Bold:size=20}🍅${font}\
+${voffset -8}\
+${endif}\
+${goto 118}${font Monospace:size=18:style=bold}${time %a, %b %d %I:%M %p %Z}${font}
+
 # ${if_existing /home/jereme/.pomodoro_status}${font Monospace:size=18:style=bold}\
 # ${execp cat ~/.pomodoro_status} \
 # ${font Unifont Upper CSUR:style=Bold:size=20}🍅${font}\
 # ${voffset -4}\
 # ${endif}\
-# ${goto 118}${font Monospace:size=18:style=bold}${time %a, %b %d %I:%M %p %Z}${font}
 
-${if_existing /home/jereme/.pomodoro_status}${font Monospace:size=18:style=bold}\
-${execp cat ~/.pomodoro_status} \
-${font Unifont Upper CSUR:style=Bold:size=20}🍅${font}\
-${voffset -4}\
-${endif}\
-
-# System fan, temp
+# # System fan, temp
 # ${font Monospace:size=16:style=bold} ${alignr}${hwmon 1 fan 3},${hwmon 1 fan 5} ${hwmon 1 temp 1}°c${font}
 
 #
@@ -88,29 +82,39 @@ ${swapbar} ${goto 265}$swap
 #
 # Storage
 #
+# # /dev/nvme0n1
+# ${font Monospace:size=16:style=bold}nvme0${font}
+# ${fs_bar /home} ${goto 265}${fs_free /home} ${alignr}/home
+# ${fs_bar /tmp} ${goto 265}${fs_free /tmp} ${alignr}/tmp 
+# ${fs_bar /} ${goto 265}${fs_free /} ${alignr}/    
+# #↑ ${diskio_read /dev/nvme0n1} ${goto 265}↓ ${diskio_write /dev/nvme0n1}
+# ${diskiograph_read /dev/nvme0n1 25,240}${alignr}${diskiograph_write /dev/nvme0n1 25,240}
+
 # /dev/sda
 ${font Monospace:size=16:style=bold}sda${font}
 ${fs_bar /home} ${goto 265}${fs_free /home} ${alignr}/home
 ${fs_bar /tmp} ${goto 265}${fs_free /tmp} ${alignr}/tmp 
 ${fs_bar /} ${goto 265}${fs_free /} ${alignr}/    
-↑ ${diskio_read /dev/sda} ${goto 265}↓ ${diskio_write /dev/sda}
+#↑ ${diskio_read /dev/sda} ${goto 265}↓ ${diskio_write /dev/sda}
+↑ ${goto 265}↓
 ${diskiograph_read /dev/sda 25,240}${alignr}${diskiograph_write /dev/sda 25,240}
 
 
 # /dev/sdb
 ${font Monospace:size=16:style=bold}sdb${alignr}${hddtemp /dev/sdb}°c${font}
 ${fs_bar /usr/local/backup} ${goto 265}${fs_free /usr/local/backup} ${alignr}/u/l/backup
-↑ ${diskio_read /dev/sdb} ${goto 265}↓ ${diskio_write /dev/sdb}
+#↑ ${diskio_read /dev/sdb} ${goto 265}↓ ${diskio_write /dev/sdb}
+↑ ${goto 265}↓
 ${diskiograph_read /dev/sdb 25,240}${alignr}${diskiograph_write /dev/sdb 25,240}
 
 
 #
 # Wireless
 #
-${font Monospace:size=16:style=bold}wlan0${font}
-${wireless_link_bar wlan0}
-↑ ${upspeed wlan0} ${goto 265}↓ ${downspeed wlan0}
-${upspeedgraph wlan0 25,240}${alignr}${downspeedgraph wlan0 25,240}
+# ${font Monospace:size=16:style=bold}wlan0${font}
+# ${wireless_link_bar wlan0}
+# #↑ ${upspeed wlan0} ${goto 265}↓ ${downspeed wlan0}
+# ${upspeedgraph wlan0 25,240}${alignr}${downspeedgraph wlan0 25,240}
 
 
 #
