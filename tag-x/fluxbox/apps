@@ -11,7 +11,3 @@
 [app] (Name=gcr-prompter)
   [Position]	(CENTER)	{0 0}
 [end]
-
-[app] (Name=slack)
-  [Alpha] {200}
-[end]

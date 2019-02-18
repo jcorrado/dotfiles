@@ -44,7 +44,7 @@ session.screen0.slit.layer: Dock
 session.screen0.slit.maxOver: false
 session.screen0.slit.onhead: 0
 session.screen0.slit.placement: RightBottom
-session.screen0.strftimeFormat: %a, %b %d %I:%M %p
+session.screen0.strftimeFormat: %a, %b %d %I:%M %p %Z
 session.screen0.tab.placement: TopLeft
 session.screen0.tab.width: 64
 session.screen0.tabFocusModel: SloppyTabFocus

@@ -1,5 +1,8 @@
 # -*- mode: conf -*-
 
+set help = no
+
+
 #
 # index
 #
