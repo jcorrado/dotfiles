@@ -71,7 +71,7 @@
 (setq org-tag-alist '(("project" . ?p)
 
                       (:startgroup)
-                      ("reading" . ?r) ("coding" . ?c) ("writing" . ?w)
+                      ("reading" . ?r) ("coding" . ?c) ("writing" . ?w) ("viewing" . ?v)
                       (:endgroup)
 
                       (:startgroup)
