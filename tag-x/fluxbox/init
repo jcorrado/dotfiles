@@ -31,7 +31,7 @@ session.screen0.iconbar.usePixmap: true
 session.screen0.maxDisableMove: false
 session.screen0.maxDisableResize: false
 session.screen0.maxIgnoreIncrement: false
-session.screen0.menu.alpha: 255
+session.screen0.menu.alpha: 200
 session.screen0.menuDelay: 200
 session.screen0.noFocusWhileTypingDelay: 0
 session.screen0.opaqueMove: true
@@ -53,7 +53,7 @@ session.screen0.tabs.maxOver: false
 session.screen0.tabs.usePixmap: false
 session.screen0.titlebar.left: Stick 
 session.screen0.titlebar.right: Minimize Maximize Close 
-session.screen0.toolbar.alpha: 255
+session.screen0.toolbar.alpha: 200
 session.screen0.toolbar.autoHide: false
 session.screen0.toolbar.height: 0
 session.screen0.toolbar.layer: Dock
@@ -72,7 +72,7 @@ session.screen0.workspaceNames: Workspace 1,Workspace 2,Workspace 3,Workspace 4,
 session.screen0.workspaces: 4
 session.screen0.workspacewarping: false
 session.slitlistFile: /home/jereme/.fluxbox/slitlist
-session.styleFile: /home/jereme/.fluxbox/styles/Area52_jereme
+session.styleFile: /home/jereme/.fluxbox/styles/local
 session.styleOverlay: /home/jereme/.fluxbox/overlay
 session.tabPadding: 0
 session.tabsAttachArea: Window
