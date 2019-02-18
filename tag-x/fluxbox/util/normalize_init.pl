@@ -21,7 +21,9 @@ undef $fh;
 open $fh, "> init"
     or die "couldn't open init for write: $!\n";
 
+print $fh "# -*- mode: conf -*-\n";
 foreach my $line (sort split /\n/, $init) {
+    next if $line =~ /^\s*#/;
     my ($k, $v) = $line =~ /^([.\w]+:)\s*(.*)$/;
     print $fh "$k $v\n";
 }
