@@ -27,7 +27,7 @@ session.screen0.iconbar.alignment: Relative
 session.screen0.iconbar.iconTextPadding: 10
 session.screen0.iconbar.iconWidth: 128
 session.screen0.iconbar.mode: {static groups} (workspace)
-session.screen0.iconbar.usePixmap: true
+session.screen0.iconbar.usePixmap: false
 session.screen0.maxDisableMove: false
 session.screen0.maxDisableResize: false
 session.screen0.maxIgnoreIncrement: false
