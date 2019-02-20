@@ -51,3 +51,9 @@ Control Shift 9 :Exec /usr/bin/xscreensaver-command -lock
 78 :Exec pactl -- set-sink-volume $PA_DEF_SINK +.3
 # Kinesis: Pause
 127 :Exec pactl -- set-sink-mute $PA_DEF_SINK toggle
+
+
+# This nice but there's an annoying flicker
+#
+# # Set a different wallpaper on every workspace
+# ChangeWorkspace :Exec fbsetbg ~/.fluxbox/bg/$(xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}')
