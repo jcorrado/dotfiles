@@ -57,3 +57,7 @@ Control Shift 9 :Exec /usr/bin/xscreensaver-command -lock
 #
 # # Set a different wallpaper on every workspace
 # ChangeWorkspace :Exec fbsetbg ~/.fluxbox/bg/$(xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}')
+
+# # Interesting software keyboard idea for pasting clips.  The problem
+# # with this is that has funny modifier depressing semantics.
+# Control Mod1 Shift 1 :Exec xvkbd -text "\D5jereme@zoion.net"

@@ -1,13 +1,17 @@
 [app] (Name=fbrun)
-  [Position]	(CENTER)	{0 0}
-  [Layer]	{2}
+  [Position] (CENTER) {0 0}
+  [Layer] {2}
 [end]
 
 [transient] (role=GtkFileChooserDialog)
-  [Position]	(CENTER)	{0 0}
+  [Position] (CENTER) {0 0}
 [end]
 
 # pinetry for gpg-agent
 [app] (Name=gcr-prompter)
-  [Position]	(CENTER)	{0 0}
+  [Position] (CENTER) {0 0}
+[end]
+
+[app] (Name=.*)
+  [Position] (TopLeft) {10% 3%}
 [end]
