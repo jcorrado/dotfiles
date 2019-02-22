@@ -265,7 +265,7 @@
 (defun my/org-message-id-open (msg-id)
   "Visit mail message with external MUA"
   (let ((cmd "mutt_for_msgid.sh"))
-    (shell-command (concat cmd " " msg-id))))
+    (shell-command (concat cmd " " msg-id "&"))))
 
 
 ;;
