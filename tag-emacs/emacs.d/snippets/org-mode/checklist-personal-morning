@@ -27,6 +27,8 @@ SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
   - Deadlines
   - Scheduled work
   - IN-PROGRESS work
-- [ ] Plan 1-3-5
-  - What are my big goals for the day?
   - Reschedule things as needed
+- [ ] Plan the day
+  - What are my big goals for the day?
+  - What can I get done?  Consider the 1-3-5 strategy.
+  - What are the "Big Rocks?"
