@@ -35,6 +35,7 @@ mailboxes = +lists/debian-security-announce
 mailboxes = +lists/debian-user
 mailboxes = +lists/ietf-grow
 mailboxes = +lists/ietf-rtgwg
+mailboxes = +misc/taxes-2019
 
 
 #

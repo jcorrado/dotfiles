@@ -130,6 +130,12 @@ Slave :zoion-local:
 Pattern "lists/*"
 Sync All
 
+Channel zoion-misc
+Master :zoion-remote:
+Slave :zoion-local:
+Pattern "misc/*"
+Sync All
+
 Group zoion
 Channel zoion-inbox
 Channel zoion-drafts
@@ -139,6 +145,7 @@ Channel zoion-sent
 Channel zoion-trash
 Channel zoion-spam
 Channel zoion-lists
+Channel zoion-misc
 
 
 #
