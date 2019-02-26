@@ -7,6 +7,7 @@ OnDesktop Mouse3 :RootMenu
 
 # alt + left to move a window
 OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+OnTitlebar Move1 :StartMoving
 
 # alt + right click to resize a window
 OnWindow Mod1 Mouse3 :MacroCmd {Raise} {Focus} {StartResizing NearestCorner}

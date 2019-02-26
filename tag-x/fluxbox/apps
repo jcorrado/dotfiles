@@ -9,7 +9,7 @@
 [end]
 
 # pinetry for gpg-agent
-[app] (Name=gcr-prompter)
+[app] (Name=(pinentry|gcr-prompter))
   [Position] (CENTER) {0 0}
   [Deco] {TOOL}
 [end]
