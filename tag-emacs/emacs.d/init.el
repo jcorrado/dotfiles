@@ -229,6 +229,12 @@
   (auto-revert-mode t))
 (add-hook 'conf-unix-mode-hook 'my/conf-unix-mode-hook)
 
+(defun my/markdown-mode-hook ()
+  (auto-fill-mode -1)
+  (whitespace-newline-mode)
+  (visual-line-mode))
+(add-hook 'markdown-mode-hook 'my/markdown-mode-hook)
+
 (require 'setup-abbrev-mode)
 (require 'setup-org-mode)
 (require 'setup-org-gcal-creds)
