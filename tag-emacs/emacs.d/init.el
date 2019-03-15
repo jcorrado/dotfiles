@@ -288,6 +288,9 @@
          ("M-g p" . dumb-jump-back)
          ("M-g q" . dumb-jump-quick-look)))
 
+(use-package handlebars-mode :ensure t)
+(use-package yaml-mode :ensure t)
+
 ;; Clojure
 (use-package cider
   :ensure t
