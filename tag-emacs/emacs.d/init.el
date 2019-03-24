@@ -207,10 +207,10 @@
   :ensure t
   :config (require 'setup-hydra))
 
+
 ;;
 ;; Editing
 ;;
-
 (defun my/text-mode-hook ()
   (setq fill-column 72)
   (auto-fill-mode t)
