@@ -34,9 +34,9 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(global-set-key (kbd "C-x s") (lambda ()
-                                (interactive)
-                                (save-some-buffers t)))
+(global-set-key (kbd "C-x s") (lambda (arg)
+                                (interactive "P")
+                                (save-some-buffers (if arg nil t))))
 (global-set-key (kbd "C-n") 'forward-paragraph)
 (global-set-key (kbd "C-p") 'backward-paragraph)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
