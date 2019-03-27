@@ -142,7 +142,8 @@
 ;;
 (use-package ace-window
   :ensure t
-  :bind (("C-x o" . ace-window))
+  :bind (("C-x o" . ace-window)
+         ("M-o" . ace-window))
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
               aw-scope 'frame)
   :config (custom-set-faces
