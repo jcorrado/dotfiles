@@ -222,7 +222,7 @@
                                                  "~/projects/learning-clojure"
                                                  "~/projects/learning_ruby"
                                                  "~/projects/yetibot"
-                                                 "~/projects/auaap/empatico")q))
+                                                 "~/projects/auaap/empatico")))
   :config (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package ag :ensure t)
