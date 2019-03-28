@@ -211,6 +211,18 @@
   :ensure t
   :config (require 'setup-hydra))
 
+(use-package projectile
+  :ensure t
+  :diminish
+  :init (progn
+          (projectile-mode +1)
+          (setq projectile-completion-system 'ivy
+                projectile-project-search-path '("~/projects/"
+                                                 "~/projects/learning-clojure"
+                                                 "~/projects/yetibot"
+                                                 "~/projects/auaap/empatico")))
+  :config (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
 
 ;;
 ;; Editing
