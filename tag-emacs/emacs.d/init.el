@@ -218,11 +218,14 @@
           (projectile-mode +1)
           (setq projectile-completion-system 'ivy
                 projectile-project-search-path '("~/projects/"
+                                                 "~/projects/birchbox"
                                                  "~/projects/learning-clojure"
+                                                 "~/projects/learning_ruby"
                                                  "~/projects/yetibot"
-                                                 "~/projects/auaap/empatico")))
+                                                 "~/projects/auaap/empatico")q))
   :config (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
+(use-package ag :ensure t)
 
 ;;
 ;; Editing
