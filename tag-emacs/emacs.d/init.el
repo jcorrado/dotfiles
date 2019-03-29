@@ -157,7 +157,10 @@
               ivy-use-virtual-buffers t
               ivy-count-format "(%d/%d) "
               ivy-use-selectable-prompt t
-              ivy-initial-inputs-alist nil)
+              ivy-initial-inputs-alist nil
+              ivy-height 15
+              ivy-ignore-buffers '("\\` " ".+_archive"))
+  :bind (("C-c C-r" . ivy-resume))
   :config (ivy-mode t))
 
 (use-package swiper
