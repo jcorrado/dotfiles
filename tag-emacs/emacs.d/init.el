@@ -195,6 +195,7 @@
 (use-package which-key
   :ensure t
   :diminish
+  :bind (("C-h m" . which-key-show-major-mode))
   :config (which-key-mode))
 
 (use-package smartscan
@@ -217,6 +218,8 @@
   :init (progn
           (projectile-mode +1)
           (setq projectile-completion-system 'ivy
+                projectile-git-command "fd . -0"
+                projectile-generic-command "fd . -0"
                 projectile-project-search-path '("~/projects/"
                                                  "~/projects/birchbox"
                                                  "~/projects/learning-clojure"
