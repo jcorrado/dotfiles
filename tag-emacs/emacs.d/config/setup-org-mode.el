@@ -311,7 +311,7 @@
                       (* 60 3)
                       (lambda ()
                         (when (> (nth 1 (current-idle-time)) 60)
-                          (org-gcal-fetch)))))
+                          (org-gcal-sync nil t t)))))
 
 ;; (describe-variable 'timer-list)
 ;; (cancel-timer my/org-gcal-fetch-timer)
