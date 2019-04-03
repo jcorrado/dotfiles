@@ -148,7 +148,7 @@
               aw-scope 'frame)
   :config (custom-set-faces
            '(aw-leading-char-face
-             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 1.0))))))
+             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0))))))
 
 (use-package ivy
   :ensure t
