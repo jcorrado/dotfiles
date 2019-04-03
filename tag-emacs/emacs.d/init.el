@@ -175,7 +175,9 @@
   :bind (("M-/" . company-complete))
   :config (global-company-mode))
 
+;; This is very slow and Projectile mostly obviates the need
 (use-package ibuffer-vc
+  :disabled
   :ensure t
   :init
   (add-hook 'ibuffer-hook
