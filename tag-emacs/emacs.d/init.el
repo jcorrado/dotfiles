@@ -27,7 +27,8 @@
       ;;desktop-files-not-to-save nil
       help-window-select t
       ispell-program-name "aspell"
-      ispell-silently-savep t)
+      ispell-silently-savep t
+      mouse-yank-at-point t)
 
 (setq-default indent-tabs-mode nil
               major-mode 'text-mode)
@@ -223,8 +224,8 @@
   :init (progn
           (projectile-mode +1)
           (setq projectile-completion-system 'ivy
-                projectile-git-command "fd . -0"
-                projectile-generic-command "fd . -0"
+                projectile-git-command "fd -0H ."
+                projectile-generic-command "fd -0H ."
                 projectile-project-search-path '("~/projects/"
                                                  "~/projects/birchbox"
                                                  "~/projects/learning-clojure"
