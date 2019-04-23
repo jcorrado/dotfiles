@@ -30,6 +30,9 @@
       ispell-silently-savep t
       mouse-yank-at-point t)
 
+(setq display-buffer-alist
+      '(("\\*Async Shell Command\\*" display-buffer-no-window)))
+
 (setq-default indent-tabs-mode nil
               major-mode 'text-mode)
 
