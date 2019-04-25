@@ -28,7 +28,8 @@
       help-window-select t
       ispell-program-name "aspell"
       ispell-silently-savep t
-      mouse-yank-at-point t)
+      mouse-yank-at-point t
+      sentence-end "\\.  ?")
 
 (setq display-buffer-alist
       '(("\\*Async Shell Command\\*" display-buffer-no-window)))
