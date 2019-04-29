@@ -29,7 +29,7 @@
       ispell-program-name "aspell"
       ispell-silently-savep t
       mouse-yank-at-point t
-      sentence-end "\\.  ?")
+      sentence-end "[.!?]  ?")
 
 (setq display-buffer-alist
       '(("\\*Async Shell Command\\*" display-buffer-no-window)))
@@ -72,7 +72,7 @@
       cursor-type 'box
       horizontal-scroll-bar nil
       column-number-mode nil
-      my/frame-opacity 92)
+      my/frame-opacity 85)
 
 (setq-default cursor-in-non-selected-windows nil)
 
