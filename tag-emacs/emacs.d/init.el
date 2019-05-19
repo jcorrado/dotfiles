@@ -243,6 +243,12 @@
 ;;
 ;; Editing
 ;;
+(defun my/disable-auto-fill ()
+  (auto-fill-mode -1)
+  (local-set-key (kbd "M-q") (lambda ()
+                               (interactive)
+                               (message "fill-paragraph disabled in current mode"))))
+
 (defun my/text-mode-hook ()
   (setq fill-column 72)
   (auto-fill-mode t)
@@ -262,7 +268,7 @@
 (add-hook 'conf-unix-mode-hook 'my/conf-unix-mode-hook)
 
 (defun my/markdown-mode-hook ()
-  (auto-fill-mode -1)
+  (my/disable-auto-fill)
   (whitespace-newline-mode)
   (visual-line-mode))
 (add-hook 'markdown-mode-hook 'my/markdown-mode-hook)
@@ -362,13 +368,10 @@
 
 ;; Mail, via mutt
 (defun my/mail-mode-hook ()
-  (auto-fill-mode -1)
+  (my/disable-auto-fill)
   (whitespace-newline-mode)
   (visual-line-mode)
-  (local-set-key (kbd  "C-c C-c") 'server-edit)
-  (local-set-key (kbd "M-q") (lambda ()
-                               (interactive)
-                               (message "fill-paragraph disabled in mail-mode"))))
+  (local-set-key (kbd  "C-c C-c") 'server-edit))
 (add-hook 'mail-mode-hook 'my/mail-mode-hook)
 (add-to-list 'auto-mode-alist '("/mutt" . (lambda ()
                                             (mail-mode)
