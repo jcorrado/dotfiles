@@ -179,10 +179,7 @@
          ((agenda ""
                   ((org-agenda-overriding-header "Complete Agenda")))
           (tags-todo "refile"
-                     ((org-agenda-overriding-header "To Refile")))
-          (todo "NEXT|IN-PROGRESS"
-                ((org-agenda-overriding-header "Unscheduled Tasks (NEXT, IN-PROGRESS)")
-                 (org-agenda-todo-ignore-scheduled 'all)))))
+                     ((org-agenda-overriding-header "To Refile")))))
 
 
         ("p" . "Personal Agendas")
@@ -241,7 +238,10 @@
           (todo "WAITING"
                 ((org-agenda-overriding-header "WAITING Task To Follow Up")))
           (tags-todo "refile"
-                     ((org-agenda-overriding-header "Captured Tasks To Refile")))))
+                     ((org-agenda-overriding-header "Captured Tasks To Refile")))
+          (todo "NEXT|IN-PROGRESS"
+                ((org-agenda-overriding-header "Unscheduled Tasks (NEXT, IN-PROGRESS)")
+                 (org-agenda-todo-ignore-scheduled 'all)))))
 
         ("h" "Routines" agenda ""
          ((org-agenda-overriding-header "Routines")
