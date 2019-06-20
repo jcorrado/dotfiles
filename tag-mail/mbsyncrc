@@ -223,3 +223,84 @@ Channel birchbox-trash
 Channel birchbox-spam
 Channel birchbox-lists
 Channel birchbox-sa
+
+
+#
+# jereme@teammobot.com
+#
+IMAPAccount teammobot
+Host imap.gmail.com
+User jereme@teammobot.com
+PassCmd "get_netrc.pl -m imap.gmail.com -l jereme@teammobot.com"
+SSLType IMAPS
+Timeout 120
+# Useful on large initial syncs, as gmail will close the cxn with:
+# IMAP error: unexpected BYE response: [OVERQUOTA] Account exceeded command or bandwidth limits.
+# The author suggests a value of 50.
+# PipelineDepth 50
+
+IMAPStore teammobot-remote
+Account teammobot
+
+MaildirStore teammobot-local
+Path ~/Maildir/teammobot/
+Inbox ~/Maildir/teammobot/inbox
+SubFolders Verbatim
+
+Channel teammobot-inbox
+Master :teammobot-remote:INBOX
+Slave :teammobot-local:inbox
+Sync All
+
+Channel teammobot-drafts
+Master :teammobot-remote:"[Gmail]/Drafts"
+Slave :teammobot-local:drafts
+Sync All
+
+Channel teammobot-starred
+Master :teammobot-remote:"[Gmail]/Starred"
+Slave :teammobot-local:starred
+Sync All
+
+Channel teammobot-all_mail
+Master :teammobot-remote:"[Gmail]/All Mail"
+Slave :teammobot-local:all_mail
+Sync Pull
+
+Channel teammobot-sent
+Master :teammobot-remote:"[Gmail]/Sent Mail"
+Slave :teammobot-local:sent
+Sync Pull
+
+Channel teammobot-trash
+Master :teammobot-remote:"[Gmail]/Trash"
+Slave :teammobot-local:trash
+Sync All
+
+Channel teammobot-spam
+Master :teammobot-remote:"[Gmail]/Spam"
+Slave :teammobot-local:spam
+Sync All
+
+# Channel teammobot-lists
+# Master :teammobot-remote:
+# Slave :teammobot-local:
+# Pattern "lists/*"
+# Sync All
+
+# Channel teammobot-misc
+# Master :teammobot-remote:
+# Slave :teammobot-local:
+# Pattern "misc/*"
+# Sync All
+
+Group teammobot
+Channel teammobot-inbox
+Channel teammobot-drafts
+Channel teammobot-starred
+Channel teammobot-all_mail
+Channel teammobot-sent
+Channel teammobot-trash
+Channel teammobot-spam
+# Channel teammobot-lists
+# Channel teammobot-misc

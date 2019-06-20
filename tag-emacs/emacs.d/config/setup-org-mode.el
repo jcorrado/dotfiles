@@ -45,10 +45,12 @@
       my/org-personal-todo (concat org-directory "/todo/Personal.org")
       my/org-birchbox-todo (concat org-directory "/todo/Birchbox.org")
       my/org-empatico-todo (concat org-directory "/todo/Empatico.org")
+      my/org-teammobot-todo (concat org-directory "/todo/TeamMobot.org")
 
       my/org-todo-files (list my/org-personal-todo
                               my/org-birchbox-todo
-                              my/org-empatico-todo)
+                              my/org-empatico-todo
+                              my/org-teammobot-todo)
 
       my/org-notes (concat org-directory "/notes.org")
       my/org-errands (concat org-directory "/errands.org")
@@ -106,15 +108,21 @@
                     my/simple-task-template)
             (append '("we" "Empatico Task" entry (file+headline my/org-refile "Empatico"))
                     my/simple-task-template)
+            (append '("wt" "Team Mobot Task" entry (file+headline my/org-refile "TeamMobot"))
+                    my/simple-task-template)
             '("m" "Mail Tasks")
             (append '("mp" "Personal Mail Followup Task" entry (file+headline my/org-refile  "Personal"))
                     my/mail-task-template)
             (append '("mb" "Birchbox Mail Followup Task" entry (file+headline my/org-refile  "Birchbox"))
                     my/mail-task-template)
+            (append '("mt" "Team Mobot Mail Followup Task" entry (file+headline my/org-refile  "TeamMobot"))
+                    my/mail-task-template)
             '("r" "Mail Reply Tasks")
             (append '("rp" "Personal Mail Reply Task" entry (file+headline my/org-personal-todo  "Tasks"))
                     my/mail-reply-task-template)
             (append '("rb" "Birchbox Mail Reply Task" entry (file+headline my/org-birchbox-todo  "Tasks"))
+                    my/mail-reply-task-template)
+            (append '("rt" "Team Mobot Mail Reply Task" entry (file+headline my/org-teammobot-todo  "Tasks"))
                     my/mail-reply-task-template)))
 
 (setq org-refile-targets '((nil :maxlevel . 5)

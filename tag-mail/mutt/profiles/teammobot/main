@@ -1,0 +1,39 @@
+# -*- mode: conf -*-
+# teammobot profile
+
+source ~/.mutt/common/main
+
+source ~/.mutt/profiles/teammobot/appearance
+source ~/.mutt/profiles/teammobot/scoring
+
+source ~/.mutt/aliases/mu_teammobot
+source ~/.mutt/aliases/auto_teammobot
+source ~/.mutt/aliases/teammobot
+
+set from = jereme@teammobot.com
+set realname = "Jereme Corrado"
+set hostname = teammobot.com
+# set pgp_sign_as = 0x2A946D7DC9CB2D74  # jereme@zoion.net, etc.
+set signature = ~/.mutt/profiles/teammobot/signature
+set alias_file = ~/.mutt/aliases/auto_teammobot
+set header_cache = ~/.mutt/profiles/teammobot/cache/headers
+
+set folder = ~/Maildir/teammobot
+set spoolfile = +inbox
+set mbox = +all_mail
+set postponed = +drafts
+set trash = +trash
+
+mailboxes = +inbox
+
+
+#
+# keybindings
+#
+macro index,pager \Cf "<enter-command>source '~/.mutt/bin/mu_mutt_search.pl -d ~/Maildir/teammobot/search_results -f ~/.mutt/profiles/teammobot/mu_search_history |' <enter>" "mu find"
+macro index,pager Ri "<enter-command>set wait_key=no<enter><shell-escape>mbsync teammobot-inbox<enter><enter-command>set wait_key=yes<enter>" "sync teammobot inbox"
+macro index,pager Ra "<shell-escape>clear && ~/.mutt/bin/get_mail.sh teammobot <enter>" "sync all teammobot and rebuild indexes"
+
+# org-mode TODO integration
+macro index,pager \CT "<enter-command>set wait_key=no<enter>| org-mode-connector.rb mt<enter>"
+macro index,pager \CR "<enter-command>set wait_key=no<enter>| org-mode-connector.rb rt<enter>"
