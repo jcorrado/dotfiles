@@ -9,6 +9,8 @@
     ("bc" "birchbox.com")
     ("eo" "empatico.org")
     ("exz" "empatico.xyz")
+    ("tmb" "teammobot.com")
+    ("tm" "Team Mobot")
 
     ("gm" "Good Morning")
     ("tj" "Thanks,\nJereme")))
