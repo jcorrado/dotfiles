@@ -12,7 +12,7 @@ set record = no
 set delete = yes
 set editor = "emacsclient -c -F '(quote (top . 75) (left . 125) \
                                         (height . 50) (width . 80) \
-                                        (alpha 100))'"
+                                        (alpha 85))'"
 set fast_reply = yes
 set mime_forward = yes
 set mime_forward_rest = yes
