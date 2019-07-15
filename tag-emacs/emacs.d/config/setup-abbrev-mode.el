@@ -6,9 +6,6 @@
   '(
     ("zn"  "zoion.net")
     ("gi" "goldandapager.io")
-    ("bc" "birchbox.com")
-    ("eo" "empatico.org")
-    ("exz" "empatico.xyz")
     ("tmb" "teammobot.com")
     ("tm" "Team Mobot")
 

@@ -43,13 +43,9 @@
 (setq my/org-refile (concat org-directory "/refile.org")
 
       my/org-personal-todo (concat org-directory "/todo/Personal.org")
-      my/org-birchbox-todo (concat org-directory "/todo/Birchbox.org")
-      my/org-empatico-todo (concat org-directory "/todo/Empatico.org")
       my/org-teammobot-todo (concat org-directory "/todo/TeamMobot.org")
 
       my/org-todo-files (list my/org-personal-todo
-                              my/org-birchbox-todo
-                              my/org-empatico-todo
                               my/org-teammobot-todo)
 
       my/org-notes (concat org-directory "/notes.org")
@@ -103,24 +99,15 @@
                     my/simple-task-template)
             (append '("e" "Errands" entry (file my/org-errands))
                     my/simple-task-template)
-            '("w" "Work Tasks")
-            (append '("wb" "Birchbox Task" entry (file+headline my/org-refile "Birchbox"))
-                    my/simple-task-template)
-            (append '("we" "Empatico Task" entry (file+headline my/org-refile "Empatico"))
-                    my/simple-task-template)
-            (append '("wt" "Team Mobot Task" entry (file+headline my/org-refile "TeamMobot"))
+            (append '("t" "Team Mobot Task" entry (file+headline my/org-refile "TeamMobot"))
                     my/simple-task-template)
             '("m" "Mail Tasks")
             (append '("mp" "Personal Mail Followup Task" entry (file+headline my/org-refile  "Personal"))
-                    my/mail-task-template)
-            (append '("mb" "Birchbox Mail Followup Task" entry (file+headline my/org-refile  "Birchbox"))
                     my/mail-task-template)
             (append '("mt" "Team Mobot Mail Followup Task" entry (file+headline my/org-refile  "TeamMobot"))
                     my/mail-task-template)
             '("r" "Mail Reply Tasks")
             (append '("rp" "Personal Mail Reply Task" entry (file+headline my/org-personal-todo  "Tasks"))
-                    my/mail-reply-task-template)
-            (append '("rb" "Birchbox Mail Reply Task" entry (file+headline my/org-birchbox-todo  "Tasks"))
                     my/mail-reply-task-template)
             (append '("rt" "Team Mobot Mail Reply Task" entry (file+headline my/org-teammobot-todo  "Tasks"))
                     my/mail-reply-task-template)))
@@ -200,7 +187,7 @@
           (todo "NEXT|IN-PROGRESS"
                 ((org-agenda-overriding-header "Unscheduled Tasks (NEXT, IN-PROGRESS)")
                  (org-agenda-todo-ignore-scheduled 'all))))
-         ((org-agenda-tag-filter-preset '("-BBX"))))
+         ((org-agenda-tag-filter-preset '("-TMB"))))
 
         ("pw" "Personal Agenda - Office"
          ((agenda ""
@@ -210,7 +197,7 @@
           (todo "NEXT|IN-PROGRESS"
                 ((org-agenda-overriding-header "Unscheduled Tasks (NEXT, IN-PROGRESS)")
                  (org-agenda-todo-ignore-scheduled 'all))))
-         ((org-agenda-tag-filter-preset '("-BBX" "-@home"))))
+         ((org-agenda-tag-filter-preset '("-TMB" "-@home"))))
 
         ("pt" "Personal Upcoming Tasks" tags-todo "PER/!TODO|NEXT"
          ((org-agenda-overriding-header "Personal Upcoming Tasks")))
@@ -220,23 +207,23 @@
           (org-agenda-todo-ignore-scheduled 'all)))
 
 
-        ("b" . "Birchbox Agendas")
+        ("t" . "Team Mobot Agendas")
 
-        ("ba" "Birchbox Agenda"
+        ("ta" "Team Mobot Agenda"
          ((agenda ""
-                  ((org-agenda-overriding-header "Birchbox Agenda")))
+                  ((org-agenda-overriding-header "Team Mobot Agenda")))
           (tags-todo "refile"
                      ((org-agenda-overriding-header "To Refile")))
           (todo "NEXT|IN-PROGRESS"
                 ((org-agenda-overriding-header "Unscheduled Tasks (NEXT, IN-PROGRESS)")
                  (org-agenda-todo-ignore-scheduled 'all))))
-         ((org-agenda-tag-filter-preset '("+BBX"))))
+         ((org-agenda-tag-filter-preset '("+TMB"))))
 
-        ("bt" "Birchbox Upcoming Tasks" tags-todo "BBX/!TODO|NEXT"
-         ((org-agenda-overriding-header "Birchbox Upcoming Tasks")))
+        ("tt" "Team Mobot Upcoming Tasks" tags-todo "TMB/!TODO|NEXT"
+         ((org-agenda-overriding-header "Team Mobot Upcoming Tasks")))
 
-        ("bn" "Birchbox Unscheduled NEXT Tasks" tags-todo "BBX/!NEXT"
-         ((org-agenda-overriding-header "Birchbox Unscheduled NEXT Tasks")
+        ("tn" "Team Mobot Unscheduled NEXT Tasks" tags-todo "TMB/!NEXT"
+         ((org-agenda-overriding-header "Team Mobot Unscheduled NEXT Tasks")
           (org-agenda-todo-ignore-scheduled 'all)))
 
 

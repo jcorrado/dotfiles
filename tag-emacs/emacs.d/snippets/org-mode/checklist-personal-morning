@@ -23,6 +23,7 @@ SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
   - Add message links to existing tasks (C-l)
 - [ ] Process task inbox, refiling captured tasks (C-c a w)
 - [ ] Review WAITING tasks
+- [ ] Triage new Jira issues ("For Triage" issue filter)
 - [ ] Look at today's calendar and determine available work time
 - [ ] Review Daily Agenda view (C-c a x)
   - Deadlines
