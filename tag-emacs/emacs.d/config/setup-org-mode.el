@@ -99,17 +99,17 @@
                     my/simple-task-template)
             (append '("e" "Errands" entry (file my/org-errands))
                     my/simple-task-template)
-            (append '("t" "Team Mobot Task" entry (file+headline my/org-refile "TeamMobot"))
+            (append '("w" "Team Mobot Task" entry (file+headline my/org-refile "TeamMobot"))
                     my/simple-task-template)
             '("m" "Mail Tasks")
             (append '("mp" "Personal Mail Followup Task" entry (file+headline my/org-refile  "Personal"))
                     my/mail-task-template)
-            (append '("mt" "Team Mobot Mail Followup Task" entry (file+headline my/org-refile  "TeamMobot"))
+            (append '("mw" "Team Mobot Mail Followup Task" entry (file+headline my/org-refile  "TeamMobot"))
                     my/mail-task-template)
             '("r" "Mail Reply Tasks")
             (append '("rp" "Personal Mail Reply Task" entry (file+headline my/org-personal-todo  "Tasks"))
                     my/mail-reply-task-template)
-            (append '("rt" "Team Mobot Mail Reply Task" entry (file+headline my/org-teammobot-todo  "Tasks"))
+            (append '("rw" "Team Mobot Mail Reply Task" entry (file+headline my/org-teammobot-todo  "Tasks"))
                     my/mail-reply-task-template)))
 
 (setq org-refile-targets '((nil :maxlevel . 5)
@@ -207,9 +207,9 @@
           (org-agenda-todo-ignore-scheduled 'all)))
 
 
-        ("t" . "Team Mobot Agendas")
+        ("w" . "Team Mobot Agendas")
 
-        ("ta" "Team Mobot Agenda"
+        ("wa" "Team Mobot Agenda"
          ((agenda ""
                   ((org-agenda-overriding-header "Team Mobot Agenda")))
           (tags-todo "refile"
@@ -219,15 +219,15 @@
                  (org-agenda-todo-ignore-scheduled 'all))))
          ((org-agenda-tag-filter-preset '("+TMB"))))
 
-        ("tt" "Team Mobot Upcoming Tasks" tags-todo "TMB/!TODO|NEXT"
+        ("wt" "Team Mobot Upcoming Tasks" tags-todo "TMB/!TODO|NEXT"
          ((org-agenda-overriding-header "Team Mobot Upcoming Tasks")))
 
-        ("tn" "Team Mobot Unscheduled NEXT Tasks" tags-todo "TMB/!NEXT"
+        ("wn" "Team Mobot Unscheduled NEXT Tasks" tags-todo "TMB/!NEXT"
          ((org-agenda-overriding-header "Team Mobot Unscheduled NEXT Tasks")
           (org-agenda-todo-ignore-scheduled 'all)))
 
 
-        ("w" "Agenda Planning View"
+        ("W" "Agenda Planning View"
          ((stuck ""
                  ((org-agenda-overriding-header "Stuck Projects")))
           (todo "WAITING"
