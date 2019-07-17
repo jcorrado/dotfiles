@@ -25,6 +25,7 @@ set postponed = +drafts
 set trash = +trash
 
 mailboxes = +inbox
+mailboxes = +tools/jira
 
 
 #

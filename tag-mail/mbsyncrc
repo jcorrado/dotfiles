@@ -205,6 +205,12 @@ Master :teammobot-remote:"[Gmail]/Spam"
 Slave :teammobot-local:spam
 Sync All
 
+Channel teammobot-tools
+Master :teammobot-remote:
+Slave :teammobot-local:
+Pattern "tools/*"
+Sync All
+
 # Channel teammobot-lists
 # Master :teammobot-remote:
 # Slave :teammobot-local:
@@ -225,5 +231,6 @@ Channel teammobot-all_mail
 Channel teammobot-sent
 Channel teammobot-trash
 Channel teammobot-spam
+Channel teammobot-tools
 # Channel teammobot-lists
 # Channel teammobot-misc
