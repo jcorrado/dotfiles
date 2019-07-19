@@ -231,11 +231,10 @@
                 projectile-git-command "fd -0H ."
                 projectile-generic-command "fd -0H ."
                 projectile-project-search-path '("~/projects/"
-                                                 "~/projects/birchbox"
                                                  "~/projects/learning-clojure"
                                                  "~/projects/learning_ruby"
                                                  "~/projects/yetibot"
-                                                 "~/projects/auaap/empatico")))
+                                                 "~/projects/teammobot")))
   :config (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package ag :ensure t)
