@@ -36,5 +36,5 @@ macro index,pager Ri "<enter-command>set wait_key=no<enter><shell-escape>mbsync 
 macro index,pager Ra "<shell-escape>clear && ~/.mutt/bin/get_mail.sh teammobot <enter>" "sync all teammobot and rebuild indexes"
 
 # org-mode TODO integration
-macro index,pager \CT "<enter-command>set wait_key=no<enter>| org-mode-connector.rb mt<enter>"
-macro index,pager \CR "<enter-command>set wait_key=no<enter>| org-mode-connector.rb rt<enter>"
+macro index,pager \CT "<enter-command>set wait_key=no<enter>| org-mode-connector.rb mw<enter>"
+macro index,pager \CR "<enter-command>set wait_key=no<enter>| org-mode-connector.rb rw<enter>"
