@@ -349,6 +349,11 @@
 ;; JavaScript
 (setq js-indent-level 2)
 
+;; Python
+(use-package elpy
+  :ensure t
+  :init (elpy-enable))
+
 ;; Web browsing
 (setq eww-search-prefix
       ;;"https://www.google.com/search?q="
