@@ -257,9 +257,12 @@
 (add-hook 'text-mode-hook 'my/text-mode-hook)
 
 (defun my/prog-mode-hook ()
-  (enable-paredit-mode)
   (flyspell-prog-mode))
 (add-hook 'prog-mode-hook 'my/prog-mode-hook)
+
+(defun my/lisp-mode-hook ()
+  (enable-paredit-mode))
+(add-hook 'lisp-mode-hook 'my/lisp-mode-hook)
 
 (defun my/conf-unix-mode-hook ()
   (flyspell-prog-mode)
@@ -350,9 +353,16 @@
 (setq js-indent-level 2)
 
 ;; Python
+;;
+;; Required modules: jedi flake8 black
+;; the `elpy-config' command is useful for checking prerequisites
 (use-package elpy
   :ensure t
-  :init (elpy-enable))
+  :init (elpy-enable)
+  :config (add-hook 'python-mode-hook 'blacken-mode))
+
+(use-package blacken
+  :ensure t)
 
 ;; Web browsing
 (setq eww-search-prefix
