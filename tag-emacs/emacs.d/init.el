@@ -103,6 +103,7 @@
   (add-to-list 'sml/replacer-regexp-list '("^~/projects/birchbox/" ":BBX:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/projects/yetibot/yetibot.core" ":YETI.CORE:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/projects/yetibot/yetibot" ":YETI:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^~/projects/teammobot" ":TMB:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/projects/" ":PRJ:") t)
   (sml/setup))
 
@@ -113,7 +114,11 @@
   (diminish 'auto-fill-function)
   (diminish 'flyspell-mode)
   (diminish 'abbrev-mode "Abv")
-  (diminish 'mml-mode))
+  (diminish 'mml-mode)
+  (diminish 'blacken-mode)
+  (diminish 'flymake-mode)
+  (diminish 'highlight-indentation-mode)
+  (diminish 'elpy-mode))
 
 (use-package beacon
   :ensure t
