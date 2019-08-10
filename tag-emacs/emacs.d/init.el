@@ -342,6 +342,9 @@
 (use-package handlebars-mode :ensure t)
 (use-package yaml-mode :ensure t)
 
+(use-package htmlize
+  :ensure t)
+
 ;; Clojure
 (use-package cider
   :ensure t
