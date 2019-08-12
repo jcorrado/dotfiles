@@ -14,6 +14,18 @@
   #[Deco] {TOOL}
 [end]
 
+[app] (Class=Tk.*)
+  [Deco] {NORMAL}
+[end]
+
+[transient] (Class=Tk.*)
+  [Deco] {NORMAL}
+[end]
+
+[transient] (Class=Dialog)
+  [Deco] {NORMAL}
+[end]
+
 [app] (Name=.*)
   [Position] (TopLeft) {10% 3%}
 [end]
