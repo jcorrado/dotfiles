@@ -211,11 +211,11 @@ Slave :teammobot-local:
 Pattern "tools/*"
 Sync All
 
-# Channel teammobot-lists
-# Master :teammobot-remote:
-# Slave :teammobot-local:
-# Pattern "lists/*"
-# Sync All
+Channel teammobot-lists
+Master :teammobot-remote:
+Slave :teammobot-local:
+Pattern "lists/*"
+Sync All
 
 # Channel teammobot-misc
 # Master :teammobot-remote:
@@ -232,5 +232,5 @@ Channel teammobot-sent
 Channel teammobot-trash
 Channel teammobot-spam
 Channel teammobot-tools
-# Channel teammobot-lists
+Channel teammobot-lists
 # Channel teammobot-misc
