@@ -11,7 +11,7 @@
 # pinetry for gpg-agent
 [app] (Name=(pinentry|gcr-prompter))
   [Position] (CENTER) {0 0}
-  #[Deco] {TOOL}
+  [Deco] {TOOL}
 [end]
 
 [app] (Class=Tk.*)
