@@ -1,4 +1,4 @@
-personal_ws-1.1 en 211 
+personal_ws-1.1 en 213 
 tzdata
 pty
 cacheable
@@ -14,9 +14,9 @@ javascript
 CloudFormation
 ECR
 openssl
-aws
-EDN
 ECS
+EDN
+aws
 shorn
 EFI
 efi
@@ -32,14 +32,14 @@ emacs
 homoiconicity
 techops
 src
-uid
 SSD
+uid
 mysql
 MySQL
 ELB
-DNS
-CSS
 FDs
+CSS
+DNS
 TLS
 CTO
 CodePipeline
@@ -69,6 +69,7 @@ repurposing
 Magento
 Quinoa
 VolumeGroup
+recalibration
 UTC
 webkit
 IAM
@@ -91,6 +92,7 @@ socat
 gpt
 Postgres
 wildcards
+ideation
 startups
 OpenWeatherMap
 Devops
@@ -151,9 +153,9 @@ inode
 Arduino
 MSA
 LVM
+KZ's
 PCI
 pci
-KZ's
 birchbox
 RO
 MSI
@@ -200,8 +202,8 @@ siloed
 API
 CloudWatch
 CDNs
-CloudFront
 cloudfront
+CloudFront
 SDK
 coldbrew
 webhook
