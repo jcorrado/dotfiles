@@ -366,7 +366,10 @@
 ;; the `elpy-config' command is useful for checking prerequisites
 (use-package elpy
   :ensure t
-  :init (elpy-enable)
+  :init (progn
+          (setq python-shell-interpreter "ipython"
+                python-shell-interpreter-args "-i --simple-prompt")
+          (elpy-enable))
   :config (add-hook 'python-mode-hook 'blacken-mode))
 
 (use-package blacken
