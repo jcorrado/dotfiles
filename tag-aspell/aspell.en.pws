@@ -1,4 +1,4 @@
-personal_ws-1.1 en 213 
+personal_ws-1.1 en 214 
 tzdata
 pty
 cacheable
@@ -14,9 +14,9 @@ javascript
 CloudFormation
 ECR
 openssl
-ECS
-EDN
 aws
+EDN
+ECS
 shorn
 EFI
 efi
@@ -25,6 +25,7 @@ BST
 walkthrough
 uberjar
 SMS
+effector
 SNS
 stdin
 microservice
@@ -32,14 +33,14 @@ emacs
 homoiconicity
 techops
 src
-SSD
 uid
+SSD
 mysql
 MySQL
 ELB
-FDs
-CSS
 DNS
+CSS
+FDs
 TLS
 CTO
 CodePipeline
@@ -153,9 +154,9 @@ inode
 Arduino
 MSA
 LVM
-KZ's
 PCI
 pci
+KZ's
 birchbox
 RO
 MSI
@@ -202,8 +203,8 @@ siloed
 API
 CloudWatch
 CDNs
-cloudfront
 CloudFront
+cloudfront
 SDK
 coldbrew
 webhook
