@@ -4,7 +4,7 @@
 
 (define-abbrev-table 'global-abbrev-table
   '(
-    ("zn"  "zoion.net")
+    ("zn" "zoion.net")
     ("gi" "goldandapager.io")
     ("tmb" "teammobot.com")
     ("tm" "Team Mobot")
