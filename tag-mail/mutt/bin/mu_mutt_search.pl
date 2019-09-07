@@ -6,12 +6,13 @@ use strict;
 use Getopt::Std;
 use Term::ReadLine;
 
-our ($opt_d, $opt_f);
+our ($opt_d, $opt_f, $opt_r);
 
-getopts('d:f:');
+getopts('d:f:r:');
 
 my $RESULTS_DIR = $opt_d;
-my $MU_CMD="mu find --skip-dups --format=links --linksdir=$RESULTS_DIR --clearlinks ";
+my $MAILDIR_ROOT = $opt_r;
+my $MU_CMD="mu find --skip-dups --format=links --linksdir=$RESULTS_DIR --clearlinks m:$MAILDIR_ROOT ";
 my $PROMPT = 'mu> ';
 my $APP_NAME = 'mu_mutt_search';
 my $HISTORY_FILE = $opt_f || "$ENV{HOME}/.${APP_NAME}_history";
@@ -33,10 +34,10 @@ $term->write_history($HISTORY_FILE);
 
 if ($query) {
     if (system("$MU_CMD $query") == 0) {
-	print $out_fh "push <change-folder-readonly>$RESULTS_DIR<enter>";
+        print $out_fh "push <change-folder-readonly>$RESULTS_DIR<enter>";
     } else {
-	print $ui_fh "could not fork() for mu(1): $!\n";
-	print $out_fh "push <esc>";
+        print $ui_fh "could not fork() for mu(1): $!\n";
+        print $out_fh "push <esc>";
     }
 } else {
     print $out_fh "push <esc>";
@@ -49,29 +50,29 @@ exit 0;
 
 sub help {
     return '
-mu-find(1)
+        mu-find(1)
 
-Fields
-------
-f from          Message sender
-t to            To: recipient(s)
-c cc            Cc (carbon-copy) recipient(s)
-h bcc           Bcc (blind-carbon-copy) recipient(s)
-contact         from, to, cc and bcc
-recip           to, cc, bcc
+        Fields
+        ------
+        f from          Message sender
+        t to            To: recipient(s)
+        c cc            Cc (carbon-copy) recipient(s)
+        h bcc           Bcc (blind-carbon-copy) recipient(s)
+        contact         from, to, cc and bcc
+        recip           to, cc, bcc
 
-s subject       Message subject
-d date          Date-Range
-z size          Message size
-i msgid         Message-ID
+        s subject       Message subject
+        d date          Date-Range
+        z size          Message size
+        i msgid         Message-ID
 
-e embed         Search inside embedded text parts (messages, attachments)
-j file          Attachment filename
-y mime          MIME-type of one or more message parts
+        e embed         Search inside embedded text parts (messages, attachments)
+        j file          Attachment filename
+        y mime          MIME-type of one or more message parts
 
-g flag          Message Flags
-p prio          Message priority ("low", "normal" or "high")
-x tag           Tags for the message (X-Label and/or X-Keywords)
+        g flag          Message Flags
+        p prio          Message priority ("low", "normal" or "high")
+        x tag           Tags for the message (X-Label and/or X-Keywords)
 v list          Mailing list (e.g. the List-Id value)
 m maildir       Maildir
 
