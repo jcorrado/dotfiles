@@ -26,6 +26,7 @@ set trash = +trash
 
 mailboxes = +inbox
 mailboxes = +tools/jira
+mailboxes = +lists/ops
 
 
 #
