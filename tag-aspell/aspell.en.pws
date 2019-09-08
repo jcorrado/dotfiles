@@ -1,4 +1,4 @@
-personal_ws-1.1 en 214 
+personal_ws-1.1 en 229 
 tzdata
 pty
 cacheable
@@ -13,10 +13,11 @@ dev
 javascript
 CloudFormation
 ECR
+FlowCrypt
 openssl
-aws
-EDN
 ECS
+EDN
+aws
 shorn
 EFI
 efi
@@ -25,6 +26,7 @@ BST
 walkthrough
 uberjar
 SMS
+spf
 effector
 SNS
 stdin
@@ -33,14 +35,14 @@ emacs
 homoiconicity
 techops
 src
-uid
 SSD
+uid
 mysql
 MySQL
 ELB
-DNS
-CSS
 FDs
+CSS
+DNS
 TLS
 CTO
 CodePipeline
@@ -53,6 +55,7 @@ iCloud
 chmod
 addrs
 programmatically
+Gmails
 addr
 GCP
 snuck
@@ -90,16 +93,22 @@ crypto
 MiBs
 prepended
 socat
+Yubikeys
 gpt
 Postgres
 wildcards
+gmail
+Gmail
 ideation
 startups
 OpenWeatherMap
 Devops
+Mailvelope
+Atlassian
 jcorrado
 backends
 radix
+smartcards
 filesystem
 ICANN
 yml
@@ -134,7 +143,10 @@ colo
 schemas
 bootable
 KTF
+teammobot
 io
+DKIM
+DMARC
 jq
 deliverables
 JS
@@ -154,9 +166,9 @@ inode
 Arduino
 MSA
 LVM
+KZ's
 PCI
 pci
-KZ's
 birchbox
 RO
 MSI
@@ -165,6 +177,7 @@ Hayley
 GOPATH
 creds
 Empatico
+UI
 netblocks
 reconfiguring
 ACM
@@ -182,6 +195,7 @@ Bcc
 Codebuild
 lein
 misconfigured
+PKI
 strategize
 Superblock
 repo
@@ -203,13 +217,14 @@ siloed
 API
 CloudWatch
 CDNs
-CloudFront
 cloudfront
+CloudFront
 SDK
 coldbrew
 webhook
 dpkg
 decrement
 sha
+TODO
 Mebibytes
 umask
