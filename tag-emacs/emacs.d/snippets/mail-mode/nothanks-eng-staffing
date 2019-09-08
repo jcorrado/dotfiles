@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: nothanks-eng-staffing
+# key: nothanks-eng-staffing
+# --
+Hi ${1:Willy Loman},
+
+Thank you for your note.  Outsourced engineering is not part of our strategy, so there's not a fit here for us.
+
+
+Thanks,
+Jereme
