@@ -375,6 +375,11 @@
 (use-package blacken
   :ensure t)
 
+;; SQL
+(use-package sqlup-mode
+  :ensure t
+  :config (add-hook 'sql-mode-hook 'sqlup-mode))
+
 ;; Web browsing
 (setq eww-search-prefix
       ;;"https://www.google.com/search?q="
