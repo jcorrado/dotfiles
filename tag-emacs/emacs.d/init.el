@@ -378,6 +378,8 @@
 ;; SQL
 (use-package sqlup-mode
   :ensure t
+  :diminish
+  :init (add-to-list 'sqlup-blacklist "name")
   :config (add-hook 'sql-mode-hook 'sqlup-mode))
 
 ;; Web browsing
