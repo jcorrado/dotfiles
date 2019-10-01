@@ -72,7 +72,7 @@
       cursor-type 'box
       horizontal-scroll-bar nil
       column-number-mode nil
-      my/frame-opacity 85)
+      my/frame-opacity 95)
 
 (setq-default cursor-in-non-selected-windows nil)
 
@@ -158,7 +158,7 @@
               aw-scope 'frame)
   :config (custom-set-faces
            '(aw-leading-char-face
-             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0))))))
+             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 1.0))))))
 
 (use-package ivy
   :ensure t
