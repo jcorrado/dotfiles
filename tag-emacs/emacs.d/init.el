@@ -269,6 +269,11 @@
   (enable-paredit-mode))
 (add-hook 'lisp-mode-hook 'my/lisp-mode-hook)
 
+(defun my/clojure-mode-hook ()
+  (enable-paredit-mode)
+  (prettify-symbols-mode t))
+(add-hook 'clojure-mode-hook 'my/clojure-mode-hook)
+
 (defun my/conf-unix-mode-hook ()
   (flyspell-prog-mode)
   (auto-revert-mode t))
@@ -349,7 +354,6 @@
 (use-package cider
   :ensure t
   :init (setq cider-repl-display-help-banner nil)
-  :config (add-hook 'clojure-mode-hook 'prettify-symbols-mode))
 
 ;; Emacs Lisp
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
