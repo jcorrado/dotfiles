@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: nothanks-eng-staffing
-# key: nothanks-eng-staffing
+# name: staffing
+# key: staffing
 # --
 Hi ${1:Willy Loman},
 
