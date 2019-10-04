@@ -262,12 +262,14 @@
 (add-hook 'text-mode-hook 'my/text-mode-hook)
 
 (defun my/prog-mode-hook ()
-  (flyspell-prog-mode))
+  (flyspell-prog-mode)
+  (aggressive-indent-mode))
 (add-hook 'prog-mode-hook 'my/prog-mode-hook)
 
 (defun my/lisp-mode-hook ()
   (enable-paredit-mode))
 (add-hook 'lisp-mode-hook 'my/lisp-mode-hook)
+(add-hook 'emacs-lisp-mode-hook 'my/lisp-mode-hook)
 
 (defun my/clojure-mode-hook ()
   (enable-paredit-mode)
@@ -291,8 +293,7 @@
 
 (use-package aggressive-indent
   :ensure t
-  :diminish
-  :config (global-aggressive-indent-mode))
+  :diminish)
 
 (use-package yasnippet
   :ensure t
@@ -353,7 +354,7 @@
 ;; Clojure
 (use-package cider
   :ensure t
-  :init (setq cider-repl-display-help-banner nil)
+  :init (setq cider-repl-display-help-banner nil))
 
 ;; Emacs Lisp
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
