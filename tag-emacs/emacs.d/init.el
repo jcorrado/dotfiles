@@ -262,17 +262,18 @@
 (add-hook 'text-mode-hook 'my/text-mode-hook)
 
 (defun my/prog-mode-hook ()
-  (flyspell-prog-mode)
-  (aggressive-indent-mode))
+  (flyspell-prog-mode))
 (add-hook 'prog-mode-hook 'my/prog-mode-hook)
 
 (defun my/lisp-mode-hook ()
-  (enable-paredit-mode))
+  (enable-paredit-mode)
+  (aggressive-indent-mode))
 (add-hook 'lisp-mode-hook 'my/lisp-mode-hook)
 (add-hook 'emacs-lisp-mode-hook 'my/lisp-mode-hook)
 
 (defun my/clojure-mode-hook ()
   (enable-paredit-mode)
+  (aggressive-indent-mode)
   (prettify-symbols-mode t))
 (add-hook 'clojure-mode-hook 'my/clojure-mode-hook)
 
@@ -349,6 +350,9 @@
 (use-package yaml-mode :ensure t)
 
 (use-package htmlize
+  :ensure t)
+
+(use-package iedit
   :ensure t)
 
 ;; Clojure
