@@ -276,7 +276,10 @@
 (defun my/clojure-mode-hook ()
   (enable-paredit-mode)
   (aggressive-indent-mode)
-  (prettify-symbols-mode t))
+  (prettify-symbols-mode t)
+  (clj-refactor-mode 1)
+  (yas-minor-mode t)
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
 (add-hook 'clojure-mode-hook 'my/clojure-mode-hook)
 
 (defun my/conf-unix-mode-hook ()
@@ -354,7 +357,7 @@
 (use-package htmlize
   :ensure t)
 
-(use-package iedit
+(use-package clj-refactor
   :ensure t)
 
 ;; Clojure
