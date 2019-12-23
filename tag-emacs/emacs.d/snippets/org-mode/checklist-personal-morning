@@ -5,6 +5,7 @@
 # --
 Morning Routine
 SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
+- [ ] Take my vitamins
 - [ ] Run emacs-save-remote-buffers
 - [ ] Quick mental sweep
 - [ ] check_conf_repos, merge and reload as needed
@@ -24,6 +25,7 @@ SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
 - [ ] Process task inbox, refiling captured tasks (C-c a W)
 - [ ] Review WAITING tasks
 - [ ] Triage new Jira issues ("For Triage" issue filter)
+- [ ] Check Jira issues pending assignment ("For Follow-Up and Assignment" issue filter)
 - [ ] Look at today's calendar and determine available work time
 - [ ] Review Daily Agenda view (C-c a x)
   - Deadlines

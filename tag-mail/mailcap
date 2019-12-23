@@ -1,4 +1,4 @@
-#text/html; lynx -stdin
+text/html; mv %s %s.html && google-chrome %s.html
 application/ms-tnef; tnef -w %s
 application/octet-stream; most '%s'; needsterminal
 audio/x-wav; /usr/bin/play -t wav '%s'

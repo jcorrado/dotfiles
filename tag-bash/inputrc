@@ -1,7 +1,7 @@
 # -*- mode: conf -*-
 
 # Unset to disable obsessive screen clearing
-C-l:
+# C-l:
 
 # Things I learned from here:
 # https://www.topbug.net/blog/2017/07/31/inputrc-for-humans/

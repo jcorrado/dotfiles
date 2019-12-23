@@ -246,6 +246,10 @@
 
 (use-package ag :ensure t)
 
+(use-package markdown-mode
+  :ensure t)
+
+
 ;;
 ;; Editing
 ;;
@@ -358,7 +362,9 @@
   :ensure t)
 
 (use-package clj-refactor
-  :ensure t)
+  :ensure t
+  :diminish
+  :config (setq cljr-warn-on-eval nil))
 
 ;; Clojure
 (use-package cider

@@ -1,35 +1,31 @@
-[app] (Name=fbrun)
-  [Position] (CENTER) {0 0}
-  [Layer] {2}
+[app] (name=fbrun)
+  [Position]	(CENTER)	{0 0}
+  [Layer]	{2}
 [end]
-
 [transient] (role=GtkFileChooserDialog)
-  [Position] (CENTER) {0 0}
-  [Deco] {TOOL}
+  [Position]	(CENTER)	{0 0}
+  [Deco]	{TOOL}
 [end]
-
-# pinetry for gpg-agent
-[app] (Name=(pinentry|gcr-prompter))
-  [Position] (CENTER) {0 0}
-  [Deco] {TOOL}
+[app] (name=(pinentry|gcr-prompter))
+  [Position]	(CENTER)	{0 0}
+  [Deco]	{TOOL}
 [end]
-
-[app] (Class=Tk.*)
-  [Deco] {NORMAL}
+[app] (class=Tk.*)
+  [Deco]	{NORMAL}
+  [Alpha]	{249 255}
 [end]
-
-[transient] (Class=Tk.*)
-  [Deco] {NORMAL}
+[transient] (class=Tk.*)
+  [Deco]	{NORMAL}
 [end]
-
-[transient] (Class=Dialog)
-  [Deco] {NORMAL}
+[app] (class=Toplevel)
+  [Deco]	{NORMAL}
 [end]
-
-[transient] (Class=Toplevel)
-  [Deco] {TOOL}
+[transient] (class=Dialog)
+  [Deco]	{NORMAL}
 [end]
-
-[app] (Name=.*)
-  [Position] (TopLeft) {10% 3%}
+[transient] (class=Toplevel)
+  [Deco]	{TOOL}
+[end]
+[app] (name=.*)
+  [Position]	(UPPERLEFT)	{10% 3%}
 [end]
