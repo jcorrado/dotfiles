@@ -2,10 +2,10 @@
 
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
-#bindkey -e  # Emacs keymap
 bindkey -N mymap emacs
 bindkey -A mymap main
 bindkey -r "^L"  # disable obsessive screen clearing
+bindkey "^U" backward-kill-line
 
 setopt auto_cd
 
@@ -60,16 +60,31 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# Ensure path arrays do not contain duplicates
+typeset -gU cdpath fpath mailpath path
 
-export PATH=~/.local/bin:/snap/bin:$PATH
+path=(
+    ~/.bin
+    ~/.local/bin
+    ~/.rvm/bin
+    /usr/local/bin
+    /snap/bin
+    $path
+)
+
+export LANG='en_US.UTF-8'
 export EDITOR=emacsclient
+export VISUAL=emacsclient
 export PAGER=most
-export KEYID=0x2A946D7DC9CB2D74
 export BROWSER=google-chrome
+
 export SANE_DEFAULT_DEVICE="genesys:libusb:003:004"
 export EMACS_SERVER_SOCK="/tmp/emacs$(id -u)/server"
-export BACKGROUNDS=~/keep/backgrounds
 export GPG_TTY=$(tty)
+export VIRTUAL_ENV_DISABLE_PROMPT=""
+
+export KEYID=0x2A946D7DC9CB2D74
+export BACKGROUNDS=~/keep/backgrounds
 
 alias rm='rm -i'
 alias cp='cp -i'
@@ -83,5 +98,6 @@ alias emacs=emacsclient
 alias dropbox="sudo docker run -d --restart=always --name=dropbox -v $HOME/Dropbox:/dbox/Dropbox janeczku/dropbox"
 alias ssh="ssh -R ~/.ssh/emacs-server:$EMACS_SERVER_SOCK"
 alias ansible_check_deployed_code="ansible all -m shell -a 'cd ~bcd/mobot && git log -1 --pretty=oneline --abbrev-commit --decorate'"
+alias xfce4-terminal='xfce4-terminal --disable-server'
 
 source ~/.zsh_functions
