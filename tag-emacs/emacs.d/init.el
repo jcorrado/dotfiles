@@ -249,6 +249,9 @@
 (use-package markdown-mode
   :ensure t)
 
+(use-package edit-indirect
+  :ensure t)
+
 
 ;;
 ;; Editing
@@ -351,7 +354,7 @@
   :ensure
   :init (setq dumb-jump-selector 'ivy
               dumb-jump-force-searcher 'ag)
-  :bind (("M-g j" . dumb-jump-go-prefer-external)
+  :bind (("M-g j" . dumb-jump-go)
          ("M-g p" . dumb-jump-back)
          ("M-g q" . dumb-jump-quick-look)))
 

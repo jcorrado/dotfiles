@@ -20,7 +20,8 @@ export PAGER='most'
 export HISTTIMEFORMAT="%Y-%m-%d %T "
 export HISTCONTROL=""
 
-export PS1='\u@\[\e[36;1m\]${HOSTNAME}\[\e[00m\] \e[30;1m \d \D{%H:%M:%S%z} (\D{%Z}) \e[00m \n\w$(__git_ps1 " (%s)") \$ '
+# export PS1='\u@\[\e[36;1m\]${HOSTNAME}\[\e[00m\] \e[30;1m \d \D{%H:%M:%S%z} (\D{%Z}) \e[00m \n\w$(__git_ps1 " (%s)") \$ '
+export PS1='\u@\[\e[36;1m\]${HOSTNAME}\[\e[00m\] \e[30;1m \d \D{%H:%M:%S%z} (\D{%Z}) \e[00m \$ '
 
 eval $(dircolors)
 
@@ -31,3 +32,8 @@ done
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# complete -C /usr/local/bin/vault vault
+
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'

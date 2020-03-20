@@ -301,12 +301,12 @@
 ;;
 ;; Org-gcal
 ;;
-(setq my/org-gcal-fetch-timer
-      (run-with-timer 1
-                      (* 60 3)
-                      (lambda ()
-                        (when (> (nth 1 (current-idle-time)) 60)
-                          (org-gcal-sync nil t t)))))
+;; (setq my/org-gcal-fetch-timer
+;;       (run-with-timer 1
+;;                       (* 60 3)
+;;                       (lambda ()
+;;                         (when (> (nth 1 (current-idle-time)) 60)
+;;                           (org-gcal-sync nil t t)))))
 
 ;; (describe-variable 'timer-list)
 ;; (cancel-timer my/org-gcal-fetch-timer)
