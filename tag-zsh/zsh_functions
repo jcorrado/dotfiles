@@ -1,0 +1,154 @@
+# -*- mode: shell-script -*-
+
+function poll_mail {
+    local interval=${1:=120}
+    while true; do
+        $HOME/.mutt/bin/get_mail.sh
+        echo "sleeping for $interval seconds..."
+        sleep $interval
+    done
+}
+
+function rename_to_sha1 {
+    for f in *(.); do
+        ext=$(echo $f | perl -F'\.' -ae 'print $F[-1]')
+        sha1=$(sha1sum $f | perl -ae 'print $F[0]')
+        mv -v "$f" "${sha1}.${ext}"
+    done
+}
+
+function check_conf_repos {
+    local repos
+    repos=(~/.dotfiles*(/) ~/.zprezto ~/.password-store*(/))
+    for r in $repos; do
+        echo -n "checking repo: ${r}... "
+        git -C $r fetch origin
+        echo -e "done\n"
+    done
+}
+
+function precmd {
+    if [ ! -z "$TMUX" ]; then
+	tmux rename-window $(echo $PWD | shorten_path.pl)
+    fi
+}
+
+function preexec {
+    if [ ! -z "$TMUX" ]; then
+	tmux rename-window $1
+    fi
+}
+
+# Xsession sets these but sometimes they get munged by ssh+tmux... and
+# I haven't had a chance to work out why, so we just force this again
+# here for shells.
+function fix_ssh_env_vars {
+    echo -n "running fix_ssh_env_vars: "
+    agent_info_file="$HOME/.gnupg/gpg-agent-info-$(hostname)"
+    if [ -e $agent_info_file ]; then
+        echo "sourcing existing gpg-agent-info file"
+        source $agent_info_file
+    else
+        echo "export SSH_AUTH_SOCK from gpgconf"
+        export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    fi
+}
+
+function _scan-photo {
+    local x=${1:=125}
+    local y=${2:=125}
+    local iter=${3:=000}
+    setopt noclobber
+    local filename="img_${iter}.png"
+    scanimage --format=png --mode=Color --resolution=300 --depth=8 -x $x -y $y > $filename
+    feh $filename
+}
+
+# function scan-photo-small-portrait {
+#     local iter=$1
+#     _scan-photo 80 112 $iter
+# }
+
+# function scan-photo-small-landscape {
+#     local iter=$1
+#     _scan-photo 113 81 $iter
+# }
+
+# function scan-photo-small-landscape-2 {
+#     local iter=$1
+#     _scan-photo 105 81 $iter
+# }
+
+# function scan-photo-small-landscape-3 {
+#     local iter=$1
+#     _scan-photo 95 82 $iter
+# }
+
+# function scan-photo-small-landscape-4 {
+#     local iter=$1
+#     _scan-photo 112 87 $iter
+# }
+
+function scan-photo-small-square {
+    local iter=$1
+    _scan-photo 115 115 $iter
+}
+
+function scan-us-letter {
+    local base_name=${1:=letter}
+    local iter=${2:=000}
+    setopt noclobber
+    local filename="${base_name}_${iter}.png"
+    scanimage --format=png --mode=Color --resolution=150 --depth=8 -x 216 -y 279 > $filename
+    feh --geometry "983x1273+210-62" $filename
+}
+
+function aws-ecs-list-tasks {
+    local profile=$1
+    local cluster=$2
+    ( for i in $(aws --profile=$profile ecs list-tasks --cluster=$cluster | jq -r '.taskArns | .[]'); do
+          aws --profile=$profile ecs describe-tasks --cluster=$cluster --task=$i | jq -r '.tasks[] | .overrides.containerOverrides[] | .name'
+      done ) | sort | uniq -c
+}
+
+function emacs-save-remote-buffers {
+    local remote_host=$1
+    if [ -z "$remote_host" ]; then
+        case $HOST in
+            elder-whale)
+                remote_host=buttercup
+                ;;
+            buttercup)
+                remote_host=elder-whale
+                ;;
+            *)
+                echo "please supply a hostname"
+                return 1
+                ;;
+        esac
+    fi
+    ssh $remote_host "emacsclient -e '(if (save-some-buffers t) \"buffers saved\" \"no unsaved buffers\")'"
+}
+
+function copy_credentials {
+    local dst=$1
+    local creds
+    creds=(.password-store*(/)
+           .ssh
+           .gnupg
+           .dotfiles*(/)
+           .zprezto)
+
+    if [ -z $dst ] || ! [ -d $dst ]; then return 1; fi
+            
+    for src in $creds; do
+        rsync -avp --delete --delete-excluded --exclude .git \
+              "$HOME/$src/" "$dst/${src#.}"
+    done
+}
+
+function display_color_palette {
+    for i in {0..255}; do
+        printf "\x1b[38;5;${i}mcolour${i}\x1b[0m\n"
+    done
+}
