@@ -46,6 +46,7 @@ eval "$(dircolors -b)"
 setopt auto_list
 setopt list_ambiguous
 autoload -Uz compinit; compinit
+bindkey -M menuselect '^M' .accept-line
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete
 zstyle ':completion:*' format 'Completing %d'
