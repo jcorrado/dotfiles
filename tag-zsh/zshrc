@@ -35,6 +35,7 @@ setopt prompt_subst
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
+# '%(1j.%F{white}* .)' conditional for background jobs
 PROMPT='%(1j.%F{white}* .)%F{blue}%~%f %F{242}$(__git_ps1 %s)%f
 %F{white}❯%f '
 
