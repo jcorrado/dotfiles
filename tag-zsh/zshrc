@@ -101,3 +101,7 @@ alias ansible_check_deployed_code="ansible all -m shell -a 'cd ~bcd/mobot && git
 alias xfce4-terminal='xfce4-terminal --disable-server'
 
 source ~/.zsh_functions
+
+# Debian zsh-syntax-highlighting package
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
