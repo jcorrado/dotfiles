@@ -1,0 +1,11 @@
+xmodmap ~/.Xmodmap
+xset mouse 7/6 0
+unclutter -idle 2 -root &
+sudo sensei-raw-ctl --intensity low
+sudo sensei-raw-ctl --pulsation steady
+start-pulseaudio-x11
+xscreensaver -no-splash &
+xfce4-terminal --disable-server --geometry 124x61+23+45 &
+# Uses emacs-desktop to remember windows position and buffer state.
+emacs &
+exec fluxbox -log ~/.fluxbox/log
