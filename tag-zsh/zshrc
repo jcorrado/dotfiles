@@ -19,13 +19,7 @@ setopt extended_history
 HISTSIZE=2000
 SAVEHIST=2000
 HISTFILE=~/.zsh_history
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "$key[Up]" up-line-or-beginning-search
-bindkey "$key[Down]" down-line-or-beginning-search
-
+# See zsh-history-substring-search.zsh below
 
 #
 # Prompt
@@ -111,3 +105,8 @@ source ~/.zsh_functions
 # Debian zsh-syntax-highlighting package
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(brackets)  # additional types: main pattern cursor
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# https://github.com/zsh-users/zsh-history-substring-search
+source ~/.zshlib/zsh-history-substring-search.zsh
+bindkey "$key[Up]" history-substring-search-up
+bindkey "$key[Down]" history-substring-search-down
