@@ -4,8 +4,15 @@
 
 bindkey -N mymap emacs
 bindkey -A mymap main
-bindkey -r "^L"  # disable obsessive screen clearing
-bindkey "^U" backward-kill-line
+bindkey -r '^L'  # disable obsessive screen clearing
+bindkey '^U' backward-kill-line
+
+function my-backward-kill-word () {
+    local WORDCHARS=$(echo $WORDCHARS | perl -pe 's#[./]##')
+    zle backward-kill-word
+}
+zle -N my-backward-kill-word
+bindkey '^[^?' my-backward-kill-word  # M-Backspace; `showkey -a'
 
 setopt auto_cd
 setopt interactive_comments
