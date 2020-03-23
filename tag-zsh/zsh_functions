@@ -149,6 +149,8 @@ function copy_credentials {
 
 function display_color_palette {
     for i in {0..255}; do
-        printf "\x1b[38;5;${i}mcolour${i}\x1b[0m\n"
+        printf "\x1b[38;5;${i}mcolor${i}\x1b[0m\n"
     done
 }
+
+function ping () { /bin/ping "${1-eff.net}" ; }

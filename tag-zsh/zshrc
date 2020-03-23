@@ -98,14 +98,16 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias ls='ls -lh --color --group-directories-first'
 alias wget_head='wget -qSO /dev/null'
-alias mutt='mutt -F ~/.mutt/profiles/zoion/main'
-alias mutt_teammobot='mutt -F ~/.mutt/profiles/teammobot/main'
 alias feh="feh --auto-zoom --action1 'fbsetbg -a %f'"
 alias emacs=emacsclient
 alias dropbox="sudo docker run -d --restart=always --name=dropbox -v $HOME/Dropbox:/dbox/Dropbox janeczku/dropbox"
 alias ssh="ssh -R ~/.ssh/emacs-server:$EMACS_SERVER_SOCK"
 alias ansible_check_deployed_code="ansible all -m shell -a 'cd ~bcd/mobot && git log -1 --pretty=oneline --abbrev-commit --decorate'"
 alias xfce4-terminal='xfce4-terminal --disable-server'
+
+alias mutt='mutt -F ~/.mutt/profiles/zoion/main'
+alias mmutt='mutt -F ~/.mutt/profiles/teammobot/main'
+
 
 source ~/.zsh_functions
 
