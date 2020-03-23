@@ -405,6 +405,10 @@
   :init (setq sqlup-blacklist '("name" "id" "state" "result" "action"))
   :config (add-hook 'sql-mode-hook 'sqlup-mode))
 
+;; Docker
+(use-package dockerfile-mode
+  :ensure t)
+
 ;; Web browsing
 (setq eww-search-prefix
       ;;"https://www.google.com/search?q="
