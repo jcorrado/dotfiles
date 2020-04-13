@@ -33,8 +33,53 @@
       mouse-yank-at-point t
       sentence-end "[.!?]  ?")
 
+
+;;
+;; Buffer Display
+;;
+;;
+;; Useful docs
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Displaying-Buffers.html
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Choosing-Window.html
+;;
+;; Examples and best practice-type notes
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Frame-Layouts-with-Side-Windows.html
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/The-Zen-of-Buffer-Display.html
+(setq ignore-window-parameters nil
+
+      ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Window-Parameters.html
+      my/window-parameters '(window-parameters . (;; ace-window doesn't seem to honor this
+                                                  (no-other-window . t)
+                                                  (no-delete-other-windows . t)))
+
+      ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Buffer-Display-Action-Alists.html
+      my/side-window-width .25)
+
 (setq display-buffer-alist
-      '(("\\*Async Shell Command\\*" display-buffer-no-window)))
+      `(("\\*Sync Shell Command\\*" display-buffer-no-window)
+
+        ("^magit:.+" display-buffer-in-side-window
+         (side . right) (slot . -1)
+         (preserve-size . (t . nil))
+         (window-width . ,my/side-window-width)
+         ,my/window-parameters)
+
+        ("^\\*ag search.+" display-buffer-in-side-window
+         (side . right) (slot . -1)
+         (preserve-size . (t . nil))
+         (window-width . ,my/side-window-width)
+         ,my/window-parameters)
+
+        ("^\\*\\(?:help\\|Apropos\\|cider-doc\\)\\*" display-buffer-in-side-window
+         ;; Note help-window-select
+         (side . right) (slot . 0)
+         (preserve-size . (t . nil))
+         (window-width . ,my/side-window-width)
+         ;;(window-height . fit-window-to-buffer)
+         ,my/window-parameters)
+
+        ("^\\*cider-repl" display-buffer-below-selected)))
+
 
 (setq-default indent-tabs-mode nil
               major-mode 'text-mode)
@@ -160,7 +205,7 @@
               aw-scope 'frame)
   :config (custom-set-faces
            '(aw-leading-char-face
-             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 1.0))))))
+             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0))))))
 
 (use-package ivy
   :ensure t
@@ -323,7 +368,8 @@
 (use-package magit
   :ensure t
   :init (setq magit-diff-refine-hunk t
-              magit-completing-read-function 'ivy-completing-read)
+              magit-completing-read-function 'ivy-completing-read
+              magit-bury-buffer-function 'magit-mode-quit-window)
   :bind ("C-c m" . magit-status))
 
 (use-package git-gutter-fringe
