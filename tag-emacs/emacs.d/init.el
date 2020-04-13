@@ -347,7 +347,8 @@
 
 (require 'setup-abbrev-mode)
 (require 'setup-org-mode)
-(require 'setup-org-gcal-creds)
+;; This gives me more trouble than value.
+;; (require 'setup-org-gcal-creds)
 
 (use-package aggressive-indent
   :ensure t
@@ -420,11 +421,16 @@
   :ensure t
   :init (setq cider-repl-display-help-banner nil))
 
-;; Emacs Lisp
-(add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
-
 (use-package clojure-snippets
   :ensure t)
+
+;; Requires zprint, not packaged for Debian as of 2020-04-05
+;; https://github.com/kkinnear/zprint
+(use-package zprint-mode
+  :ensure t)
+
+;; Emacs Lisp
+(add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 
 ;; JavaScript
 (setq js-indent-level 2)
