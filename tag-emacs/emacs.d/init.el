@@ -45,15 +45,20 @@
 ;; Examples and best practice-type notes
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Frame-Layouts-with-Side-Windows.html
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/The-Zen-of-Buffer-Display.html
-(setq ignore-window-parameters nil
+;;
+(setq switch-to-visible-buffer nil
+      ignore-window-parameters nil
 
+      ;; List default action alists here
+      ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Buffer-Display-Action-Alists.html
+
+      my/side-window-width 0.3334
+
+      ;; A special action alist is the window-parameters list
       ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Window-Parameters.html
       my/window-parameters '(window-parameters . (;; ace-window doesn't seem to honor this
                                                   (no-other-window . t)
-                                                  (no-delete-other-windows . t)))
-
-      ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Buffer-Display-Action-Alists.html
-      my/side-window-width .25)
+                                                  (no-delete-other-windows . t))))
 
 (setq display-buffer-alist
       `(("\\*Sync Shell Command\\*" display-buffer-no-window)
