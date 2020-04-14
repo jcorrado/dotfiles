@@ -1,4 +1,4 @@
-personal_ws-1.1 en 243 
+personal_ws-1.1 en 244 
 tzdata
 pty
 cacheable
@@ -11,17 +11,17 @@ cli
 clj
 SLA
 dev
+grey
 javascript
 CloudFormation
-grey
 tkinter
 FlowCrypt
 OpenCypher
 ECR
 openssl
-ECS
-EDN
 aws
+EDN
+ECS
 shorn
 EFI
 efi
@@ -37,18 +37,18 @@ stdin
 microservice
 emacs
 homoiconicity
-techops
 toolhead
+techops
 src
-SSD
-uid
 venv
+uid
+SSD
 mysql
 MySQL
 ELB
-FDs
-CSS
 DNS
+CSS
+FDs
 TLS
 CTO
 CodePipeline
@@ -153,6 +153,7 @@ orgs
 colo
 schemas
 bootable
+namespace's
 teammobot
 KTF
 io
@@ -177,12 +178,12 @@ inode
 Arduino
 MSA
 LVM
-KZ's
 PCI
 pci
+KZ's
 birchbox
-RO
 py
+RO
 MSI
 TF
 Hayley
@@ -213,8 +214,8 @@ strategize
 Superblock
 repo
 Corrado
-GitHub
 Github
+GitHub
 bootloader
 Evernote
 Jenieze
@@ -230,8 +231,8 @@ siloed
 API
 CloudWatch
 CDNs
-cloudfront
 CloudFront
+cloudfront
 SDK
 coldbrew
 webhook
