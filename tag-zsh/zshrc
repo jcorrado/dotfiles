@@ -7,12 +7,14 @@ bindkey -A mymap main
 bindkey -r '^L'  # disable obsessive screen clearing
 bindkey '^U' backward-kill-line
 
+WORDCHARS=""
+
 function my-backward-kill-word () {
-    local WORDCHARS=$(echo $WORDCHARS | perl -pe 's#[./]##')
+    local WORDCHARS="*?_-.[]~=/&;!#$%^(){}<>"
     zle backward-kill-word
 }
 zle -N my-backward-kill-word
-bindkey '^[^?' my-backward-kill-word  # M-Backspace; `showkey -a'
+bindkey '^W' my-backward-kill-word
 
 setopt auto_cd
 setopt interactive_comments
@@ -22,11 +24,13 @@ setopt interactive_comments
 # History
 #
 setopt hist_ignore_all_dups
+setopt hist_ignore_space
 setopt extended_history
 HISTSIZE=2000
 SAVEHIST=2000
 HISTFILE=~/.zsh_history
 # See zsh-history-substring-search.zsh below
+
 
 #
 # Prompt
@@ -108,8 +112,18 @@ alias xfce4-terminal='xfce4-terminal --disable-server'
 alias mutt='mutt -F ~/.mutt/profiles/zoion/main'
 alias mmutt='mutt -F ~/.mutt/profiles/teammobot/main'
 
+alias cls=clear
+
+# Clojure dev stuff
+alias lt='lein test'
+alias ltr='lein test-refresh'
+alias ltc='lein with-profile test cloverage'
 
 source ~/.zsh_functions
+
+#
+# Should be last
+#
 
 # Debian zsh-syntax-highlighting package
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(brackets)  # additional types: main pattern cursor
