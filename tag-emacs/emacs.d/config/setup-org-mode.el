@@ -17,7 +17,8 @@
             (org-bullets-mode)
             (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
 
-(use-package org-gcal :ensure t)
+(use-package org-gcal
+  :disabled t)
 
 (setq org-startup-indented t
       org-src-window-setup 'current-window
@@ -150,7 +151,8 @@
 (setq org-agenda-files (append my/org-todo-files
                                (list my/org-refile
                                      my/org-errands
-                                     org-gcal-dir)))
+                                     ;;org-gcal-dir
+                                     )))
 
 (setq org-agenda-sticky nil
       org-agenda-timegrid-use-ampm t
