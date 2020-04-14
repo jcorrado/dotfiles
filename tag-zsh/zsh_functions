@@ -153,7 +153,13 @@ function display_color_palette {
     done
 }
 
-function ping () { /bin/ping "${1-eff.net}" ; }
+function ping () {
+    if [ -z "$@" ]; then
+        /bin/ping eff.net
+    else
+        /bin/ping "$@"
+    fi
+}
 
 function httpry () {
     local headers='timestamp,source-ip,dest-ip,direction,method,host,request-uri,accept,content-type,http-version,status-code,reason-phrase'
