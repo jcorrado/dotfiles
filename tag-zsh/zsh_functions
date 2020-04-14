@@ -154,3 +154,8 @@ function display_color_palette {
 }
 
 function ping () { /bin/ping "${1-eff.net}" ; }
+
+function httpry () {
+    local headers='timestamp,source-ip,dest-ip,direction,method,host,request-uri,accept,content-type,http-version,status-code,reason-phrase'
+    sudo httpry -f $headers "$@"
+}
