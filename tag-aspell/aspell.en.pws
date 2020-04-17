@@ -1,4 +1,4 @@
-personal_ws-1.1 en 244 
+personal_ws-1.1 en 262 
 tzdata
 pty
 cacheable
@@ -14,14 +14,16 @@ dev
 grey
 javascript
 CloudFormation
+Dcat
+DCat
 tkinter
 FlowCrypt
 OpenCypher
 ECR
 openssl
-aws
-EDN
 ECS
+EDN
+aws
 shorn
 EFI
 efi
@@ -41,14 +43,14 @@ toolhead
 techops
 src
 venv
-uid
 SSD
+uid
 mysql
 MySQL
 ELB
-DNS
-CSS
 FDs
+CSS
+DNS
 TLS
 CTO
 CodePipeline
@@ -56,6 +58,7 @@ linux
 CWD
 oncall
 initrd
+json
 config
 iCloud
 chmod
@@ -65,6 +68,7 @@ Gmails
 addr
 GCP
 snuck
+Hashicorp's
 env
 lspci
 architected
@@ -75,11 +79,16 @@ easter
 perl
 GUID
 uname
+ttl
+TTL
+DUT
 repurposing
 Magento
 Quinoa
 VolumeGroup
 recalibration
+mutexes
+url
 UTC
 webkit
 IAM
@@ -114,6 +123,7 @@ Devops
 Atlassian
 jcorrado
 backends
+TTLs
 radix
 smartcards
 filesystem
@@ -122,6 +132,7 @@ yml
 init
 filesystem's
 filesystems
+ios
 sidenote
 KiB
 wellbeing
@@ -136,6 +147,7 @@ Kula
 html
 dicts
 RaspberryPi
+eg
 ramdisks
 gb
 mkdir
@@ -168,22 +180,25 @@ featureful
 namespace
 UEFI
 util
+KV
 refactored
+iphone
 Turnbull
 KZ
 nl
 ok
 UUID
+os
 inode
 Arduino
 MSA
 LVM
+KZ's
 PCI
 pci
-KZ's
 birchbox
-py
 RO
+py
 MSI
 TF
 Hayley
@@ -194,6 +209,8 @@ UI
 netblocks
 reconfiguring
 ACM
+mutex
+Mutex
 crlf
 clojure
 VPoE
@@ -201,6 +218,7 @@ submodule
 LogicalVolume
 goldandapager
 startup
+mobot
 Mobot
 PHP
 jpeg
@@ -214,8 +232,8 @@ strategize
 Superblock
 repo
 Corrado
-Github
 GitHub
+Github
 bootloader
 Evernote
 Jenieze
@@ -231,8 +249,8 @@ siloed
 API
 CloudWatch
 CDNs
-CloudFront
 cloudfront
+CloudFront
 SDK
 coldbrew
 webhook
