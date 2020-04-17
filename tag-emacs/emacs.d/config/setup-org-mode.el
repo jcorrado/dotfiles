@@ -7,8 +7,7 @@
                             org-docview
                             org-info
                             org-protocol
-                            org-habit
-                            org-mobile)))
+                            org-habit)))
 
 (use-package org-bullets
   :ensure t
@@ -150,9 +149,7 @@
 ;;
 (setq org-agenda-files (append my/org-todo-files
                                (list my/org-refile
-                                     my/org-errands
-                                     ;;org-gcal-dir
-                                     )))
+                                     my/org-errands)))
 
 (setq org-agenda-sticky nil
       org-agenda-timegrid-use-ampm t
@@ -263,55 +260,5 @@
   "Visit mail message with external MUA"
   (let ((cmd "mutt_for_msgid.sh"))
     (async-shell-command (concat cmd " " msg-id))))
-
-
-;;
-;; MobileOrg
-;;
-(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg"
-      org-mobile-files (list my/org-errands))
-
-;; Reformat items captured by MobileOrg
-;;
-;; Based on https://www.emacswiki.org/emacs/mobileorg
-(defun my/org-convert-incoming-mobile-items (file)
-  "Convert incoming MobileOrg items to tasks and move them to file"
-  (interactive)
-  (with-current-buffer (find-file-noselect org-mobile-inbox-for-pull)
-    (goto-char (point-min))
-    (while (re-search-forward "^\\* " nil t)
-      (goto-char (match-beginning 0))
-      (forward-char 1)
-      (insert "* TODO ")
-      (forward-line)
-      (insert ":PROPERTIES:\n:Created: ")
-      (forward-line)
-      (insert ":END:\n"))
-    (let ((tasks (buffer-string)))
-      (erase-buffer)
-      (save-buffer)
-      (kill-buffer (current-buffer))
-      (with-current-buffer (find-file-noselect file)
-        (save-excursion
-          (goto-char (point-max))
-          (forward-line)
-          (insert tasks))))))
-
-(add-hook 'org-mobile-post-pull-hook '(lambda () (my/org-convert-incoming-mobile-items my/org-refile)))
-
-
-;;
-;; Org-gcal
-;;
-;; (setq my/org-gcal-fetch-timer
-;;       (run-with-timer 1
-;;                       (* 60 3)
-;;                       (lambda ()
-;;                         (when (> (nth 1 (current-idle-time)) 60)
-;;                           (org-gcal-sync nil t t)))))
-
-;; (describe-variable 'timer-list)
-;; (cancel-timer my/org-gcal-fetch-timer)
-
 
 (provide 'setup-org-mode)
