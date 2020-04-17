@@ -9,9 +9,6 @@ SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
 - [ ] Run emacs-save-remote-buffers
 - [ ] Quick mental sweep
 - [ ] check_conf_repos, merge and reload as needed
-- [ ] Sync MobileOrg
-  - Sync on phone
-  - (org-mobile-pull)
 - [ ] Mark routines and habits completed (C-c a h)
   - Mark yesterday's complete first
     - (my/freeze-time)
