@@ -14,6 +14,7 @@
   (package-install 'use-package))
 
 (setq custom-file "~/.emacs.d/custom-conf.el")
+(load custom-file)
 
 (add-to-list 'load-path "~/.emacs.d/elisp")
 (add-to-list 'load-path "~/.emacs.d/config")
@@ -424,7 +425,16 @@
 ;; Clojure
 (use-package cider
   :ensure t
-  :init (setq cider-repl-display-help-banner nil))
+  :init (setq cider-repl-display-help-banner nil
+              cider-test-infer-test-ns
+              (lambda (ns) (if (string-match "^[^.]+\.test" ns)
+                          ns
+                        (replace-regexp-in-string "^\\([^.]+\\)\." "\\1.test." ns)))
+              cider-prompt-for-symbol nil
+              nrepl-hide-special-buffers t
+              cider-save-file-on-load t
+              cider-special-mode-truncate-lines nil
+              ))
 
 (use-package clojure-snippets
   :ensure t)
