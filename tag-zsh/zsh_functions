@@ -165,3 +165,9 @@ function httpry () {
     local headers='timestamp,source-ip,dest-ip,direction,method,host,request-uri,accept,content-type,http-version,status-code,reason-phrase'
     sudo httpry -f $headers "$@"
 }
+
+function wttr () {
+    # http://wttr.in/:help
+    local location=${1-12759}
+    curl "http://wttr.in/${location}?F1"
+}
