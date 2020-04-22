@@ -171,3 +171,20 @@ function wttr () {
     local location=${1-12759}
     curl "http://wttr.in/${location}?F1"
 }
+
+function gcal () {
+    local range
+    if [ -z "$@" ]
+    then
+        range=('agenda' 'today' '+3d')
+    else
+        range="$@"
+    fi
+    gcalcli --cal Personal#blue \
+            --cal 'J&J#green' \
+            --cal 'jereme@teammobot.com#cyan' \
+            --cal Engineering#red \
+            --cal 'Holidays in United States#yellow'\
+            --cal 'Holidays in Canada#yellow' \
+            $range
+}
