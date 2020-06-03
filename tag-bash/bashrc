@@ -37,3 +37,5 @@ fi
 
 bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
+
+complete -C /usr/local/bin/terraform terraform

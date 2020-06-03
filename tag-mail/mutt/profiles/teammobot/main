@@ -27,6 +27,8 @@ set trash = +trash
 mailboxes = +inbox
 mailboxes = +tools/jira
 mailboxes = +lists/ops
+mailboxes = +lists/dmarc
+mailboxes = +alerts/fastly
 
 
 #

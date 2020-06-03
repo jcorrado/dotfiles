@@ -217,6 +217,12 @@ Slave :teammobot-local:
 Pattern "lists/*"
 Sync All
 
+Channel teammobot-alerts
+Master :teammobot-remote:
+Slave :teammobot-local:
+Pattern "alerts/*"
+Sync All
+
 # Channel teammobot-misc
 # Master :teammobot-remote:
 # Slave :teammobot-local:
@@ -233,4 +239,5 @@ Channel teammobot-trash
 Channel teammobot-spam
 Channel teammobot-tools
 Channel teammobot-lists
+Channel teammobot-alerts
 # Channel teammobot-misc

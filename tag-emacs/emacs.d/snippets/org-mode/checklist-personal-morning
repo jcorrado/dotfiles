@@ -19,10 +19,12 @@ SCHEDULED: `(format-time-string "<%Y-%m-%d %a>")`
   - Create 'Reply Tasks' for longer replies (C-r)  
   - Create new tasks from messages (C-t)
   - Add message links to existing tasks (C-l)
+- [ ] Check Keybase self chat, my current task inbox
 - [ ] Process task inbox, refiling captured tasks (C-c a W)
 - [ ] Review WAITING tasks
 - [ ] Triage new Jira issues ("For Triage" issue filter)
 - [ ] Check Jira issues pending assignment ("For Follow-Up and Assignment" issue filter)
+- [ ] Review [[https://github.com/team-mobot/mobot/pulls?q=is%253Apr+is%253Aopen+draft%253Afalse+-review%253Aapproved+][open PRs]] at GitHub
 - [ ] Look at today's calendar and determine available work time
 - [ ] Review Daily Agenda view (C-c a x)
   - Deadlines

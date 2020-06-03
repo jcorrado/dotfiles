@@ -135,3 +135,6 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zshlib/zsh-history-substring-search.zsh
 bindkey "$key[Up]" history-substring-search-up
 bindkey "$key[Down]" history-substring-search-down
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform

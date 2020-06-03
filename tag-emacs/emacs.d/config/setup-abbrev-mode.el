@@ -6,9 +6,12 @@
   '(
     ("zn" "zoion.net")
     ("gi" "goldandapager.io")
-    ("tmb" "teammobot.com")
     ("tm" "Team Mobot")
-
+    ("tmc" "teammobot.com")
+    ("tmn" "teammobot.net")
+    ("gtmn" "gcp0.teammobot.net")
+    ("ntmn" "nyc0.teammobot.net")
+    
     ("gm" "Good Morning")
     ("tj" "Thanks,\nJereme")))
 

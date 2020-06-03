@@ -1,4 +1,4 @@
-personal_ws-1.1 en 262 
+personal_ws-1.1 en 261 
 tzdata
 pty
 cacheable
@@ -16,6 +16,7 @@ javascript
 CloudFormation
 Dcat
 DCat
+deliverability
 tkinter
 FlowCrypt
 OpenCypher
@@ -57,8 +58,8 @@ CodePipeline
 linux
 CWD
 oncall
-initrd
 json
+initrd
 config
 iCloud
 chmod
@@ -75,12 +76,11 @@ architected
 defn
 GiB
 backend
+ttl
 easter
 perl
 GUID
 uname
-ttl
-TTL
 DUT
 repurposing
 Magento
@@ -122,8 +122,8 @@ Mailvelope
 Devops
 Atlassian
 jcorrado
-backends
 TTLs
+backends
 radix
 smartcards
 filesystem
@@ -179,22 +179,21 @@ Kibana
 featureful
 namespace
 UEFI
-util
 KV
+util
 refactored
 iphone
 Turnbull
 KZ
 nl
 ok
-UUID
 os
+UUID
 inode
 Arduino
 MSA
 LVM
 KZ's
-PCI
 pci
 birchbox
 RO
@@ -210,7 +209,6 @@ netblocks
 reconfiguring
 ACM
 mutex
-Mutex
 crlf
 clojure
 VPoE
@@ -219,7 +217,6 @@ LogicalVolume
 goldandapager
 startup
 mobot
-Mobot
 PHP
 jpeg
 Bcc
@@ -236,6 +233,7 @@ GitHub
 Github
 bootloader
 Evernote
+reconceiving
 Jenieze
 amd
 sytactic
@@ -257,6 +255,7 @@ webhook
 dpkg
 decrement
 sha
+affordances
 TODO
 Mebibytes
 ClojureScript

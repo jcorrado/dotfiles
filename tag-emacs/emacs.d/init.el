@@ -476,6 +476,17 @@
 (use-package dockerfile-mode
   :ensure t)
 
+;; Terraform
+(use-package terraform-mode
+  :ensure t
+  :config (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
+
+(use-package terraform-doc
+  :ensure t)
+
+(use-package vcl-mode
+  :ensure t)
+
 ;; Web browsing
 (setq eww-search-prefix
       ;;"https://www.google.com/search?q="
