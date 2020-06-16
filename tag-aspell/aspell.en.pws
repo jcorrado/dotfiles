@@ -1,4 +1,4 @@
-personal_ws-1.1 en 261 
+personal_ws-1.1 en 262 
 tzdata
 pty
 cacheable
@@ -14,17 +14,17 @@ dev
 grey
 javascript
 CloudFormation
+deliverability
 Dcat
 DCat
-deliverability
 tkinter
 FlowCrypt
 OpenCypher
 ECR
 openssl
-ECS
-EDN
 aws
+EDN
+ECS
 shorn
 EFI
 efi
@@ -44,14 +44,14 @@ toolhead
 techops
 src
 venv
-SSD
 uid
+SSD
 mysql
 MySQL
 ELB
-FDs
-CSS
 DNS
+CSS
+FDs
 TLS
 CTO
 CodePipeline
@@ -144,6 +144,7 @@ Jira
 superblocks
 localhost
 Kula
+validator
 html
 dicts
 RaspberryPi
@@ -229,8 +230,8 @@ strategize
 Superblock
 repo
 Corrado
-GitHub
 Github
+GitHub
 bootloader
 Evernote
 reconceiving
@@ -247,8 +248,8 @@ siloed
 API
 CloudWatch
 CDNs
-cloudfront
 CloudFront
+cloudfront
 SDK
 coldbrew
 webhook
