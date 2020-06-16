@@ -19,8 +19,8 @@ color tree white default
 # pager
 #
 ignore *
-unignore subject from reply-to to cc bcc date message-id user-agent
-hdr_order subject from reply-to to cc bcc date message-id user-agent
+unignore subject from reply-to to cc bcc date message-id user-agent list-unsubscribe
+hdr_order subject from reply-to to cc bcc date message-id user-agent list-unsubscribe
 
 color hdrdefault blue default
 color header green default "^From:"
