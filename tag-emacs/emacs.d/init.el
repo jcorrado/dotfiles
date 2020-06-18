@@ -337,7 +337,8 @@
   (prettify-symbols-mode t)
   (clj-refactor-mode 1)
   (yas-minor-mode t)
-  (cljr-add-keybindings-with-prefix "C-c C-m"))
+  (cljr-add-keybindings-with-prefix "C-c C-m")
+  (local-set-key (kbd  "C-x n s") 'narrow-to-defun))
 (add-hook 'clojure-mode-hook 'my/clojure-mode-hook)
 
 (defun my/conf-unix-mode-hook ()
