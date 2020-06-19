@@ -124,7 +124,7 @@
       blink-matching-paren t
       cursor-type 'box
       horizontal-scroll-bar nil
-      column-number-mode nil
+      column-number-mode t
       my/frame-opacity 95)
 
 (setq-default cursor-in-non-selected-windows nil)
@@ -327,7 +327,8 @@
 
 (defun my/lisp-mode-hook ()
   (enable-paredit-mode)
-  (aggressive-indent-mode))
+  (aggressive-indent-mode)
+  (display-line-numbers-mode)  )
 (add-hook 'lisp-mode-hook 'my/lisp-mode-hook)
 (add-hook 'emacs-lisp-mode-hook 'my/lisp-mode-hook)
 
@@ -338,7 +339,8 @@
   (clj-refactor-mode 1)
   (yas-minor-mode t)
   (cljr-add-keybindings-with-prefix "C-c C-m")
-  (local-set-key (kbd  "C-x n s") 'narrow-to-defun))
+  (local-set-key (kbd  "C-x n s") 'narrow-to-defun)
+  (display-line-numbers-mode))
 (add-hook 'clojure-mode-hook 'my/clojure-mode-hook)
 
 (defun my/conf-unix-mode-hook ()
