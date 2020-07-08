@@ -119,7 +119,7 @@ alias lt='lein test'
 alias ltr='lein test-refresh'
 alias ltc='lein with-profile test cloverage'
 
-alias vpn='sudo openvpn --script-security 2 --config /etc/openvpn/mobot-p2p.conf'
+alias vpn='sudo openvpn --config /etc/openvpn/mobot-p2p.conf'
 
 source ~/.zsh_functions
 
