@@ -89,7 +89,7 @@ export VISUAL=emacsclient
 export PAGER=most
 export BROWSER=google-chrome
 
-export SANE_DEFAULT_DEVICE="genesys:libusb:003:004"
+export SANE_DEFAULT_DEVICE="genesys:libusb:001:018"
 export EMACS_SERVER_SOCK="/tmp/emacs$(id -u)/server"
 export GPG_TTY=$(tty)
 export VIRTUAL_ENV_DISABLE_PROMPT=""
@@ -119,7 +119,7 @@ alias lt='lein test'
 alias ltr='lein test-refresh'
 alias ltc='lein with-profile test cloverage'
 
-alias vpn='sudo openvpn --config /etc/openvpn/mobot-p2p.conf'
+alias vpn='sudo openvpn --config /etc/openvpn/mobot.conf'
 
 source ~/.zsh_functions
 

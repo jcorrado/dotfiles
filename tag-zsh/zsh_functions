@@ -64,15 +64,15 @@ function _scan-photo {
     feh $filename
 }
 
-# function scan-photo-small-portrait {
-#     local iter=$1
-#     _scan-photo 80 112 $iter
-# }
+function scan-photo-small-portrait {
+    local iter=$1
+    _scan-photo 115 200 $iter
+}
 
-# function scan-photo-small-landscape {
-#     local iter=$1
-#     _scan-photo 113 81 $iter
-# }
+function scan-photo-small-landscape {
+    local iter=$1
+    _scan-photo 200 115 $iter
+}
 
 # function scan-photo-small-landscape-2 {
 #     local iter=$1
