@@ -1,5 +1,4 @@
-# invoke global X session script
-. /etc/X11/Xsession
+# -*- mode:conf -*-
 
 export PATH="~/.bin:~/.local/bin:$PATH"
 export PA_DEF_SINK="alsa_output.pci-0000_00_1f.3.analog-stereo"
@@ -14,15 +13,15 @@ xmodmap ~/.Xmodmap
 
 xset mouse 7/6 0
 unclutter -idle 2 -root &
+xwallpaper --maximize $(cat ~/.wallpaper)
 sudo /usr/bin/sensei-raw-ctl --intensity low
 sudo /usr/bin/sensei-raw-ctl --pulsation steady
-
+ 
+compton -b
 start-pulseaudio-x11
 xscreensaver -no-splash &
 
-st -g 114x61+29-36 &
+st &
+emacs &
 
-# Uses emacs-desktop to remember windows position and buffer state.
-# emacs &
-
-exec fluxbox -log ~/.fluxbox/log
+exec dwm

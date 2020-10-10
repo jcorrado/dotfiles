@@ -8,6 +8,12 @@ add mod1 = Alt_L Meta_L Alt_R Meta_R
 ! Older Kinesis Ergo at nyc2
 keycode 133 = Alt_L Meta_L Alt_L Meta_L
 
+! CapsLock to Super for dmw modkey
+clear lock
+clear Mod4
+keycode 66 = Super_L Super_L Super_L Super_L
+add Mod4 = Super_L
+
 !! ! https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=564327
 !! !
 !! ! http://unix.stackexchange.com/questions/4485/reassign-ctl-and-alt-keys-xmodmap-error
