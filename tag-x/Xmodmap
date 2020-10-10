@@ -1,22 +1,24 @@
 ! For my Kinesis Ergo
 clear Mod1
+keycode 64 = Alt_L
+keycode 134 = Alt_R
+add mod1 = Alt_L Alt_R
+
+! Use Super for dmw modkey
 clear Mod4
-keycode 64 = Alt_L Meta_L Alt_L Meta_L
-keycode 134 = Alt_R Meta_R Alt_R Meta_R
-add mod1 = Alt_L Meta_L Alt_R Meta_R
-
-! Older Kinesis Ergo at nyc2
-keycode 133 = Alt_L Meta_L Alt_L Meta_L
-
-! CapsLock to Super for dmw modkey
 clear lock
-clear Mod4
-keycode 66 = Super_L Super_L Super_L Super_L
-add Mod4 = Super_L
 
-!! ! https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=564327
-!! !
-!! ! http://unix.stackexchange.com/questions/4485/reassign-ctl-and-alt-keys-xmodmap-error
+!! CapsLock
+keycode 66 = Super_L
+!! Home
+keycode 110 = Super_L
+!! End
+keycode 115 = Super_R
+add Mod4 = Super_L Super_R
+
+
+!! https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=564327
+!! http://unix.stackexchange.com/questions/4485/reassign-ctl-and-alt-keys-xmodmap-error
 !! 
 !! clear Mod1
 !! clear Mod4
