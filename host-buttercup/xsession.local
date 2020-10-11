@@ -1,4 +1,4 @@
-# buttercup ~/.xsessionrc -*- mode: conf -*-
+# buttercup ~/.xsession.local -*- mode: conf -*-
 
 # Pulse Audio sink to use
 #
@@ -7,6 +7,3 @@
 # alsa.driver_name = "snd_hda_intel"
 # device.bus_path = "pci-0000:00:1f.3"
 export PA_DEF_SINK="alsa_output.pci-0000_00_1f.3.analog-stereo"
-
-export BROWSER=google-chrome
-export PATH="~/.bin:$PATH"

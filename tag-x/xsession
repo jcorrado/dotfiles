@@ -1,0 +1,24 @@
+# -*- mode:conf -*-
+
+export PATH="~/.bin:~/.local/bin:$PATH"
+export BROWSER=google-chrome
+
+. ~/.xsession.local
+
+xmodmap ~/.Xmodmap
+
+xset mouse 7/6 0
+unclutter -idle 2 -root &
+xwallpaper --maximize $(cat ~/.wallpaper)
+sudo /usr/bin/sensei-raw-ctl --intensity low
+sudo /usr/bin/sensei-raw-ctl --pulsation steady
+
+compton -b
+start-pulseaudio-x11
+xscreensaver -no-splash &
+run_keybase -g >/dev/null
+
+st &
+emacs &
+
+exec dwm
