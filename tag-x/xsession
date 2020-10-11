@@ -17,6 +17,7 @@ compton -b
 start-pulseaudio-x11
 xscreensaver -no-splash &
 run_keybase -g >/dev/null
+dwm_clock.sh &
 
 st &
 emacs &

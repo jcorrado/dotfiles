@@ -107,8 +107,8 @@
 (global-set-key (kbd "C-c h g") 'hydra-git-gutter/body)
 
 (global-unset-key (kbd "C-x m"))
-(global-set-key (kbd "C-x C-c")
-                (lambda () (interactive) (message "Run save-buffers-kill-terminal by hand")))
+;; (global-set-key (kbd "C-x C-c")
+;;                 (lambda () (interactive) (message "Run save-buffers-kill-terminal by hand")))
 
 (server-start)
 (winner-mode)
@@ -132,7 +132,7 @@
 (blink-cursor-mode)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
+;;(scroll-bar-mode -1)
 (add-to-list 'initial-frame-alist (cons 'alpha my/frame-opacity))
 (add-to-list 'default-frame-alist (cons 'alpha my/frame-opacity))
 (add-hook 'after-make-frame-functions (lambda (_) (my/clear-fringe)))
@@ -520,3 +520,6 @@
 (use-package dictionary
   :ensure t
   :bind ("M-%" . dictionary-lookup-definition))
+
+;; testing
+(scroll-bar-mode -1)

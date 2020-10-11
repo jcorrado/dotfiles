@@ -4,7 +4,7 @@
 
 bindkey -N mymap emacs
 bindkey -A mymap main
-bindkey -r '^L'  # disable obsessive screen clearing
+# bindkey -r '^L'  # disable obsessive screen clearing
 bindkey '^U' backward-kill-line
 
 WORDCHARS=""
