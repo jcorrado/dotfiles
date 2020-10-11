@@ -1,3 +1,5 @@
+!! -*- mode: conf -*-
+
 ! For my Kinesis Ergo
 clear Mod1
 keycode 64 = Alt_L
