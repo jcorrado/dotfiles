@@ -1,15 +1,15 @@
-# -*- mode:conf -*-
+#!/bin/bash
 
-export PATH="~/.bin:~/.local/bin:$PATH"
+#export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
 export BROWSER=google-chrome
 
-. ~/.xsession.local
+source ~/.xsession.local
 
 xmodmap ~/.Xmodmap
 
 xset mouse 7/6 0
 unclutter -idle 2 -root &
-xwallpaper --maximize $(cat ~/.wallpaper)
+xwallpaper --maximize "$(cat ~/.wallpaper)"
 sudo /usr/bin/sensei-raw-ctl --intensity low
 sudo /usr/bin/sensei-raw-ctl --pulsation steady
 
@@ -22,4 +22,7 @@ dwm_clock.sh &
 st &
 emacs &
 
-exec dwm
+if command -v dwm >/dev/null ; then
+    # bar -d &
+    while command -v dwm ; do dwm && break || continue ; done
+fi

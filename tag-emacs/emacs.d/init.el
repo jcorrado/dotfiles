@@ -53,7 +53,7 @@
       ;; List default action alists here
       ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Buffer-Display-Action-Alists.html
 
-      my/side-window-width 0.3334
+      my/side-window-width 80
 
       ;; A special action alist is the window-parameters list
       ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Window-Parameters.html

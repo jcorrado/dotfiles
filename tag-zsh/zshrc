@@ -102,7 +102,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias ls='ls -lh --color --group-directories-first'
 alias wget_head='wget -qSO /dev/null'
-alias feh="feh --auto-zoom --action1 'fbsetbg -a %f'"
+alias feh="feh --auto-zoom --action1 'xwallpaper --zoom %f'"
 alias emacs=emacsclient
 alias dropbox="sudo docker run -d --restart=always --name=dropbox -v $HOME/Dropbox:/dbox/Dropbox janeczku/dropbox"
 alias ssh="ssh -R ~/.ssh/emacs-server:$EMACS_SERVER_SOCK"
