@@ -18,6 +18,7 @@ bindkey '^W' my-backward-kill-word
 
 setopt auto_cd
 setopt interactive_comments
+setopt rm_star_silent
 
 
 #
