@@ -171,3 +171,8 @@ function wttr () {
     local location=${1-12759}
     curl "http://wttr.in/${location}?F1"
 }
+
+function daisy () {
+    local id=${1:-29}
+    ssh pi@daisy${id}.bot0.teammobot.net
+}
