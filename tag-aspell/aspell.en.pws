@@ -1,4 +1,4 @@
-personal_ws-1.1 en 262 
+personal_ws-1.1 en 267 
 tzdata
 pty
 cacheable
@@ -49,6 +49,7 @@ SSD
 mysql
 MySQL
 ELB
+octothorpe
 DNS
 CSS
 FDs
@@ -113,6 +114,7 @@ Yubikeys
 gpt
 Postgres
 wildcards
+fastly
 gmail
 touchstart
 ideation
@@ -157,7 +159,9 @@ viewport
 NVMe
 nvme
 AWS's
+HSTS
 jereme
+FQDN
 enculturated
 MiB
 mib
@@ -204,6 +208,7 @@ TF
 Hayley
 GOPATH
 creds
+backfilling
 Empatico
 UI
 netblocks
