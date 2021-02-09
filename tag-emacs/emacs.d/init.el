@@ -53,7 +53,7 @@
       ;; List default action alists here
       ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Buffer-Display-Action-Alists.html
 
-      my/side-window-width 80
+      my/side-window-width .334
 
       ;; A special action alist is the window-parameters list
       ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Window-Parameters.html
@@ -107,8 +107,8 @@
 (global-set-key (kbd "C-c h g") 'hydra-git-gutter/body)
 
 (global-unset-key (kbd "C-x m"))
-;; (global-set-key (kbd "C-x C-c")
-;;                 (lambda () (interactive) (message "Run save-buffers-kill-terminal by hand")))
+(global-set-key (kbd "C-x C-c")
+                (lambda () (interactive) (message "Run save-buffers-kill-terminal by hand")))
 
 (server-start)
 (winner-mode)
@@ -125,7 +125,7 @@
       cursor-type 'box
       horizontal-scroll-bar nil
       column-number-mode t
-      my/frame-opacity 95)
+      my/frame-opacity 90)
 
 (setq-default cursor-in-non-selected-windows nil)
 
@@ -416,6 +416,7 @@
 
 (use-package handlebars-mode :ensure t)
 (use-package yaml-mode :ensure t)
+(use-package uuidgen :ensure t)
 
 (use-package htmlize
   :ensure t)
@@ -451,7 +452,7 @@
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 
 ;; JavaScript
-(setq js-indent-level 2)
+(setq js-indent-level 4)
 
 ;; Python
 ;;
@@ -490,6 +491,9 @@
 (use-package vcl-mode
   :ensure t)
 
+(use-package poly-ansible
+  :ensure t)
+
 ;; Web browsing
 (setq eww-search-prefix
       ;;"https://www.google.com/search?q="
@@ -521,5 +525,4 @@
   :ensure t
   :bind ("M-%" . dictionary-lookup-definition))
 
-;; testing
 (scroll-bar-mode -1)
