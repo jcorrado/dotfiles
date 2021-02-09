@@ -174,5 +174,6 @@ function wttr () {
 
 function daisy () {
     local id=${1:-29}
-    ssh pi@daisy${id}.bot0.teammobot.net
+    local user=${2:-pi}
+    ssh ${user}@daisy${id}.bot0.teammobot.net
 }
