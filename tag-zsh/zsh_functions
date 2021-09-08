@@ -136,8 +136,7 @@ function copy_credentials {
     creds=(.password-store*(/)
            .ssh
            .gnupg
-           .dotfiles*(/)
-           .zprezto)
+           .dotfiles*(/))
 
     if [ -z $dst ] || ! [ -d $dst ]; then return 1; fi
             
@@ -173,6 +172,23 @@ function wttr () {
 }
 
 function daisy () {
-    local id=${1:-29}
-    ssh pi@daisy${id}.bot0.teammobot.net
+    local id=${1:-jereme}
+    local user=${2:-mobot}
+    if [[ $id =~ [0-9]+ ]]; then
+        bot="daisy${id}"
+    else
+        bot="$id.bot0.teammobot.net"
+    fi        
+    ssh ${user}@$bot
+}
+
+function bot_home () {
+    local bot=${1:-daisy29}
+    curl -XPUT ${bot}.bot0.teammobot.net:5000/home_routine
+}
+
+function bot_park () {
+    local slot=${1:-0}
+    local bot=${2:-daisy29}
+    curl -XPUT ${bot}.bot0.teammobot.net:5000/devices/${slot}/park_toolhead
 }

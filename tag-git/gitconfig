@@ -14,6 +14,8 @@
     show-graph = log --graph --abbrev-commit --pretty=oneline
     log-last = log --stat -1
     log1 = log --pretty=oneline --abbrev-commit --decorate
+    # release-log = log --pretty=oneline --abbrev-commit --decorate-refs='refs/tags/*' --first-parent
+    release-log = log --first-parent --decorate-refs='refs/tags/*' --pretty='%C(auto)%h%C(reset)%d [%<(12,trunc)%an] %s'
     diff-words = diff --color-words
     diff-chars = diff --color-words --word-diff-regex='.'
     diff-idx = diff --cached --color=always
