@@ -172,10 +172,10 @@ function wttr () {
 }
 
 function daisy () {
-    local id=${1:-jereme}
+    local id=${1:-28}
     local user=${2:-mobot}
     if [[ $id =~ [0-9]+ ]]; then
-        bot="daisy${id}"
+        bot="daisy${id}.bot0.teammobot.net"
     else
         bot="$id.bot0.teammobot.net"
     fi        
