@@ -2,7 +2,8 @@ text/html; mv %s %s.html && google-chrome %s.html
 application/ms-tnef; tnef -w %s
 application/octet-stream; most '%s'; needsterminal
 audio/x-wav; /usr/bin/play -t wav '%s'
-application/pdf; mupdf '%s'
+;;application/pdf; mupdf '%s'
+application/pdf; evince '%s'
 video/mp4; vlc '%s'
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice '%s'
 image/jpeg; chmod +w '%s' && exiftran -ai '%s' && feh '%s'

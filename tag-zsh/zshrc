@@ -98,6 +98,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=""
 export KEYID=0x2A946D7DC9CB2D74
 export BACKGROUNDS=~/keep/backgrounds
 
+export MOBOT_GITHUB_TOKEN=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
+
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'

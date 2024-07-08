@@ -1,8 +1,8 @@
 # -*- mode: conf -*-
 
-# call out older messages
-folder-hook . 'uncolor index "~d >7d ! (~F | ~D)"'
-folder-hook inbox 'color index brightred default "~d >7d ! (~F | ~D)"'
+# # call out older messages
+# folder-hook . 'uncolor index "~d >7d ! (~F | ~D)"'
+# folder-hook inbox 'color index brightred default "~d >7d ! (~F | ~D)"'
 
 folder-hook . 'color status black green'
 folder-hook sent 'color status black brightred'

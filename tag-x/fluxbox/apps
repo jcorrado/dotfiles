@@ -28,4 +28,5 @@
 [end]
 [app] (name=.*)
   [Position]	(UPPERLEFT)	{10% 3%}
+  [Alpha]	{255}
 [end]

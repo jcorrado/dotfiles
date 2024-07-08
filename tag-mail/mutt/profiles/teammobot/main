@@ -13,8 +13,10 @@ source ~/.mutt/aliases/teammobot
 set from = jereme@teammobot.com
 set realname = "Jereme Corrado"
 set hostname = teammobot.com
-# set pgp_sign_as = 0x2A946D7DC9CB2D74  # jereme@zoion.net, etc.
+#set pgp_sign_as = 0x2A946D7DC9CB2D74  # jereme@zoion.net, etc.
+set pgp_sign_as = 0x67ABA6D8BD197357  # shared team key
 set signature = ~/.mutt/profiles/teammobot/signature
+set sig_dashes = no  # This keeps gmail, and my boss, happy
 set alias_file = ~/.mutt/aliases/auto_teammobot
 set header_cache = ~/.mutt/profiles/teammobot/cache/headers
 
@@ -25,7 +27,7 @@ set postponed = +drafts
 set trash = +trash
 
 mailboxes = +inbox
-mailboxes = +tools/jira
+#mailboxes = +tools/jira
 mailboxes = +lists/ops
 mailboxes = +lists/dmarc
 mailboxes = +alerts/fastly

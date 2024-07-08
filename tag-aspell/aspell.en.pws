@@ -1,4 +1,4 @@
-personal_ws-1.1 en 263 
+personal_ws-1.1 en 264 
 tzdata
 pty
 cacheable
@@ -22,9 +22,9 @@ FlowCrypt
 OpenCypher
 ECR
 openssl
-ECS
-EDN
 aws
+EDN
+ECS
 shorn
 EFI
 efi
@@ -44,14 +44,14 @@ toolhead
 techops
 src
 venv
-SSD
 uid
+SSD
 mysql
 MySQL
 ELB
-FDs
-CSS
 DNS
+CSS
+FDs
 TLS
 CTO
 CodePipeline
@@ -231,8 +231,8 @@ strategize
 Superblock
 repo
 Corrado
-GitHub
 Github
+GitHub
 bootloader
 Evernote
 reconceiving
@@ -249,8 +249,8 @@ siloed
 API
 CloudWatch
 CDNs
-cloudfront
 CloudFront
+cloudfront
 SDK
 coldbrew
 webhook

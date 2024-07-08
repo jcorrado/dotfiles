@@ -105,11 +105,11 @@
                                 (my/toggle-transparency my/frame-opacity)))
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "C-c h d") 'hydra-adjust-display/body)
-(global-set-key (kbd "C-c h g") 'hydra-git-gutter/body)
+;;(global-set-key (kbd "C-c h g") 'hydra-git-gutter/body)
 
 (global-unset-key (kbd "C-x m"))
-;; (global-set-key (kbd "C-x C-c")
-;;                 (lambda () (interactive) (message "Run save-buffers-kill-terminal by hand")))
+(global-set-key (kbd "C-x C-c")
+                (lambda () (interactive) (message "Run save-buffers-kill-terminal by hand")))
 
 (server-start)
 (winner-mode)
@@ -157,7 +157,7 @@
   (add-to-list 'sml/replacer-regexp-list '("^~/projects/birchbox/" ":BBX:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/projects/yetibot/yetibot.core" ":YETI.CORE:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/projects/yetibot/yetibot" ":YETI:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^~/projects/teammobot" ":TMB:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^~/projects/teammobot" ":MO:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/projects/" ":PRJ:") t)
   (sml/setup))
 
@@ -174,13 +174,13 @@
   (diminish 'highlight-indentation-mode)
   (diminish 'elpy-mode))
 
-(use-package beacon
-  :ensure t
-  :diminish
-  :init (setq beacon-size 25
-              beacon-blink-when-window-scrolls t
-              beacon-color "orange red")
-  :config (beacon-mode))
+;; (use-package beacon
+;;   :ensure t
+;;   :diminish
+;;   :init (setq beacon-size 25
+;;               beacon-blink-when-window-scrolls t
+;;               beacon-color "orange red")
+;;   :config (beacon-mode))
 
 (use-package emojify
   :ensure t
@@ -198,6 +198,9 @@
   :ensure t
   :diminish)
 
+(use-package minimap
+  :ensure t)
+
 (desktop-save-mode)
 
 
@@ -212,7 +215,8 @@
               aw-scope 'frame)
   :config (custom-set-faces
            '(aw-leading-char-face
-             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0))))))
+             ;; ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0)))
+             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 1.0))))))
 
 (use-package ivy
   :ensure t
@@ -258,7 +262,8 @@
   :ensure t
   :diminish
   :init (setq undo-tree-visualizer-diff t
-              undo-tree-visualizer-timestamps t)
+              undo-tree-visualizer-timestamps t
+              undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo-tree")))
   :config (global-undo-tree-mode))
 
 (use-package which-key
@@ -355,6 +360,11 @@
   (visual-line-mode))
 (add-hook 'markdown-mode-hook 'my/markdown-mode-hook)
 
+(defun my/python-mode-hook ()
+  (blacken-mode)
+  (display-line-numbers-mode))
+(add-hook 'python-mode-hook 'my/python-mode-hook)
+
 (require 'setup-abbrev-mode)
 (require 'setup-org-mode)
 ;; This gives me more trouble than value.
@@ -384,6 +394,7 @@
   :bind ("C-c m" . magit-status))
 
 (use-package git-gutter-fringe
+  :disabled
   :ensure t
   :diminish git-gutter-mode
   :config
@@ -464,8 +475,7 @@
   :init (progn
           (setq python-shell-interpreter "ipython"
                 python-shell-interpreter-args "-i --simple-prompt")
-          (elpy-enable))
-  :config (add-hook 'python-mode-hook 'blacken-mode))
+          (elpy-enable)))
 
 (use-package blacken
   :ensure t)

@@ -177,7 +177,7 @@
 
 
         ("p" . "Personal Agendas")
-
+        
         ("pa" "Personal Agenda"
          ((agenda ""
                   ((org-agenda-overriding-header "Personal Agenda")))

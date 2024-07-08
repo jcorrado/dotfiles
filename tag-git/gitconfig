@@ -2,8 +2,8 @@
 
 [user]
     name = Jereme Corrado
-    email = jereme@teammobot.com
-
+    email = jereme@zoion.net
+    
 [push]
     default = current
     followTags = true
@@ -15,7 +15,10 @@
     log-last = log --stat -1
     log1 = log --pretty=oneline --abbrev-commit --decorate
     # release-log = log --pretty=oneline --abbrev-commit --decorate-refs='refs/tags/*' --first-parent
-    release-log = log --first-parent --decorate-refs='refs/tags/*' --pretty='%C(auto)%h%C(reset)%d [%<(12,trunc)%an] %s'
+    release-log = log --first-parent --decorate-refs-exclude='refs/tags/container/*' --decorate-refs-exclude='refs/tags/heroku/*' --decorate-refs='refs/tags/*' --pretty='%C(auto)%h%C(reset)%d [%<(12,trunc)%an] %s'
+    # release-log = log --first-parent --decorate-refs-exclude='refs/tags/container/*'  --decorate-refs='refs/tags/*' --pretty='%C(auto)%h%C(reset)%d [%<(12,trunc)%an] %s'
+    # release-log = log --first-parent --decorate-refs='refs/tags/*' --pretty='%C(auto)%h%C(reset)%d [%<(12,trunc)%an] %s'
+ 
     diff-words = diff --color-words
     diff-chars = diff --color-words --word-diff-regex='.'
     diff-idx = diff --cached --color=always
@@ -25,3 +28,6 @@
 
 [github]
     user = jcorrado
+
+[merge]
+    conflictStyle = diff3

@@ -172,10 +172,10 @@ function wttr () {
 }
 
 function daisy () {
-    local id=${1:-jereme}
+    local id=${1:-28}
     local user=${2:-mobot}
     if [[ $id =~ [0-9]+ ]]; then
-        bot="daisy${id}"
+        bot="daisy${id}.bot0.teammobot.net"
     else
         bot="$id.bot0.teammobot.net"
     fi        
@@ -191,4 +191,9 @@ function bot_park () {
     local slot=${1:-0}
     local bot=${2:-daisy29}
     curl -XPUT ${bot}.bot0.teammobot.net:5000/devices/${slot}/park_toolhead
+}
+
+function ip_by_device_tag () {
+    local device=$1
+    curl "http://consul0.gcp0.teammobot.net:8500/v1/kv/indices/ip-by-device-tag/${device}?raw"
 }

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: kindly
+# key: kindly
+# --
+Hi ${1:Sender},
+
+Please kindly remove me from your list.
+
+
+Thanks,
+Jereme
