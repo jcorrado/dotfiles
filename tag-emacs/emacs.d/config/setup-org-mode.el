@@ -1,12 +1,7 @@
 (use-package org
   :ensure t
   :diminish org-indent-mode
-  :init (setq org-modules '(org-w3m
-                            org-bbdb
-                            org-bibtex
-                            org-docview
-                            org-info
-                            org-protocol
+  :init (setq org-modules '(org-protocol
                             org-habit)))
 
 (use-package org-bullets
