@@ -1,0 +1,4 @@
+HOSTNAME=apricot
+TAGS="emacs git"
+# DOTFILES_DIRS="/home/jereme/.dotfiles /home/jereme/.dotfiles-private /home/jereme/.dotfiles-bin"
+COPY_ALWAYS="forward"
