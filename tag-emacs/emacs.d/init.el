@@ -139,7 +139,7 @@
       cursor-type 'box
       horizontal-scroll-bar nil
       column-number-mode t
-      my/frame-opacity 90)
+      my/frame-opacity 100)  ;; sometimes 90 is nice
 
 (setq-default cursor-in-non-selected-windows nil)
 
@@ -152,7 +152,8 @@
 (add-hook 'after-make-frame-functions (lambda (_) (my/clear-fringe)))
 
 (global-font-lock-mode t)
-(when (eq system-type 'gnu/linux)
+(if (eq system-type 'darwin)
+    (set-frame-font "Menlo-15" nil t)
   (set-frame-font "DejaVu Sans Mono 13" t t))
 
 (use-package zenburn-theme
