@@ -34,6 +34,19 @@
       mouse-yank-at-point t
       sentence-end "[.!?]  ?")
 
+(when (eq system-type 'darwin)
+  (let ((modifier-key-vars '(;;ns-alternate-modifier
+			     ns-command-modifier
+			     ;;ns-control-modifier
+			     ;;ns-function-modifier
+			     ns-option-modifier
+			     ;;ns-right-alternate-modifier
+			     ;;ns-right-command-modifier
+			     ;;ns-right-control-modifier
+			     ;;ns-right-option-modifier
+			     )))
+    (dolist (k modifier-key-vars)
+      (set k 'meta))))
 
 ;;
 ;; Buffer Display
@@ -139,7 +152,8 @@
 (add-hook 'after-make-frame-functions (lambda (_) (my/clear-fringe)))
 
 (global-font-lock-mode t)
-(set-frame-font "DejaVu Sans Mono 13" t t)
+(when (eq system-type 'gnu/linux)
+  (set-frame-font "DejaVu Sans Mono 13" t t))
 
 (use-package zenburn-theme
   :ensure t
