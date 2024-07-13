@@ -152,9 +152,14 @@
 (add-hook 'after-make-frame-functions (lambda (_) (my/clear-fringe)))
 
 (global-font-lock-mode t)
-(if (eq system-type 'darwin)
-    (set-frame-font "Menlo-15" nil t)
-  (set-frame-font "DejaVu Sans Mono 13" t t))
+
+;; DejaVu isn't available on macOS by default
+;; https://dejavu-fonts.github.io/Download.html
+(let ((primary-font "DejaVu Sans Mono-16")
+      (secondary-font "Menlo-16"))
+  (if (member (car (split-string primary-font "-")) (font-family-list))
+      (set-frame-font primary-font nil t)
+    (set-frame-font secondary-font nil t)))
 
 (use-package zenburn-theme
   :ensure t
