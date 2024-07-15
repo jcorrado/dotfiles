@@ -236,7 +236,8 @@
   :config (custom-set-faces
            '(aw-leading-char-face
              ;; ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0)))
-             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 1.0))))))
+             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 1.0)))
+             )))
 
 (use-package ivy
   :ensure t
@@ -453,10 +454,9 @@
 (use-package htmlize
   :ensure t)
 
-(use-package clj-refactor
+(use-package flycheck
   :ensure t
-  :diminish
-  :config (setq cljr-warn-on-eval nil))
+  :init (global-flycheck-mode))
 
 ;; Clojure
 (use-package cider
@@ -474,6 +474,11 @@
 
 (use-package clojure-snippets
   :ensure t)
+
+(use-package clj-refactor
+  :ensure t
+  :diminish
+  :config (setq cljr-warn-on-eval nil))
 
 ;; Requires zprint, not packaged for Debian as of 2020-04-05
 ;; https://github.com/kkinnear/zprint
@@ -494,11 +499,16 @@
   :ensure t
   :init (progn
           (setq python-shell-interpreter "ipython"
-                python-shell-interpreter-args "-i --simple-prompt")
+                python-shell-interpreter-args "-i --simple-prompt"
+                elpy-rpc-virtualenv-path 'default)
           (elpy-enable)))
 
 (use-package blacken
   :ensure t)
+
+(use-package pyvenv
+  :ensure t
+  :config (pyvenv-mode 1))
 
 ;; SQL
 (use-package sqlup-mode
