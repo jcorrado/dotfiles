@@ -1,3 +1,0 @@
-TAGS="common aspell aws bash zsh clojure conky emacs git gnupg mail netrc ssh x exercism"
-DOTFILES_DIRS="/home/jereme/.dotfiles /home/jereme/.dotfiles-private /home/jereme/.dotfiles-bin"
-COPY_ALWAYS="forward"
