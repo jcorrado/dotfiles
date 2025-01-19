@@ -1,0 +1,19 @@
+# -*- mode: shell-script -*-
+
+# Ensure path arrays do not contain duplicates
+typeset -gU cdpath fpath mailpath path
+
+path=(
+    ~/.bin
+    ~/.local/bin
+    /usr/local/bin
+    $path
+)
+
+homebrew_coreutils_bins=/opt/homebrew/opt/coreutils/libexec/gnubin
+[ -d $homebrew_coreutils_bins ] && path=($homebrew_coreutils_bins $path)
+
+# Supplemental tool env setup
+[ -f $HOME/google-cloud-sdk/path.zsh.inc ] && source $HOME/google-cloud-sdk/path.zsh.inc
+[ -f $HOME/.asdf/asdf.sh ] && source $HOME/.asdf/asdf.sh
+[ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"

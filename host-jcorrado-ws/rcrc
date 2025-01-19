@@ -1,4 +1,4 @@
+# -*- mode: conf -*-
 HOSTNAME=jcorrado-ws
-TAGS="emacs"
-# DOTFILES_DIRS="/home/jereme/.dotfiles /home/jereme/.dotfiles-private /home/jereme/.dotfiles-bin"
-COPY_ALWAYS="forward"
+DOTFILES_DIRS="/Users/jcorrado/.dotfiles /Users/jcorrado/.dotfiles-private"
+TAGS="common emacs zsh"

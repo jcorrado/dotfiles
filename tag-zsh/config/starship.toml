@@ -1,0 +1,54 @@
+#https://starship.rs/config/
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[hostname]
+ssh_symbol = " "
+ssh_only = true
+format = "[$hostname]($style) "
+style = "white"
+
+[kubernetes]
+disabled = false
+format = '\[[$context \($namespace\)]($style)\] '
+style = "white"
+
+# [[kubernetes.contexts]]
+# context_pattern = ".*prod.*"
+# style = "bold red"
+
+# [[kubernetes.contexts]]
+# context_pattern = ".*(stage|dev|common).*"
+# style = "bold yellow"
+
+# [[kubernetes.contexts]]
+# context_pattern = "kind-.*"
+# style = "bold green"
+
+[directory]
+truncation_length = 3
+fish_style_pwd_dir_length = 1
+truncate_to_repo = false
+format = "[$path]($style) "
+style = "blue"
+
+[git_branch]
+symbol = "[](cyan)"
+#format = '\[[$symbol $branch]($style)\]'
+format = '[$symbol $branch]($style) '
+style = "white"
+
+[git_status]
+format = '[$all_status$ahead_behind]($style)'
+style = "white"
+
+[git_commit]
+tag_symbol = '  '
+
+[gcloud]
+disabled = true
+format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
+
+[golang]
+disabled = true

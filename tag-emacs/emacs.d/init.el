@@ -119,8 +119,8 @@
 ;;(global-set-key (kbd "C-c h g") 'hydra-git-gutter/body)
 
 (global-unset-key (kbd "C-x m"))
-;; (global-set-key (kbd "C-x C-c")
-;;                 (lambda () (interactive) (message "Run save-buffers-kill-terminal by hand")))
+(global-set-key (kbd "C-x C-c")
+                (lambda () (interactive) (message "Run save-buffers-kill-terminal by hand")))
 
 (server-start)
 (winner-mode)
