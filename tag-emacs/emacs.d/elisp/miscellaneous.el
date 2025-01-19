@@ -1,3 +1,9 @@
+;;; miscellaneous.el --- Custom utilities
+
+;;; Commentary:
+;; This file contains custom Emacs utilities.
+
+;;; Code:
 ;; http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
 (defun my/smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
@@ -22,8 +28,8 @@ point reaches the beginning or end of the buffer, stop there."
     (when (= orig-point (point))
       (move-beginning-of-line 1))))
 
-(defun my/clear-fringe () (set-face-attribute 'fringe nil :background nil))
-
+(defun my/clear-fringe () (set-face-attribute 'fringe nil :background 'unspecified))
+(my/clear-fringe)
 ;; https://www.emacswiki.org/emacs/TransparentEmacs
 (defun my/toggle-transparency (opacity)
   (interactive)
@@ -92,3 +98,5 @@ current HH:MM of today at the selected date."
   (ad-remove-advice 'current-time 'around 'freeze)
   (ad-activate 'current-time)
   (set-face-background 'fringe nil))
+
+;;; miscellaneous.el ends here

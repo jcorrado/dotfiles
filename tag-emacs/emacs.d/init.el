@@ -1,5 +1,3 @@
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-
 (require 'package)
 (setq package-archives nil
       package-enable-at-startup nil)
@@ -121,8 +119,8 @@
 ;;(global-set-key (kbd "C-c h g") 'hydra-git-gutter/body)
 
 (global-unset-key (kbd "C-x m"))
-(global-set-key (kbd "C-x C-c")
-                (lambda () (interactive) (message "Run save-buffers-kill-terminal by hand")))
+;; (global-set-key (kbd "C-x C-c")
+;;                 (lambda () (interactive) (message "Run save-buffers-kill-terminal by hand")))
 
 (server-start)
 (winner-mode)
@@ -155,7 +153,12 @@
 
 ;; DejaVu isn't available on macOS by default
 ;; https://dejavu-fonts.github.io/Download.html
-(let ((primary-font "DejaVu Sans Mono-16")
+;; "DejaVu Sans Mono-16"
+;; 
+;; Nerd Fonts
+;; https://www.nerdfonts.com/font-downloads
+;; "FiraMono Nerd Font Mono-16"
+(let ((primary-font "FiraMono Nerd Font Mono-16")
       (secondary-font "Menlo-16"))
   (if (member (car (split-string primary-font "-")) (font-family-list))
       (set-frame-font primary-font nil t)
@@ -218,8 +221,7 @@
   :ensure t
   :diminish)
 
-(use-package minimap
-  :ensure t)
+(use-package minimap :ensure t)
 
 (desktop-save-mode)
 
@@ -236,8 +238,7 @@
   :config (custom-set-faces
            '(aw-leading-char-face
              ;; ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0)))
-             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 1.0)))
-             )))
+             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 1.0))))))
 
 (use-package ivy
   :ensure t
@@ -324,16 +325,190 @@
 
 (use-package ag :ensure t)
 
-(use-package markdown-mode
-  :ensure t)
+(use-package markdown-mode :ensure t)
 
-(use-package edit-indirect
-  :ensure t)
+(use-package edit-indirect :ensure t)
 
 
 ;;
 ;; Editing
 ;;
+(require 'setup-abbrev-mode)
+(require 'setup-org-mode)
+
+;; This gives me more trouble than value.
+;; (require 'setup-org-gcal-creds)
+
+(use-package paredit
+  :ensure t
+  :diminish
+  :config (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode))
+
+(use-package aggressive-indent
+  :ensure t
+  :diminish)
+
+(use-package yasnippet
+  :ensure t
+  :diminish (yas-minor-mode . "Yas")
+  :config (yas-global-mode t))
+
+(use-package yasnippet-snippets :ensure t)
+
+(use-package aws-snippets :ensure t)
+
+(use-package ivy-yasnippet
+  :ensure t
+  :bind ("C-x C-i" . ivy-yasnippet))
+
+(use-package magit
+  :ensure t
+  :init (setq magit-diff-refine-hunk t
+              magit-completing-read-function 'ivy-completing-read
+              magit-bury-buffer-function 'magit-mode-quit-window)
+  :bind ("C-c m" . magit-status))
+
+(use-package git-gutter-fringe
+  ;;:disabled
+  :ensure t
+  :diminish git-gutter-mode
+  :config
+  (set-face-foreground 'git-gutter-fr:modified "deep sky blue")
+  (set-face-foreground 'git-gutter-fr:added    "green")
+  (set-face-foreground 'git-gutter-fr:deleted  "red")
+  (global-git-gutter-mode t))
+
+(use-package git-timemachine :ensure t)
+
+(use-package highlight-parentheses
+  :ensure t
+  :diminish
+  :init (setq hl-paren-colors '("red" "orange red" "yellow" "green"
+                                "cyan" "blue" "magenta" "dark violet"))
+  :config (global-highlight-parentheses-mode))
+
+(use-package dumb-jump
+  :ensure
+  :config (setq dumb-jump-selector 'ivy
+                dumb-jump-force-searcher 'ag)
+  :bind (("M-g j" . dumb-jump-go)
+         ("M-g p" . dumb-jump-back)
+         ("M-g q" . dumb-jump-quick-look)))
+
+(use-package handlebars-mode :ensure t)
+
+(use-package yaml-mode :ensure t)
+
+(use-package uuidgen :ensure t)
+
+(use-package htmlize :ensure t)
+
+(use-package flycheck
+  :ensure t
+  ;;:config (global-flycheck-mode)
+  )
+
+;; Clojure
+(use-package cider
+  :ensure t
+  :init (setq cider-repl-display-help-banner nil
+              cider-test-infer-test-ns
+              (lambda (ns) (if (string-match "^[^.]+\.test" ns)
+                          ns
+                        (replace-regexp-in-string "^\\([^.]+\\)\." "\\1.test." ns)))
+              cider-prompt-for-symbol nil
+              nrepl-hide-special-buffers t
+              cider-save-file-on-load t
+              cider-special-mode-truncate-lines nil
+              ))
+
+(use-package clojure-snippets :ensure t)
+
+(use-package clj-refactor
+  :ensure t
+  :diminish
+  :config (setq cljr-warn-on-eval nil))
+
+;; Requires zprint, not packaged for Debian as of 2020-04-05
+;; https://github.com/kkinnear/zprint
+(use-package zprint-mode :ensure t)
+
+;; Emacs Lisp
+(add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
+
+;; JavaScript
+(setq js-indent-level 4)
+
+;; Python
+;;
+;; Required modules: jedi flake8 black
+;; the `elpy-config' command is useful for checking prerequisites
+(use-package elpy
+  :ensure t
+  :init (progn
+          (setq python-shell-interpreter "ipython"
+                python-shell-interpreter-args "-i --simple-prompt"
+                elpy-rpc-virtualenv-path 'default)
+          (elpy-enable)))
+
+(use-package blacken :ensure t)
+
+(use-package pyvenv
+  :ensure t
+  :config (pyvenv-mode 1))
+
+;; SQL
+(use-package sqlup-mode
+  :ensure t
+  :diminish
+  :init (setq sqlup-blacklist '("name" "id" "state" "result" "action"))
+  :config (add-hook 'sql-mode-hook 'sqlup-mode))
+
+;; Docker
+(use-package dockerfile-mode :ensure t)
+
+;; Terraform
+(use-package terraform-mode
+  :ensure t
+  :config (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
+
+(use-package terraform-doc :ensure t)
+
+(use-package vcl-mode :ensure t)
+
+(use-package poly-ansible :ensure t)
+
+;; Web browsing
+(setq eww-search-prefix
+      ;;"https://www.google.com/search?q="
+      "https://duckduckgo.com/html/?q=")
+(add-hook 'eww-mode-hook (lambda ()
+                           (setq-local shr-use-fonts nil)
+                           (define-key eww-link-keymap (kbd "I") 'endless/toggle-image-display)))
+
+;; External web browsing
+(setq browse-url-generic-program "sensible-browser"
+      browse-url-browser-function 'browse-url-generic)
+
+;; ediff
+(setq ediff-split-window-function 'split-window-horizontally
+      ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; Mail, via mutt
+(defun my/mail-mode-hook ()
+  (my/disable-auto-fill)
+  (whitespace-newline-mode)
+  (visual-line-mode)
+  (local-set-key (kbd  "C-c C-c") 'server-edit))
+(add-hook 'mail-mode-hook 'my/mail-mode-hook)
+(add-to-list 'auto-mode-alist '("/mutt" . (lambda ()
+                                            (mail-mode)
+                                            (forward-paragraph))))
+
+(use-package dictionary
+  :ensure t
+  :bind ("M-%" . dictionary-lookup-definition))
+
 (defun my/disable-auto-fill ()
   (auto-fill-mode -1)
   (local-set-key (kbd "M-q") (lambda ()
@@ -385,185 +560,5 @@
   (blacken-mode)
   (display-line-numbers-mode))
 (add-hook 'python-mode-hook 'my/python-mode-hook)
-
-(require 'setup-abbrev-mode)
-(require 'setup-org-mode)
-;; This gives me more trouble than value.
-;; (require 'setup-org-gcal-creds)
-
-(use-package aggressive-indent
-  :ensure t
-  :diminish)
-
-(use-package yasnippet
-  :ensure t
-  :diminish (yas-minor-mode . "Yas")
-  :config (yas-global-mode t))
-
-(use-package yasnippet-snippets :ensure t)
-(use-package aws-snippets :ensure t)
-
-(use-package ivy-yasnippet
-  :ensure t
-  :bind ("C-x C-i" . ivy-yasnippet))
-
-(use-package magit
-  :ensure t
-  :init (setq magit-diff-refine-hunk t
-              magit-completing-read-function 'ivy-completing-read
-              magit-bury-buffer-function 'magit-mode-quit-window)
-  :bind ("C-c m" . magit-status))
-
-(use-package git-gutter-fringe
-  :disabled
-  :ensure t
-  :diminish git-gutter-mode
-  :config
-  (set-face-foreground 'git-gutter-fr:modified "deep sky blue")
-  (set-face-foreground 'git-gutter-fr:added    "green")
-  (set-face-foreground 'git-gutter-fr:deleted  "red")
-  (global-git-gutter-mode t))
-
-(use-package git-timemachine
-  :ensure t)
-
-(use-package paredit
-  :ensure t
-  :diminish
-  :config (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode))
-
-(use-package highlight-parentheses
-  :ensure t
-  :diminish
-  :init (setq hl-paren-colors '("red" "orange red" "yellow" "green"
-                                "cyan" "blue" "magenta" "dark violet"))
-  :config (global-highlight-parentheses-mode))
-
-(use-package dumb-jump
-  :ensure
-  :init (setq dumb-jump-selector 'ivy
-              dumb-jump-force-searcher 'ag)
-  :bind (("M-g j" . dumb-jump-go)
-         ("M-g p" . dumb-jump-back)
-         ("M-g q" . dumb-jump-quick-look)))
-
-(use-package handlebars-mode :ensure t)
-(use-package yaml-mode :ensure t)
-(use-package uuidgen :ensure t)
-
-(use-package htmlize
-  :ensure t)
-
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
-
-;; Clojure
-(use-package cider
-  :ensure t
-  :init (setq cider-repl-display-help-banner nil
-              cider-test-infer-test-ns
-              (lambda (ns) (if (string-match "^[^.]+\.test" ns)
-                          ns
-                        (replace-regexp-in-string "^\\([^.]+\\)\." "\\1.test." ns)))
-              cider-prompt-for-symbol nil
-              nrepl-hide-special-buffers t
-              cider-save-file-on-load t
-              cider-special-mode-truncate-lines nil
-              ))
-
-(use-package clojure-snippets
-  :ensure t)
-
-(use-package clj-refactor
-  :ensure t
-  :diminish
-  :config (setq cljr-warn-on-eval nil))
-
-;; Requires zprint, not packaged for Debian as of 2020-04-05
-;; https://github.com/kkinnear/zprint
-(use-package zprint-mode
-  :ensure t)
-
-;; Emacs Lisp
-(add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
-
-;; JavaScript
-(setq js-indent-level 4)
-
-;; Python
-;;
-;; Required modules: jedi flake8 black
-;; the `elpy-config' command is useful for checking prerequisites
-(use-package elpy
-  :ensure t
-  :init (progn
-          (setq python-shell-interpreter "ipython"
-                python-shell-interpreter-args "-i --simple-prompt"
-                elpy-rpc-virtualenv-path 'default)
-          (elpy-enable)))
-
-(use-package blacken
-  :ensure t)
-
-(use-package pyvenv
-  :ensure t
-  :config (pyvenv-mode 1))
-
-;; SQL
-(use-package sqlup-mode
-  :ensure t
-  :diminish
-  :init (setq sqlup-blacklist '("name" "id" "state" "result" "action"))
-  :config (add-hook 'sql-mode-hook 'sqlup-mode))
-
-;; Docker
-(use-package dockerfile-mode
-  :ensure t)
-
-;; Terraform
-(use-package terraform-mode
-  :ensure t
-  :config (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
-
-(use-package terraform-doc
-  :ensure t)
-
-(use-package vcl-mode
-  :ensure t)
-
-(use-package poly-ansible
-  :ensure t)
-
-;; Web browsing
-(setq eww-search-prefix
-      ;;"https://www.google.com/search?q="
-      "https://duckduckgo.com/html/?q=")
-(add-hook 'eww-mode-hook (lambda ()
-                           (setq-local shr-use-fonts nil)
-                           (define-key eww-link-keymap (kbd "I") 'endless/toggle-image-display)))
-
-;; External web browsing
-(setq browse-url-generic-program "sensible-browser"
-      browse-url-browser-function 'browse-url-generic)
-
-;; ediff
-(setq ediff-split-window-function 'split-window-horizontally
-      ediff-window-setup-function 'ediff-setup-windows-plain)
-
-;; Mail, via mutt
-(defun my/mail-mode-hook ()
-  (my/disable-auto-fill)
-  (whitespace-newline-mode)
-  (visual-line-mode)
-  (local-set-key (kbd  "C-c C-c") 'server-edit))
-(add-hook 'mail-mode-hook 'my/mail-mode-hook)
-(add-to-list 'auto-mode-alist '("/mutt" . (lambda ()
-                                            (mail-mode)
-                                            (forward-paragraph))))
-
-(use-package dictionary
-  :ensure t
-  :bind ("M-%" . dictionary-lookup-definition))
 
 (scroll-bar-mode -1)
