@@ -116,10 +116,15 @@ alias mv='mv -i'
 alias ls='ls -lh --color=auto --group-directories-first'
 alias emacs=emacsclient
 alias cls=clear  # a concession to having disabled ^L
-# Clojure dev aliases
+# Clojure dev
 alias lt='lein test'
 alias ltr='lein test-refresh'
 alias ltc='lein with-profile test cloverage'
+# Kubernetes
+alias kc=kubectl
+alias kx=kubectx
+alias kxn="kubectx nil-context"
+alias ks=kubens
 
 source ~/.zsh_functions
 source ~/.zsh_functions_local

@@ -1,30 +1,23 @@
-#https://starship.rs/config/
+# https://starship.rs/config/
 
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-[hostname]
-ssh_symbol = " "
-ssh_only = true
-format = "[$hostname]($style) "
-style = "white"
+format ="""
+$directory\
+$git_branch\
+$git_status\
+$git_commit\
+$fill\
+$kubernetes\
+\n$character"""
 
-[kubernetes]
-disabled = false
-format = '\[[$context \($namespace\)]($style)\] '
-style = "white"
+[character]
+success_symbol = "❯"
+error_symbol = "[❯](bold red)"
 
-# [[kubernetes.contexts]]
-# context_pattern = ".*prod.*"
-# style = "bold red"
-
-# [[kubernetes.contexts]]
-# context_pattern = ".*(stage|dev|common).*"
-# style = "bold yellow"
-
-# [[kubernetes.contexts]]
-# context_pattern = "kind-.*"
-# style = "bold green"
+[fill]
+symbol = ' '
 
 [directory]
 truncation_length = 3
@@ -33,9 +26,19 @@ truncate_to_repo = false
 format = "[$path]($style) "
 style = "blue"
 
+[kubernetes]
+disabled = false
+symbol = '🔥'
+format = '[$symbol $context/$namespace]($style)'
+style = 'white'
+
+[[kubernetes.contexts]]
+context_pattern = '^nil-context$'
+symbol = ''
+style = 'hidden'
+
 [git_branch]
 symbol = "[](cyan)"
-#format = '\[[$symbol $branch]($style)\]'
 format = '[$symbol $branch]($style) '
 style = "white"
 
@@ -45,10 +48,3 @@ style = "white"
 
 [git_commit]
 tag_symbol = '  '
-
-[gcloud]
-disabled = true
-format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
-
-[golang]
-disabled = true
