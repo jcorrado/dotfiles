@@ -153,13 +153,14 @@
 
 ;; DejaVu isn't available on macOS by default
 ;; https://dejavu-fonts.github.io/Download.html
-;; "DejaVu Sans Mono-16"
+;; "DejaVu Sans Mono-18"
 ;; 
 ;; Nerd Fonts
 ;; https://www.nerdfonts.com/font-downloads
-;; "FiraMono Nerd Font Mono-16"
-(let ((primary-font "FiraMono Nerd Font Mono-16")
-      (secondary-font "Menlo-16"))
+;; "FiraMono Nerd Font Mono-18"
+;; "EnvyCodeR Nerd Font Mono-18"
+(let ((primary-font "EnvyCodeR Nerd Font Mono-18")
+      (secondary-font "Menlo-18"))
   (if (member (car (split-string primary-font "-")) (font-family-list))
       (set-frame-font primary-font nil t)
     (set-frame-font secondary-font nil t)))
