@@ -159,7 +159,7 @@
 ;; https://www.nerdfonts.com/font-downloads
 ;; "FiraMono Nerd Font Mono-18"
 ;; "EnvyCodeR Nerd Font Mono-18"
-(let ((primary-font "EnvyCodeR Nerd Font Mono-18")
+(let ((primary-font "FiraMono Nerd Font Mono-18")
       (secondary-font "Menlo-18"))
   (if (member (car (split-string primary-font "-")) (font-family-list))
       (set-frame-font primary-font nil t)
