@@ -2,7 +2,7 @@
 
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
-# path defined in zprofile
+# PATH defined in zprofile
 if [ -f $HOME/.zprofile ]; then . $HOME/.zprofile; fi
 
 export LANG='en_US.UTF-8'
@@ -12,61 +12,33 @@ export PAGER=most
 export EMACS_SERVER_SOCK="/tmp/emacs$(id -u)/server"
 export FZF_DEFAULT_OPTS="--tmux 75%,50% --layout=reverse --color='pointer:green'"
 
-bindkey -N mymap emacs
-bindkey -A mymap main
-bindkey '^U' backward-kill-line
-bindkey -r '^L'  # disable obsessive screen clearing
-
-function my-backward-kill-word () {
-    local WORDCHARS="*?_-.[]~=/&;!#$%^(){}<>"
-    zle backward-kill-word
-}
-zle -N my-backward-kill-word
-bindkey '^W' my-backward-kill-word
+HISTSIZE=2000
+SAVEHIST=2000
+HISTFILE=~/.zsh_history
 
 setopt auto_cd
 setopt pushd_ignore_dups
 setopt interactive_comments
 setopt rm_star_silent
-
-
-#
-# History
-#
 setopt hist_find_no_dups
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt extended_history
-HISTSIZE=2000
-SAVEHIST=2000
-HISTFILE=~/.zsh_history
-
-# Load zsh-history-substring-search package
-_pkg=/opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-if [ -e $_pkg ]; then
-    source $_pkg
-    bindkey '^[[A' history-substring-search-up  # up arrow
-    bindkey '^[[B' history-substring-search-down  # down arrow
-fi
-
-bindkey '^r' fzf-history-widget
 
 
 #
 # Completion System
 #
-eval "$(dircolors -b)"
-
 autoload -Uz compinit; compinit
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 
+eval "$(dircolors -b)"
 setopt auto_list
 setopt list_ambiguous
 zmodload -i zsh/complist
-bindkey -M menuselect '^M' .accept-line
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
@@ -82,7 +54,6 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,Cmdr'
 # Load Bash completion compatibility after Zsh completion
 autoload -U +X bashcompinit && bashcompinit
 
-# Tool completion packages
 _pkg=$HOME/.asdf/completions/asdf.bash
 [ -f $_pkg ] && source $_pkg
 
@@ -91,7 +62,17 @@ _pkg=$HOME/google-cloud-sdk/completion.zsh.inc
 
 command -v kubectl >/dev/null 2>&1 && source <(kubectl completion zsh)
 
-# Load zsh-syntax-highlighting package
+# FZF - an awesome fuzzy-finder
+# https://github.com/junegunn/fzf
+#
+# This modifies the `emacs` keymap we copy below. Separately, below,
+# we bind some of the provided functions.
+command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
+
+
+#
+# Highlighting
+#
 _pkg=/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if [ -e $_pkg ]; then
     source $_pkg  # Source the plugin first
@@ -108,8 +89,39 @@ if [ -e $_pkg ]; then
     ZSH_HIGHLIGHT_STYLES[comment]='fg=black,bg=white'
 fi
 
-# Excellent fuzzy-finder
-command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
+
+#
+# Keybindings
+#
+function my-backward-kill-word () {
+    local WORDCHARS="*?_-.[]~=/&;!#$%^(){}<>"
+    zle backward-kill-word
+}
+zle -N my-backward-kill-word
+
+bindkey -N mymap emacs
+bindkey -A mymap main
+
+bindkey -r '^L'  # disable obsessive screen clearing
+bindkey '^U' backward-kill-line
+bindkey '^W' my-backward-kill-word
+bindkey -M menuselect '^M' .accept-line
+bindkey '^r' fzf-history-widget
+
+# Load zsh-history-substring-search package
+_pkg=/opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+if [ -e $_pkg ]; then
+    source $_pkg
+    bindkey '^[[A' history-substring-search-up  # up arrow
+    bindkey '^[[B' history-substring-search-down  # down arrow
+fi
+
+
+#
+# Functions, aliases, etc.
+#
+source ~/.zsh_functions
+source ~/.zsh_functions_local
 
 alias rm='rm -i'
 alias cp='cp -i'
@@ -127,8 +139,5 @@ alias kx=kubectx
 alias kxn="kubectx --unset >/dev/null 2>&1"
 alias kn=kubens
 
-source ~/.zsh_functions
-source ~/.zsh_functions_local
-
-# starship package
+# Starship prompt package
 eval "$(starship init zsh)"
