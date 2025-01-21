@@ -83,12 +83,13 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,Cmdr'
 autoload -U +X bashcompinit && bashcompinit
 
 # Tool completion packages
-if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then . $HOME/google-cloud-sdk/completion.zsh.inc; fi
+_pkg=$HOME/.asdf/completions/asdf.bash
+[ -f $_pkg ] && source $_pkg
 
-if [ -f $HOME/.asdf/asdf.sh ]; then
-    source $HOME/.asdf/asdf.sh
-    source $HOME/.asdf/completions/asdf.bash
-fi
+_pkg=$HOME/google-cloud-sdk/completion.zsh.inc
+[ -f $_pkg ] && source $_pkg
+
+command -v kubectl >/dev/null 2>&1 && source <(kubectl completion zsh)
 
 # Load zsh-syntax-highlighting package
 _pkg=/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -108,7 +109,7 @@ if [ -e $_pkg ]; then
 fi
 
 # Excellent fuzzy-finder
-source <(fzf --zsh)
+command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
 
 alias rm='rm -i'
 alias cp='cp -i'
@@ -123,8 +124,8 @@ alias ltc='lein with-profile test cloverage'
 # Kubernetes
 alias kc=kubectl
 alias kx=kubectx
-alias kxn="kubectx nil-context"
-alias ks=kubens
+alias kxn="kubectx --unset >/dev/null 2>&1"
+alias kn=kubens
 
 source ~/.zsh_functions
 source ~/.zsh_functions_local

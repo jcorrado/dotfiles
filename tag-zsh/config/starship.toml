@@ -29,13 +29,7 @@ style = "blue"
 [kubernetes]
 disabled = false
 symbol = '🔥'
-format = '[$symbol $context/$namespace]($style)'
-style = 'white'
-
-[[kubernetes.contexts]]
-context_pattern = '^nil-context$'
-symbol = ''
-style = 'hidden'
+format = '$symbol [$context](white)/[$namespace](dimmed)'
 
 [git_branch]
 symbol = "[](cyan)"
