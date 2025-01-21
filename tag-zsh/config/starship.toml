@@ -6,6 +6,7 @@
 format ="""
 $directory\
 $git_branch\
+$git_state\
 $git_status\
 $git_commit\
 $fill\
@@ -37,8 +38,11 @@ format = '[$symbol $branch]($style) '
 style = "white"
 
 [git_status]
-format = '[$all_status$ahead_behind]($style)'
-style = "white"
+format = '[$all_status$ahead_behind]($style) '
+deleted = '-'
+style = "dimmed"
 
 [git_commit]
 tag_symbol = '  '
+tag_disabled = false
+style = 'yellow'
