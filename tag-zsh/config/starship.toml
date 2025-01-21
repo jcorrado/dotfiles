@@ -4,6 +4,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format ="""
+$jobs\
 $directory\
 $git_branch\
 $git_state\
@@ -19,6 +20,10 @@ error_symbol = "[❯](bold red)"
 
 [fill]
 symbol = ' '
+
+[jobs]
+symbol = ''
+format = '[$symbol](bold) '
 
 [directory]
 truncation_length = 3
