@@ -38,9 +38,8 @@ symbol = '🔥'
 format = '$symbol [$context](white)/[$namespace](dimmed)'
 
 [git_branch]
-symbol = "[](cyan)"
-format = '[$symbol $branch]($style) '
-style = "white"
+symbol = ''
+format = '[$symbol](cyan) [$branch](white) '
 
 [git_status]
 format = '[$all_status$ahead_behind]($style) '
