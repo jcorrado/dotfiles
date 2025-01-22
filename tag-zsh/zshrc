@@ -8,9 +8,14 @@ if [ -f $HOME/.zprofile ]; then . $HOME/.zprofile; fi
 export LANG='en_US.UTF-8'
 export EDITOR=emacsclient
 export VISUAL=emacsclient
-export PAGER=most
 export EMACS_SERVER_SOCK="/tmp/emacs$(id -u)/server"
 export FZF_DEFAULT_OPTS="--tmux 75%,50% --layout=reverse --color='pointer:green'"
+export PAGER='less'
+export LESS='-RFSMi'
+export LESS_TERMCAP_md=$'\e[91m'  # Bold text (commands, sections) - bright red
+export LESS_TERMCAP_us=$'\e[92m'  # Underlined text (arguments) - bright green
+export LESS_TERMCAP_me=$'\e[0m'  # Reset text attributes
+export LESS_TERMCAP_ue=$'\e[0m'  # Reset underline
 
 HISTSIZE=2000
 SAVEHIST=2000
@@ -127,12 +132,16 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias ls='ls -lh --color=auto --group-directories-first'
+alias ag='ag --no-heading'
+alias bat='bat --plain'
 alias emacs=emacsclient
 alias cls=clear  # a concession to having disabled ^L
+
 # Clojure dev
 alias lt='lein test'
 alias ltr='lein test-refresh'
 alias ltc='lein with-profile test cloverage'
+
 # Kubernetes
 alias kc=kubectl
 alias kx=kubectx

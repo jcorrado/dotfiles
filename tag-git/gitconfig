@@ -22,9 +22,6 @@
     diff-words = diff --color-words
     diff-chars = diff --color-words --word-diff-regex='.'
     diff-idx = diff --cached --color=always
-    
-[core]
-    pager = 
 
 [github]
     user = jcorrado
