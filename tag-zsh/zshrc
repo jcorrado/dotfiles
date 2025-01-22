@@ -3,7 +3,7 @@
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
 # PATH defined in zprofile
-if [ -f $HOME/.zprofile ]; then . $HOME/.zprofile; fi
+if [ -f ~/.zprofile ]; then . ~/.zprofile; fi
 
 export LANG='en_US.UTF-8'
 export EDITOR=emacsclient
@@ -59,10 +59,10 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,Cmdr'
 # Load Bash completion compatibility after Zsh completion
 autoload -U +X bashcompinit && bashcompinit
 
-_pkg=$HOME/.asdf/completions/asdf.bash
+_pkg=~/.asdf/completions/asdf.bash
 [ -f $_pkg ] && source $_pkg
 
-_pkg=$HOME/google-cloud-sdk/completion.zsh.inc
+_pkg=~/google-cloud-sdk/completion.zsh.inc
 [ -f $_pkg ] && source $_pkg
 
 command -v kubectl >/dev/null 2>&1 && source <(kubectl completion zsh)
