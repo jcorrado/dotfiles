@@ -125,8 +125,8 @@ fi
 #
 # Functions, aliases, etc.
 #
-source ~/.zsh_functions
-source ~/.zsh_functions_local
+source ~/.zsh/functions
+source ~/.zsh/functions_local
 
 alias rm='rm -i'
 alias cp='cp -i'
