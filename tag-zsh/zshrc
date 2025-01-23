@@ -9,7 +9,7 @@ export LANG='en_US.UTF-8'
 export EDITOR=emacsclient
 export VISUAL=emacsclient
 export EMACS_SERVER_SOCK="/tmp/emacs$(id -u)/server"
-export FZF_DEFAULT_OPTS="--tmux 75%,50% --layout=reverse --color='pointer:green'"
+export FZF_DEFAULT_OPTS="--tmux=75%,50% --color='pointer:green'"
 export PAGER='less'
 export LESS='-RFSMi'
 export LESS_TERMCAP_md=$'\e[91m'  # Bold text (commands, sections) - bright red
@@ -73,6 +73,9 @@ command -v kubectl >/dev/null 2>&1 && source <(kubectl completion zsh)
 # This modifies the `emacs` keymap we copy below. Separately, below,
 # we bind some of the provided functions.
 command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
+
+# https://github.com/Aloxaf/fzf-tab
+source ~/.zsh/packages/fzf-tab-1.1.2/fzf-tab.plugin.zsh
 
 
 #
