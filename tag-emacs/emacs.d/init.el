@@ -458,6 +458,8 @@
   :ensure t
   :config (pyvenv-mode 1))
 
+(use-package go-mode :ensure t)
+
 ;; SQL
 (use-package sqlup-mode
   :ensure t
