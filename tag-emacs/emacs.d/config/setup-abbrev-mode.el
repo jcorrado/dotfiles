@@ -1,16 +1,16 @@
 ;; Have a look at http://ergoemacs.org/emacs/emacs_abbrev_mode.html
 
+;; Abbrev key follow by C-q, before a trigger (eg: enter) will
+;; suppress expansion.
+
 (clear-abbrev-table global-abbrev-table)
 
 (define-abbrev-table 'global-abbrev-table
   '(
     ("zn" "zoion.net")
     ("gi" "goldandapager.io")
-    ("tm" "Team Mobot")
-    ("tmc" "teammobot.com")
-    ("tmn" "teammobot.net")
-    ("gtmn" "gcp0.teammobot.net")
-    ("ntmn" "nyc0.teammobot.net")
+
+    ("jc" "jcorrado")
     
     ("gm" "Good Morning")
     ("tj" "Thanks,\nJereme")))

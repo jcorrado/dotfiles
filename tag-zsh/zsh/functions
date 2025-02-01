@@ -28,9 +28,9 @@ function display_color_palette {
 
 function ping () {
     if [ $#@ -eq 0 ]; then
-        /bin/ping eff.net
+        /sbin/ping eff.net
     else
-        /bin/ping $@
+        /sbin/ping $@
     fi
 }
 
