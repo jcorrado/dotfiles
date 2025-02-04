@@ -165,6 +165,12 @@
       (set-frame-font primary-font nil t)
     (set-frame-font secondary-font nil t)))
 
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "PATH"))
+
 (use-package zenburn-theme
   :ensure t
   :config
@@ -317,11 +323,7 @@
           (setq projectile-completion-system 'ivy
                 projectile-git-command "fd -0H ."
                 projectile-generic-command "fd -0H ."
-                projectile-project-search-path '("~/projects/"
-                                                 "~/projects/learning-clojure"
-                                                 "~/projects/learning_ruby"
-                                                 "~/projects/yetibot"
-                                                 "~/projects/teammobot")))
+                projectile-project-search-path '("~/projects/" "~/go/src/")))
   :config (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package ag :ensure t)
@@ -458,7 +460,32 @@
   :ensure t
   :config (pyvenv-mode 1))
 
-(use-package go-mode :ensure t)
+;;
+;; Go
+;;
+;; go install golang.org/x/tools/gopls@latest  # LSP server
+;; go install github.com/go-delve/delve/cmd/dlv@latest  # debugger
+;; go install honnef.co/go/tools/cmd/staticcheck@latest  # linter
+(use-package go-mode
+  :ensure t
+  :hook (go-mode . eglot-ensure)
+  :config
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save))
+
+;;
+;; Eglot
+;;
+;; TODO - Connect other langs that have an LSP server option.
+(use-package eglot
+  :ensure t
+  :bind (:map eglot-mode-map
+              ("C-c C-d" . eldoc-doc-buffer)
+              ("C-c C-r" . eglot-rename)
+              ("C-c C-f" . eglot-format-buffer)
+              ("M-."     . xref-find-definitions)
+              ("M-?"     . xref-find-references)
+              ("M-,"     . xref-pop-marker-stack)))
 
 ;; SQL
 (use-package sqlup-mode
